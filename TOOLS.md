@@ -2,6 +2,15 @@
 
 Skills define _how_ tools work. This file is for _your_ specifics — the stuff that's unique to your setup.
 
+## CrafTech360 Integrations
+
+### Notion (Read-Only)
+- Integration Token: `ntn_h83600787745Xh34HaAJhATiy0ywr9hXEJREROAz3wZcMe`
+- API Version: 2022-06-28
+- Mode: READ-ONLY reconnaissance — no changes without Ravi's approval
+
+---
+
 ## What Goes Here
 
 Things like:
@@ -12,24 +21,6 @@ Things like:
 - Speaker/room names
 - Device nicknames
 - Anything environment-specific
-
-## Examples
-
-```markdown
-### Cameras
-
-- living-room → Main area, 180° wide angle
-- front-door → Entrance, motion-triggered
-
-### SSH
-
-- home-server → 192.168.1.100, user: admin
-
-### TTS
-
-- Preferred voice: "Nova" (warm, slightly British)
-- Default speaker: Kitchen HomePod
-```
 
 ## Why Separate?
 

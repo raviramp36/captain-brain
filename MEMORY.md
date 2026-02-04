@@ -19,15 +19,30 @@
 
 ## CrafTech360
 
-**The Vision:**
-Multi-agent organization where AI agents assist departments:
-- Department agents = "seniors" for HR, Engineering, Sales, etc.
+**What They Do:**
+Experiential technology company — interactive booths, AI experiences, VR/AR, digital installations for corporate events.
+
+**Team (8 people):**
+Ravi (CEO), Rudresh, Pattar, Pradeep, Deepti, Saddam, KP, Prabhakar
+
+**Departments:**
+Software, Embedded, Operation, Procurement
+
+**Key Products:**
+360 Photobooth, AI Photobooth, Glambot, VR Experiences, Interactive Walls, Digital Caricature, etc. (18+ offerings)
+
+**Key Agency Partners:**
+Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
+
+**The Multi-Agent Vision:**
+- Department agents = "seniors" for each function
 - Captain = orchestrator coordinating all agents
 - Goal: Organization alignment, updates, nothing falls through cracks
 
-**Current Phase:** Foundation setup
-- Connecting to Notion to understand existing structure
-- Will design multi-agent architecture based on actual org
+**Current Phase:** Reconnaissance complete
+- Notion connected and analyzed
+- Ready to design multi-agent architecture
+- Full analysis: `memory/craftech360-org-analysis.md`
 
 ## Key Decisions
 
