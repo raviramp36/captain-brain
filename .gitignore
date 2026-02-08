@@ -2,6 +2,14 @@
 node_modules/
 package-lock.json
 
+# Heavy files - stored in Google Drive instead
+creative-lead-resumes/
+media/
+archive/
+*.mp4
+*.mov
+*.zip
+
 # Build outputs
 hr-dashboard/node_modules/
 hr-dashboard/.next/

@@ -1,0 +1,20 @@
+{
+  "description": "External assets too large for git - stored in Google Drive",
+  "driveFolder": "https://drive.google.com/drive/folders/1B-A_olBPz4Hd5qjmDlb8Ff8ZCib6-lTz",
+  "driveFolderId": "1B-A_olBPz4Hd5qjmDlb8Ff8ZCib6-lTz",
+  "subfolders": {
+    "memory": "1FIktq8_eU0Ic-GhDfFNOeDgIpoNX28Y4",
+    "departments": "19fpEHJG8XBoy8BHVZDWkrCG979usyqCw",
+    "workflows": "1Tzp24BTiQPdPI8vlrQVx46fBmJoIv3wR",
+    "config": "1rL9L8C31f-COdvH2G16J-sAba-Q0k3vc"
+  },
+  "assets": {
+    "creative-lead-resumes/": "TODO: Upload to Drive, add link",
+    "hr-dashboard-screenshots/": "TODO: If needed"
+  },
+  "trackers": {
+    "hiring-tracker": "https://docs.google.com/spreadsheets/d/1Ay2ae5N6NPebxqMi96RUi3DDG2S8nrnxiSHzRwZCWi0/edit",
+    "hr-dashboard-data": "https://docs.google.com/spreadsheets/d/1Ek40xcru7eDYyPpp8BwISRpGGoo5pvwbFYqKQNVJ2fo/edit"
+  },
+  "lastUpdated": "2026-02-08"
+}
