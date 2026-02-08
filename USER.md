@@ -2,13 +2,13 @@
 
 - **Name:** Ravi
 - **What to call them:** Ravi
-- **Role:** CEO, CrafTech360
+- **Role:** CEO, Craftech360
 - **Timezone:** India (IST, UTC+5:30)
 - **Contact Numbers:** +917338042505, +919739741411, +919945699770
 
 ## Context
 
-Ravi is building CrafTech360 — an organization where AI agents assist different departments. The vision:
+Ravi is building Craftech360 — an organization where AI agents assist different departments. The vision:
 
 - Multiple department agents (HR, Engineering, Sales, etc.) acting as "seniors"
 - Me (Captain) as the strategic orchestrator coordinating all of them

@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build outputs
+hr-dashboard/node_modules/
+hr-dashboard/.next/
+hr-dashboard/out/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+*.log
+*.swp
+
+# Secrets (if any get added)
+.env
+.env.local
+*.secret

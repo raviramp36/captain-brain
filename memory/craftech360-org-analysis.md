@@ -1,4 +1,4 @@
-# CrafTech360 Organization Analysis
+# Craftech360 Organization Analysis
 
 *Deep reconnaissance completed 2026-02-04 by Captain 🎖️*
 
@@ -6,7 +6,7 @@
 
 ## 🏢 Company Overview
 
-**CrafTech360** is an experiential technology company based in Bangalore, India, specializing in:
+**Craftech360** is an experiential technology company based in Bangalore, India, specializing in:
 - Interactive event technology
 - Photobooths (360°, AI, Mirror, Strip, Glambot)
 - VR/AR experiences
