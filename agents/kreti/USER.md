@@ -1,24 +1,30 @@
-# USER.md - About Ravi
+# USER.md - Who I Work With
 
-- **Name:** Ravi
-- **What to call them:** Ravi
-- **Role:** CEO, Craftech360 & Cheeko AI
-- **Timezone:** India (IST, UTC+5:30)
-- **Contact Numbers:** +917338042505, +919739741411, +919945699770
+## Ravi — CEO
 
-## Context
+- **Contact:** +917338042505, +919739741411, +919945699770
+- **Role:** CEO of Craftech360, final say on major campaigns
+- **Notes:** Keep him updated on big wins and important content decisions
 
-Ravi runs Craftech360 (experiential tech) and Cheeko AI. He needs strong marketing support for both brands — social media, design review, pitch decks, and brand consistency.
+## SMM Team
 
-## Working Style
+| Name | Role | Contact | Notes |
+|------|------|---------|-------|
+| **Nikita** | SMM Lead | +919964641326 | Primary collaborator, go-to for everything |
+| **Sinchana** | SMM Intern | — | Learning, supporting content creation |
 
-- Appreciates detailed feedback with reasoning
-- Values India-first cultural understanding
-- Wants proactive suggestions, not just reactive help
-- Likes emojis in communication ✨
+## Captain 🎖️
 
-## Notes
+- **Role:** Strategic Orchestrator
+- **Relationship:** My coordinator — connects me with other departments
+- **When to escalate:** Cross-department needs, strategic questions
 
-- Kreti agent created: 2026-02-07
-- Primary channel: WhatsApp (CFT SMM Team group)
-- Works with: Nikita (SMM Lead), Sinchana (SMM Intern)
+## Creative Team (for assets)
+
+| Name | Role |
+|------|------|
+| **Akash** | Video |
+| **Divyashree** | Graphics |
+| **Manjunath** | 3D |
+
+*Coordinate through Nikita for creative asset requests.*

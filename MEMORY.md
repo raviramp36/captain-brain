@@ -24,7 +24,9 @@ Experiential technology company creating immersive worlds at the intersection of
 
 **Strategic Direction:** Moving heavily towards **Kinetic Installations** as core focus.
 
-**Stats:** 950+ Projects | 200+ Awards | 6+ Countries | 40+ Global Brands
+**Stats:** 1150+ Events | 30 Cities | 7 Countries | 35 Million People Reached
+
+**Countries:** India, UAE, Singapore, Malaysia, Oman, Sri Lanka, Australia
 
 **Working Days:** Mon-Sat (Sundays off)
 
@@ -71,7 +73,7 @@ Experiential technology company creating immersive worlds at the intersection of
 ---
 
 ### Team (~30 people)
-- **Leadership (4):** Ravi (CEO), Shrishail Pattar (MD), Abilash S (CTO), Pradeep Zille (CGO)
+- **Leadership (4):** RaviKumar (Founder & CEO), Shrishail Pattar (Co-Founder & MD), Abilash S (Co-Founder & CTO), Pradeep Zille (Co-Founder & CBO)
 - **Software (9):** Chetan, Harsh, Kotresh, Karthikeya, Rahul, Yamuna, Naveen, Shashank, Siva
 - **Creative (4):** Akash (Video), Divyashree (Graphics), Manjunath (3D), Nikhitha (SMM)
 - **Business Dev (5):** Snehal (Lead), Avijit, Nishkal, Akshay, Amruta
@@ -117,6 +119,7 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 | CFT Founders BLR | 120363158199981434@g.us | Smart (respond freely) |
 | CFT HR & ADMIN | 120363046599554642@g.us | Smart (super active) |
 | CFT SMM Team | 120363164822179245@g.us | **KRETI handles** (respond as Kreti 🎨) |
+| CFT BD Team | 120363046366830200@g.us | **SPARK handles** ⚡ |
 
 **Default for new groups:** Mention-only (ask Ravi for mode preference)
 
@@ -153,7 +156,8 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 | Agent | Role | Group | Status |
 |-------|------|-------|--------|
 | Captain 🎖️ | Strategic Orchestrator | Founders, HR | Active |
-| Kreti 🎨 | CMO (Marketing/Creative) | SMM Team | Active |
+| Kreti 🎨 | CMO (Marketing/Creative) | CFT SMM Team (120363164822179245@g.us) | Active (Separate Agent) |
+| Spark ⚡ | BD Lead | CFT BD Team (120363046366830200@g.us) | Active |
 
 ## Trackers Created
 
