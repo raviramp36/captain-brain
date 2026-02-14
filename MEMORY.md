@@ -74,13 +74,13 @@ Experiential technology company creating immersive worlds at the intersection of
 
 ### Team (~30 people)
 - **Leadership (4):** RaviKumar (Founder & CEO), Shrishail Pattar (Co-Founder & MD), Abilash S (Co-Founder & CTO), Pradeep Zille (Co-Founder & CBO)
-- **Software (9):** Chetan, Harsh, Kotresh, Karthikeya, Rahul, Yamuna, Naveen, Shashank, Siva
-- **Creative (4):** Akash (Video), Divyashree (Graphics), Manjunath (3D), Nikhitha (SMM)
+- **Software (7):** Chetan, Harsh, Kotresh, Karthikeya, Rahul, Yamuna, Naveen, Shashank
+- **Creative (6):** Akash (Video), Divyashree (Graphics), Manjunath (3D), Nikhitha (SMM), Siva (UI/UX), Abhijith (UI/UX)
 - **Business Dev (5):** Snehal (Lead), Avijit, Nishkal, Akshay, Amruta
 - **Operations (4):** Shivraj (Lead), Shivukumara, Thippeswamy, Varuna
 - **HR & Admin (2):** Suman (HR), Suma NC (Accounts)
 - **Contractors (2):** Praveen, Roopa
-- **Interns (5):** David, Darshan, Abhishek, Abhijith, Sinchana
+- **Interns (4):** David, Darshan, Abhishek, Sinchana
 
 **Departments:** Software, Creative, Business Development, Operations, HR & Admin
 
@@ -165,6 +165,23 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 |---------|-----|---------|
 | Hiring Tracker | https://docs.google.com/spreadsheets/d/1Ay2ae5N6NPebxqMi96RUi3DDG2S8nrnxiSHzRwZCWi0/edit | 2026-02-07 |
 | HR Dashboard Data | https://docs.google.com/spreadsheets/d/1Ek40xcru7eDYyPpp8BwISRpGGoo5pvwbFYqKQNVJ2fo/edit | 2026-02-08 |
+| Attendance Tracker | https://docs.google.com/spreadsheets/d/1CU51KFI7v2hxMo7urYhhoYqNa_WByuZIMkjr3Qjupgg/edit | 2026-02-08 |
+
+## Active Hiring (Feb 2026)
+
+| Role | Status | Notes |
+|------|--------|-------|
+| Procurement & Inventory Manager | Interviewing | Abhilash shortlisted (35K ECTC), Vikash (fresher), Abhijith (Infosys) |
+| Creative Director/Lead | Interviewing | Sushruth (Kestone) interviewed, Shalini/Jayanth/Harsha screening |
+| Client Servicing | Pipeline | 1 interview scheduled |
+| Strategy Intern | Posted | Awaiting profiles |
+| Embedded Intern | Closed | Pratik converted to full-time (25K) |
+
+## Hiring Priority Companies
+
+Reference: `memory/hiring-priority-companies.md`
+- **Competitors:** Jaseil Creations, 4Brains, Tagbin, MagicTap, InkinnCaps, Attah, Digital Jalebi
+- **Client Agencies:** Neo Niche, CAB, Shobiz, Showtime, Laqshaya, Wizcraft, White, Toast, Inextis, PMG, 70EMG, Seventy Seven, DNA, BrandAid, Phase 1, Kestone, Acme, Beep
 
 ## HR Dashboard
 
