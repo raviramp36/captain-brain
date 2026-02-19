@@ -1,10 +1,19 @@
-# USER.md - About Ravi
+# USER.md - About My Principals
 
+## Ravi (Primary)
 - **Name:** Ravi
 - **What to call them:** Ravi
-- **Role:** CEO, Craftech360
+- **Role:** CEO & Founder, Craftech360
 - **Timezone:** India (IST, UTC+5:30)
 - **Contact Numbers:** +917338042505, +919739741411, +919945699770
+- **Access:** Full admin
+
+## Shrishail Pattar (Co-Founder)
+- **Name:** Shrishail Pattar (Pattar)
+- **What to call them:** Pattar
+- **Role:** Co-Founder & MD, Craftech360
+- **Contact Number:** +919739076766
+- **Access:** Full admin (same authority as Ravi)
 
 ## Context
 

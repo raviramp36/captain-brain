@@ -1,0 +1,132 @@
+{
+  "version": "0.1.0",
+  "lastUpdated": "2026-02-19",
+  "groups": {
+    "project_confirmations": {
+      "name": "CFT Project Confirmations",
+      "jid": null,
+      "agent": "captain",
+      "purpose": "BD posts project confirmations, Captain captures and distributes",
+      "status": "to_create",
+      "members": [
+        {"name": "Snehal", "role": "BD Lead"},
+        {"name": "Avijit", "role": "BD"},
+        {"name": "Nishkal", "role": "BD"},
+        {"name": "Akshay", "role": "BD"},
+        {"name": "Amruta", "role": "BD"},
+        {"name": "Shivkumara", "role": "PM"},
+        {"name": "Captain", "role": "AI Agent", "number": "+917338042505"}
+      ],
+      "settings": {
+        "captureMessages": true,
+        "notifyOnCapture": true,
+        "parseFormat": "bd_confirmation"
+      }
+    },
+    "engineering": {
+      "name": "CFT Engineering",
+      "jid": null,
+      "agent": "forge",
+      "purpose": "Software + Embedded team coordination",
+      "status": "to_create",
+      "members": [
+        {"name": "Chetan", "role": "Software"},
+        {"name": "Harsh", "role": "Software"},
+        {"name": "Kotresh", "role": "Software"},
+        {"name": "Karthikeya", "role": "Software"},
+        {"name": "Rahul", "role": "Software"},
+        {"name": "Yamuna", "role": "Software"},
+        {"name": "Naveen", "role": "Embedded Lead"},
+        {"name": "Shashank", "role": "Embedded"},
+        {"name": "Pratik", "role": "Embedded"},
+        {"name": "David", "role": "R&D Touch Designer"},
+        {"name": "Darshan", "role": "R&D Mechanical"},
+        {"name": "Captain", "role": "AI Agent (until Forge deployed)"}
+      ],
+      "notifications": {
+        "products": ["kinetic", "ai_products", "interactive", "displays", "sustainability"]
+      }
+    },
+    "creative_hub": {
+      "name": "CFT Creative Hub",
+      "jid": null,
+      "agent": "blaze",
+      "purpose": "Creative + SMM + Video coordination",
+      "status": "to_create",
+      "members": [
+        {"name": "Akash", "role": "Video"},
+        {"name": "Divyashree", "role": "Graphics"},
+        {"name": "Manjunath", "role": "3D"},
+        {"name": "Nikita", "role": "SMM Lead"},
+        {"name": "Sinchana", "role": "SMM"},
+        {"name": "Siva", "role": "UI/UX"},
+        {"name": "Abhijith", "role": "UI/UX"},
+        {"name": "Captain", "role": "AI Agent (until Blaze deployed)"}
+      ],
+      "notifications": {
+        "products": ["all"],
+        "type": "post_event_content"
+      }
+    },
+    "operations": {
+      "name": "CFT Operations",
+      "jid": null,
+      "agent": "atlas",
+      "purpose": "Ops + Inventory + Logistics coordination",
+      "status": "to_create",
+      "members": [
+        {"name": "Shivraj", "role": "Ops Lead"},
+        {"name": "Shivkumara", "role": "PM"},
+        {"name": "Thippeswamy", "role": "Ops"},
+        {"name": "Varuna", "role": "Ops"},
+        {"name": "Suma NC", "role": "Accounts"},
+        {"name": "TBH", "role": "Inventory Manager"},
+        {"name": "Captain", "role": "AI Agent (until Atlas deployed)"}
+      ],
+      "notifications": {
+        "products": ["all"],
+        "type": "logistics_inventory"
+      }
+    },
+    "bd_team": {
+      "name": "CFT BD Team",
+      "jid": null,
+      "agent": "blaze",
+      "purpose": "Sales pipeline, client follow-ups, payment tracking",
+      "status": "to_create",
+      "members": [
+        {"name": "Snehal", "role": "BD Lead"},
+        {"name": "Avijit", "role": "BD"},
+        {"name": "Nishkal", "role": "BD"},
+        {"name": "Akshay", "role": "BD"},
+        {"name": "Amruta", "role": "BD"},
+        {"name": "Captain", "role": "AI Agent (until Blaze deployed)"}
+      ],
+      "features": {
+        "paymentTracking": true,
+        "pipelineUpdates": true,
+        "followUpReminders": true
+      }
+    }
+  },
+  "existing_groups": {
+    "founders": {
+      "name": "CFT Founders BLR",
+      "jid": "120363158199981434@g.us",
+      "agent": "captain",
+      "status": "active"
+    },
+    "hr_admin": {
+      "name": "CFT HR & ADMIN",
+      "jid": "120363046599554642@g.us",
+      "agent": "captain",
+      "status": "active"
+    },
+    "my_squad": {
+      "name": "My Squad",
+      "jid": "120363423885769364@g.us",
+      "agent": "captain",
+      "status": "active"
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "version": "0.1.0",
+  "lastUpdated": "2026-02-19",
+  "categories": {
+    "kinetic": {
+      "name": "Kinetic Installations",
+      "products": [
+        "DNA", "DNA Display",
+        "Aurora",
+        "Nebula",
+        "Kinetic Sliding LEDs",
+        "HMRS", "Horizontal Movement Rotating Screens",
+        "Tri-Helix",
+        "Matrix Screens",
+        "Flying Screens",
+        "Eye Circle Display",
+        "Split-Flap Display",
+        "Kinetic Winch",
+        "Origami Wall",
+        "Sphere Matrix",
+        "Mechanical Sliding Screens"
+      ],
+      "notify": {
+        "engineering": {"team": "embedded", "reason": "Hardware & firmware setup"},
+        "operations": {"reason": "Inventory blocking, transport, setup"},
+        "creative": {"reason": "Post-event content"}
+      }
+    },
+    "ai_products": {
+      "name": "AI Products",
+      "products": [
+        "AI Photobooth",
+        "AI Music Generator", "AI Music",
+        "AI Bot Greeting", "AI Bot",
+        "AI Bistro",
+        "AI Puzzle",
+        "AI Art",
+        "Face Recognition", "Face Recognition Check-in"
+      ],
+      "notify": {
+        "engineering": {"team": "software", "reason": "Software customization & deployment"},
+        "operations": {"reason": "Hardware setup, connectivity"},
+        "creative": {"reason": "Post-event content"}
+      }
+    },
+    "photobooths": {
+      "name": "Photobooths",
+      "products": [
+        "360 Photobooth", "360",
+        "Mirror Booth", "Mirror",
+        "Glambot",
+        "GIFF Booth", "GIFF",
+        "Strip Booth", "Strip",
+        "AR Booth", "AR",
+        "Background Removal"
+      ],
+      "notify": {
+        "engineering": null,
+        "operations": {"reason": "Inventory, transport, on-site operation"},
+        "creative": {"reason": "Post-event content"}
+      }
+    },
+    "interactive": {
+      "name": "Interactive",
+      "products": [
+        "Immersive Room",
+        "LED Cube",
+        "Touch Kiosk", "Kiosk",
+        "Interactive Floor",
+        "Interactive Wall",
+        "Gesture Screen"
+      ],
+      "notify": {
+        "engineering": {"team": "software", "reason": "Interactive software setup"},
+        "operations": {"reason": "Installation, hardware setup"},
+        "creative": {"reason": "Post-event content"}
+      }
+    },
+    "displays": {
+      "name": "Displays",
+      "products": [
+        "Holofan", "Holofans",
+        "Robotic Arm",
+        "Anamorphic Display", "Anamorphic",
+        "3D Cube",
+        "Circular Display",
+        "LED Tunnel"
+      ],
+      "notify": {
+        "engineering": {"team": "embedded", "reason": "Display programming & setup"},
+        "operations": {"reason": "Transport, installation"},
+        "creative": {"reason": "Content creation, post-event"}
+      }
+    },
+    "sustainability": {
+      "name": "Sustainability",
+      "products": [
+        "Carbon Footprint Calculator", "Carbon Calculator",
+        "Green Miles",
+        "Step Into Power"
+      ],
+      "notify": {
+        "engineering": {"team": "software", "reason": "Software deployment"},
+        "operations": {"reason": "Hardware setup"},
+        "creative": {"reason": "Post-event content"}
+      }
+    }
+  },
+  "aliases": {
+    "360": "360 Photobooth",
+    "Mirror": "Mirror Booth",
+    "AI PB": "AI Photobooth",
+    "HMRS": "Horizontal Movement Rotating Screens",
+    "Holofan": "Holofans"
+  },
+  "defaultNotify": {
+    "operations": true,
+    "creative": true,
+    "engineering": false
+  }
+}

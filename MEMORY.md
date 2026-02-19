@@ -74,7 +74,8 @@ Experiential technology company creating immersive worlds at the intersection of
 
 ### Team (~30 people)
 - **Leadership (4):** RaviKumar (Founder & CEO), Shrishail Pattar (Co-Founder & MD), Abilash S (Co-Founder & CTO), Pradeep Zille (Co-Founder & CBO)
-- **Software (7):** Chetan, Harsh, Kotresh, Karthikeya, Rahul, Yamuna, Naveen, Shashank
+- **Software (5):** Chetan, Harsh, Kotresh, Karthikeya, Rahul, Yamuna
+- **Embedded (3):** Naveen, Shashank, Pratik *(separate from Software)*
 - **Creative (6):** Akash (Video), Divyashree (Graphics), Manjunath (3D), Nikhitha (SMM), Siva (UI/UX), Abhijith (UI/UX)
 - **Business Dev (5):** Snehal (Lead), Avijit, Nishkal, Akshay, Amruta
 - **Operations (4):** Shivraj (Lead), Shivukumara, Thippeswamy, Varuna
@@ -82,7 +83,7 @@ Experiential technology company creating immersive worlds at the intersection of
 - **Contractors (2):** Praveen, Roopa
 - **Interns (4):** David, Darshan, Abhishek, Sinchana
 
-**Departments:** Software, Creative, Business Development, Operations, HR & Admin
+**Departments:** Software, Embedded, Creative, Business Development, Operations, HR & Admin
 
 ---
 
@@ -124,6 +125,7 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 **Default for new groups:** Mention-only (ask Ravi for mode preference)
 
 | My Squad (Ravi's Personal) | 120363423885769364@g.us | Smart (super active, full access) |
+| BD X Accounts (payment followup) | 120363045578664749@g.us | Smart (payment recovery coordination) | ⚠️ NEVER mention total overdue amounts — only discuss specific invoices/clients |
 
 **BD Group (TBD - adding later):**
 - Mode: Mention-only
@@ -144,8 +146,10 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 
 ## Key People
 
-| Name | Role | Contact |
-|------|------|---------|
+| Name | Role | Contact | Access |
+|------|------|---------|--------|
+| Shrishail Pattar | Co-Founder & MD (Accounts/Ops) | +919739076766 | **Full Admin** (same as Ravi) |
+| Abilash S | Co-Founder & CTO | +918310896240 | **Full Admin** |
 | Shivu kumara | Project Manager (most events) | — |
 | Nikita | SMM Lead | +919964641326 |
 | Sinchana | SMM Intern | — |
@@ -153,11 +157,29 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 
 ## Agents
 
-| Agent | Role | Group | Status |
-|-------|------|-------|--------|
-| Captain 🎖️ | Strategic Orchestrator | Founders, HR | Active |
-| Kreti 🎨 | CMO (Marketing/Creative) | CFT SMM Team (120363164822179245@g.us) | Active (Separate Agent) |
-| Spark ⚡ | BD Lead | CFT BD Team (120363046366830200@g.us) | Active |
+### Active Agents
+| Agent | Role | Groups | Status |
+|-------|------|--------|--------|
+| Captain 🎖️ | Strategic Orchestrator | Founders, HR, Project Confirmations | ✅ Active |
+
+### Department Agents (Deploying)
+| Agent | Role | Groups | Workspace | Status |
+|-------|------|--------|-----------|--------|
+| Blaze 🔥 | Growth Lead (BD + Creative) | CFT BD Team, CFT Creative Hub | `/agents/blaze/` | 🟡 Ready |
+| Forge ⚒️ | Engineering Lead | CFT Engineering | `/agents/forge/` | 🟡 Ready |
+| Atlas 🗺️ | Operations Lead | CFT Operations | `/agents/atlas/` | 🟡 Ready |
+
+### Captain's Access
+- **Full read access** to all agent workspaces
+- **Can query** agents via sessions_send
+- **Aggregates** all agent status for Founders
+- **Single point of contact** for Founders on company status
+
+### Legacy (Retiring)
+| Agent | Replaced By |
+|-------|-------------|
+| Kreti 🎨 | Blaze 🔥 (merged BD + Creative) |
+| Spark ⚡ | Blaze 🔥 (merged BD + Creative) |
 
 ## Trackers Created
 
@@ -166,6 +188,20 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 | Hiring Tracker | https://docs.google.com/spreadsheets/d/1Ay2ae5N6NPebxqMi96RUi3DDG2S8nrnxiSHzRwZCWi0/edit | 2026-02-07 |
 | HR Dashboard Data | https://docs.google.com/spreadsheets/d/1Ek40xcru7eDYyPpp8BwISRpGGoo5pvwbFYqKQNVJ2fo/edit | 2026-02-08 |
 | Attendance Tracker | https://docs.google.com/spreadsheets/d/1CU51KFI7v2hxMo7urYhhoYqNa_WByuZIMkjr3Qjupgg/edit | 2026-02-08 |
+| Inventory Management System v2 | https://docs.google.com/spreadsheets/d/1vZusnsIiKOxKbfglslk5FrWtsD3jgoj8gouLYCpXNuA/edit | 2026-02-17 |
+| Org Structure Dashboard | https://craftech360-hr.netlify.app | 2026-02-18 |
+| Agent Project Flow | https://craftech360-hr.netlify.app/project-flow.html | 2026-02-19 |
+
+## Active Projects
+
+### Agent Coordination System (Feb 2026)
+- **Location:** `/projects/agent-coordination-system/`
+- **Status:** 🟡 Implementation Phase
+- **Owner:** Ravi (Suman implementing)
+- **What:** AI-powered project coordination from BD confirmation to completion
+- **Groups to create:** CFT Project Confirmations, CFT Engineering, CFT Creative Hub, CFT Operations, CFT BD Team
+- **Agents:** Captain (active), Blaze/Forge/Atlas (planned)
+- **Dashboard:** https://craftech360-hr.netlify.app/project-flow.html
 
 ## Active Hiring (Feb 2026)
 
@@ -175,7 +211,7 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 | Creative Director/Lead | Interviewing | Sushruth (Kestone) interviewed, Shalini/Jayanth/Harsha screening |
 | Client Servicing | Pipeline | 1 interview scheduled |
 | Strategy Intern | Posted | Awaiting profiles |
-| Embedded Intern | Closed | Pratik converted to full-time (25K) |
+| Embedded Intern | Closed | Pratik converted to full-time Embedded team (25K) |
 
 ## Hiring Priority Companies
 

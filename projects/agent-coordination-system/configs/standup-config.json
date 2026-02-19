@@ -1,0 +1,60 @@
+{
+  "version": "0.1.0",
+  "lastUpdated": "2026-02-19",
+  "standup": {
+    "time": null,
+    "timezone": "Asia/Kolkata",
+    "preReportMinutesBefore": 30,
+    "postReportMinutesAfter": 15,
+    "days": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"],
+    "skipDays": ["sunday"]
+  },
+  "preStandupReport": {
+    "enabled": true,
+    "sendTo": "project_confirmations",
+    "include": {
+      "upcomingEvents": {
+        "enabled": true,
+        "daysAhead": 7
+      },
+      "tasksDueToday": {
+        "enabled": true
+      },
+      "logisticsGaps": {
+        "enabled": true,
+        "checkTravelBooking": true,
+        "checkDC": true,
+        "checkInventory": true
+      },
+      "paymentFollowups": {
+        "enabled": true,
+        "overdueThresholdDays": 7
+      },
+      "blockers": {
+        "enabled": true
+      }
+    }
+  },
+  "postStandupMoM": {
+    "enabled": true,
+    "source": "fireflies",
+    "sendTo": "project_confirmations",
+    "actions": {
+      "extractActionItems": true,
+      "updateNotion": true,
+      "notifyOwners": true,
+      "updateProjectStatus": true
+    }
+  },
+  "fireflies": {
+    "apiEndpoint": "https://api.fireflies.ai/graphql",
+    "apiKey": "feb648e9-cefe-480f-b881-1997a2788b9c",
+    "waitAfterMeetingMinutes": 15,
+    "meetingTitleMatch": ["standup", "daily sync", "team sync"]
+  },
+  "notion": {
+    "projectDatabaseId": "3f1a5849c8f345d6b6beb6240cb8d580",
+    "autoCreateProjects": true,
+    "autoUpdateStatus": true
+  }
+}

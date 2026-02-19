@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craftech360 Inventory Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #f59e0b;
+            --primary-dark: #d97706;
+            --bg-dark: #0f0f0f;
+            --bg-card: #1a1a1a;
+            --bg-card-hover: #252525;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+            --border: #2a2a2a;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* Login */
+        .login-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: #0f0f0f; z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .login-overlay.hidden { display: none; }
+        .login-box {
+            background: #1a1a1a; padding: 40px; border-radius: 16px;
+            text-align: center; border: 1px solid #2a2a2a; max-width: 400px; width: 100%;
+        }
+        .login-box h1 { color: #f59e0b; margin-bottom: 8px; font-size: 24px; }
+        .login-box p { color: #a0a0a0; margin-bottom: 24px; font-size: 14px; }
+        .login-box input {
+            width: 100%; padding: 14px 16px; background: #0f0f0f;
+            border: 1px solid #2a2a2a; border-radius: 8px; color: #fff;
+            font-size: 16px; margin-bottom: 16px; text-align: center;
+        }
+        .login-box input:focus { outline: none; border-color: #f59e0b; }
+        .login-box button {
+            width: 100%; padding: 14px; background: #f59e0b; border: none;
+            border-radius: 8px; color: #0f0f0f; font-size: 16px; font-weight: 600; cursor: pointer;
+        }
+        .login-box button:hover { background: #d97706; }
+        .login-error { color: #ef4444; font-size: 14px; margin-top: 12px; display: none; }
+        .login-error.show { display: block; }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed; left: 0; top: 0; width: 240px; height: 100vh;
+            background: var(--bg-card); border-right: 1px solid var(--border);
+            padding: 20px 12px; z-index: 100; overflow-y: auto;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; padding: 0 12px 20px; margin-bottom: 20px; }
+        .logo-icon {
+            width: 36px; height: 36px; background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 16px; color: #000;
+        }
+        .logo-text { font-weight: 600; font-size: 15px; }
+        .logo-text span { color: var(--primary); }
+        .nav-section { margin-bottom: 24px; }
+        .nav-section-title {
+            font-size: 10px; font-weight: 600; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 1px; padding: 0 12px; margin-bottom: 8px;
+        }
+        .nav-item {
+            display: flex; align-items: center; gap: 10px; padding: 10px 12px;
+            border-radius: 8px; cursor: pointer; transition: all 0.2s;
+            color: var(--text-secondary); text-decoration: none; font-size: 14px;
+        }
+        .nav-item:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+        .nav-item.active { background: rgba(245, 158, 11, 0.1); color: var(--primary); }
+        .nav-item i { width: 18px; text-align: center; font-size: 14px; }
+        .nav-badge {
+            margin-left: auto; background: var(--danger); color: white;
+            font-size: 10px; font-weight: 600; padding: 2px 6px; border-radius: 10px;
+        }
+        .nav-badge.blue { background: var(--info); }
+
+        /* Main */
+        .main { margin-left: 240px; padding: 24px 32px; min-height: 100vh; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+        .header-left h1 { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+        .header-left p { color: var(--text-secondary); font-size: 14px; }
+        .header-right { display: flex; align-items: center; gap: 12px; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px;
+            border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer;
+            border: none; transition: all 0.2s;
+        }
+        .btn-primary { background: var(--primary); color: var(--bg-dark); }
+        .btn-primary:hover { background: var(--primary-dark); }
+        .btn-secondary { background: var(--bg-card-hover); color: var(--text-primary); border: 1px solid var(--border); }
+        .btn-secondary:hover { background: var(--border); }
+        .btn-success { background: var(--success); color: white; }
+
+        /* Stats Row */
+        .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+        .stat-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 12px; padding: 20px; display: flex; gap: 16px;
+        }
+        .stat-icon {
+            width: 48px; height: 48px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 20px;
+        }
+        .stat-icon.yellow { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+        .stat-icon.blue { background: rgba(59, 130, 246, 0.15); color: var(--info); }
+        .stat-icon.red { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+        .stat-icon.green { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+        .stat-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+        .stat-value { font-size: 28px; font-weight: 700; line-height: 1.1; }
+        .stat-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+        /* Content Grid */
+        .content-grid { display: grid; grid-template-columns: 1fr 340px; gap: 24px; }
+        .section-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .section-header {
+            padding: 16px 20px; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px;
+        }
+        .section-header i { color: var(--text-muted); }
+        .section-body { padding: 20px; }
+
+        /* Category Grid */
+        .category-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+        .category-tile {
+            background: var(--bg-card-hover); border: 2px solid transparent;
+            border-radius: 12px; padding: 20px; cursor: pointer; transition: all 0.2s;
+        }
+        .category-tile:hover { border-color: var(--border); transform: translateY(-2px); }
+        .category-tile.active { border-color: var(--primary); background: rgba(245, 158, 11, 0.05); }
+        .category-icon {
+            width: 44px; height: 44px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; margin-bottom: 14px;
+        }
+        .category-tile.it .category-icon { background: rgba(156, 163, 175, 0.15); color: #9ca3af; }
+        .category-tile.electronic .category-icon { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
+        .category-tile.event .category-icon { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
+        .category-tile.mechanical .category-icon { background: rgba(156, 163, 175, 0.15); color: #9ca3af; }
+        .category-tile.office .category-icon { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+        .category-tile.dead .category-icon { background: rgba(249, 115, 22, 0.15); color: #f97316; }
+        .category-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .category-stats { font-size: 12px; color: var(--text-muted); }
+
+        /* Activity */
+        .activity-item {
+            display: flex; align-items: center; gap: 12px; padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .activity-item:last-child { border-bottom: none; }
+        .activity-icon {
+            width: 32px; height: 32px; background: rgba(34, 197, 94, 0.15);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: var(--success); font-size: 12px;
+        }
+        .activity-title { font-size: 13px; font-weight: 500; }
+        .activity-sub { font-size: 11px; color: var(--text-muted); }
+
+        /* Table */
+        .inventory-table { width: 100%; border-collapse: collapse; }
+        .inventory-table th, .inventory-table td {
+            padding: 12px 14px; text-align: left; border-bottom: 1px solid var(--border);
+        }
+        .inventory-table th {
+            background: var(--bg-card-hover); font-size: 11px; font-weight: 600;
+            color: var(--text-muted); text-transform: uppercase;
+        }
+        .inventory-table tr:hover { background: var(--bg-card-hover); }
+        .inventory-table td { font-size: 13px; }
+        .item-id {
+            font-family: monospace; font-size: 11px; color: var(--primary);
+            background: rgba(245, 158, 11, 0.1); padding: 3px 6px; border-radius: 4px;
+        }
+        .status-badge { display: inline-block; padding: 3px 8px; border-radius: 20px; font-size: 10px; font-weight: 600; }
+        .status-badge.available { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+        .status-badge.in-use { background: rgba(59, 130, 246, 0.15); color: var(--info); }
+        .status-badge.checked-out { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
+        .status-badge.maintenance { background: rgba(245, 158, 11, 0.15); color: var(--warning); }
+        .status-badge.dead { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+
+        /* Search */
+        .search-filter-row { display: flex; gap: 12px; margin-bottom: 16px; }
+        .search-box { flex: 1; position: relative; }
+        .search-box input {
+            width: 100%; padding: 10px 14px 10px 40px; background: var(--bg-card-hover);
+            border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 14px;
+        }
+        .search-box i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+        .filter-select {
+            padding: 10px 14px; background: var(--bg-card-hover); border: 1px solid var(--border);
+            border-radius: 8px; color: var(--text-primary); font-size: 14px; min-width: 150px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.7); z-index: 1000; align-items: center; justify-content: center;
+        }
+        .modal-overlay.show { display: flex; }
+        .modal { background: var(--bg-card); border-radius: 12px; width: 100%; max-width: 500px; }
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px; border-bottom: 1px solid var(--border);
+        }
+        .modal-header h2 { font-size: 18px; font-weight: 600; }
+        .modal-close {
+            width: 32px; height: 32px; border-radius: 6px; border: none;
+            background: transparent; color: var(--text-muted); cursor: pointer;
+        }
+        .modal-close:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+        .modal-body { padding: 20px; }
+        .modal-footer { display: flex; justify-content: flex-end; gap: 12px; padding: 20px; border-top: 1px solid var(--border); }
+
+        /* Form */
+        .form-row { display: flex; gap: 12px; margin-bottom: 16px; }
+        .form-group { flex: 1; }
+        .form-group label { display: block; font-size: 12px; font-weight: 500; color: var(--text-secondary); margin-bottom: 6px; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 10px 12px; background: var(--bg-card-hover);
+            border: 1px solid var(--border); border-radius: 8px; color: var(--text-primary); font-size: 14px;
+        }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: var(--primary); }
+
+        .empty-state { text-align: center; padding: 40px 20px; color: var(--text-muted); }
+        .empty-state i { font-size: 48px; margin-bottom: 12px; color: var(--border); }
+        .empty-state h3 { font-size: 16px; margin-bottom: 6px; color: var(--text-secondary); }
+
+        .page-section { display: none; }
+        .page-section.active { display: block; }
+
+        .sync-banner {
+            background: rgba(59, 130, 246, 0.1); border: 1px solid var(--info);
+            border-radius: 8px; padding: 12px 16px; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 12px; font-size: 13px;
+        }
+        .sync-banner i { color: var(--info); }
+        .sync-banner .btn { margin-left: auto; }
+
+        @media (max-width: 1200px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .category-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .sidebar { transform: translateX(-100%); }
+            .main { margin-left: 0; }
+            .stats-row, .category-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login -->
+    <div class="login-overlay" id="login-overlay">
+        <div class="login-box">
+            <h1>📦 Craftech360 Inventory</h1>
+            <p>Enter password to access</p>
+            <input type="password" id="login-password" placeholder="Password" onkeypress="if(event.key==='Enter')checkPassword()">
+            <button onclick="checkPassword()">Unlock</button>
+            <div class="login-error" id="login-error">Incorrect password</div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">C</div>
+            <div class="logo-text">Craft<span>ech</span>360</div>
+        </div>
+        <nav>
+            <div class="nav-section">
+                <div class="nav-section-title">Overview</div>
+                <a href="#" class="nav-item active" data-page="dashboard"><i class="fas fa-chart-pie"></i> Dashboard</a>
+                <a href="#" class="nav-item" data-page="inventory"><i class="fas fa-boxes-stacked"></i> All Inventory</a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Categories</div>
+                <a href="#" class="nav-item" data-category="IT Assets"><i class="fas fa-laptop"></i> IT Assets</a>
+                <a href="#" class="nav-item" data-category="Electronic Components"><i class="fas fa-microchip"></i> Electronics</a>
+                <a href="#" class="nav-item" data-category="Event Equipment"><i class="fas fa-tent"></i> Event Equipment</a>
+                <a href="#" class="nav-item" data-category="Mechanical Division"><i class="fas fa-gears"></i> Mechanical</a>
+                <a href="#" class="nav-item" data-category="Office Assets"><i class="fas fa-building"></i> Office Assets</a>
+                <a href="#" class="nav-item" data-category="Dead Stock"><i class="fas fa-skull"></i> Dead Stock <span class="nav-badge" id="dead-badge">0</span></a>
+            </div>
+            <div class="nav-section">
+                <div class="nav-section-title">Actions</div>
+                <a href="#" class="nav-item" onclick="showAddItemModal(); return false;"><i class="fas fa-plus"></i> Add Item</a>
+                <a href="#" class="nav-item" onclick="window.open('https://docs.google.com/spreadsheets/d/1vZusnsIiKOxKbfglslk5FrWtsD3jgoj8gouLYCpXNuA/edit', '_blank'); return false;"><i class="fas fa-table"></i> Open Sheet</a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+        <section class="page-section active" id="page-dashboard">
+            <header class="header">
+                <div class="header-left">
+                    <h1>📊 Inventory Dashboard</h1>
+                    <p>Overview of all Craftech360 inventory</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-secondary" onclick="syncFromSheet()"><i class="fas fa-sync"></i> Sync from Sheet</button>
+                    <button class="btn btn-primary" onclick="showAddItemModal()"><i class="fas fa-plus"></i> Add Item</button>
+                </div>
+            </header>
+
+            <div class="sync-banner" id="sync-banner" style="display:none;">
+                <i class="fas fa-info-circle"></i>
+                <span>You have local items not in Google Sheet. Open Sheet to add them manually.</span>
+                <button class="btn btn-secondary" onclick="window.open('https://docs.google.com/spreadsheets/d/1vZusnsIiKOxKbfglslk5FrWtsD3jgoj8gouLYCpXNuA/edit', '_blank')">Open Sheet</button>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-icon yellow"><i class="fas fa-boxes-stacked"></i></div>
+                    <div>
+                        <div class="stat-label">Total Items</div>
+                        <div class="stat-value" id="stat-total">0</div>
+                        <div class="stat-sub">Across <span id="stat-categories">0</span> categories</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon blue"><i class="fas fa-truck-ramp-box"></i></div>
+                    <div>
+                        <div class="stat-label">Checked Out</div>
+                        <div class="stat-value" id="stat-checkout">0</div>
+                        <div class="stat-sub">For active events</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon red"><i class="fas fa-triangle-exclamation"></i></div>
+                    <div>
+                        <div class="stat-label">Dead Stock</div>
+                        <div class="stat-value" id="stat-dead">0</div>
+                        <div class="stat-sub">Need attention</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green"><i class="fas fa-indian-rupee-sign"></i></div>
+                    <div>
+                        <div class="stat-label">Total Value</div>
+                        <div class="stat-value" id="stat-value">₹0</div>
+                        <div class="stat-sub">Asset value</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="section-card">
+                    <div class="section-header"><i class="fas fa-layer-group"></i> Inventory by Category</div>
+                    <div class="section-body">
+                        <div class="category-grid">
+                            <div class="category-tile it" onclick="filterByCategory('IT Assets')">
+                                <div class="category-icon"><i class="fas fa-laptop"></i></div>
+                                <div class="category-name">IT Assets</div>
+                                <div class="category-stats"><span id="count-it-items">0</span> items • <span id="count-it-units">0</span> units</div>
+                            </div>
+                            <div class="category-tile electronic" onclick="filterByCategory('Electronic Components')">
+                                <div class="category-icon"><i class="fas fa-microchip"></i></div>
+                                <div class="category-name">Electronics</div>
+                                <div class="category-stats"><span id="count-electronic-items">0</span> items • <span id="count-electronic-units">0</span> units</div>
+                            </div>
+                            <div class="category-tile event" onclick="filterByCategory('Event Equipment')">
+                                <div class="category-icon"><i class="fas fa-tent"></i></div>
+                                <div class="category-name">Event Equipment</div>
+                                <div class="category-stats"><span id="count-event-items">0</span> items • <span id="count-event-units">0</span> units</div>
+                            </div>
+                            <div class="category-tile mechanical" onclick="filterByCategory('Mechanical Division')">
+                                <div class="category-icon"><i class="fas fa-gears"></i></div>
+                                <div class="category-name">Mechanical</div>
+                                <div class="category-stats"><span id="count-mechanical-items">0</span> items • <span id="count-mechanical-units">0</span> units</div>
+                            </div>
+                            <div class="category-tile office" onclick="filterByCategory('Office Assets')">
+                                <div class="category-icon"><i class="fas fa-building"></i></div>
+                                <div class="category-name">Office Assets</div>
+                                <div class="category-stats"><span id="count-office-items">0</span> items • <span id="count-office-units">0</span> units</div>
+                            </div>
+                            <div class="category-tile dead" onclick="filterByCategory('Dead Stock')">
+                                <div class="category-icon"><i class="fas fa-skull"></i></div>
+                                <div class="category-name">Dead Stock</div>
+                                <div class="category-stats"><span id="count-dead-items">0</span> items • <span id="count-dead-units">0</span> units</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="section-card">
+                        <div class="section-header"><i class="fas fa-clock-rotate-left"></i> Recent Activity</div>
+                        <div class="section-body" id="activity-list">
+                            <div class="empty-state"><i class="fas fa-inbox"></i><p>No activity yet</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="page-section" id="page-inventory">
+            <header class="header">
+                <div class="header-left">
+                    <h1>📦 All Inventory</h1>
+                    <p>Complete inventory list</p>
+                </div>
+                <div class="header-right">
+                    <button class="btn btn-secondary" onclick="syncFromSheet()"><i class="fas fa-sync"></i> Sync</button>
+                    <button class="btn btn-primary" onclick="showAddItemModal()"><i class="fas fa-plus"></i> Add Item</button>
+                </div>
+            </header>
+            <div class="section-card">
+                <div class="section-body">
+                    <div class="search-filter-row">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="search-input" placeholder="Search items..." onkeyup="renderInventory()">
+                        </div>
+                        <select class="filter-select" id="category-filter" onchange="renderInventory()">
+                            <option value="">All Categories</option>
+                            <option value="IT Assets">IT Assets</option>
+                            <option value="Electronic Components">Electronics</option>
+                            <option value="Event Equipment">Event Equipment</option>
+                            <option value="Mechanical Division">Mechanical</option>
+                            <option value="Office Assets">Office Assets</option>
+                            <option value="Dead Stock">Dead Stock</option>
+                        </select>
+                        <select class="filter-select" id="status-filter" onchange="renderInventory()">
+                            <option value="">All Status</option>
+                            <option value="Available">Available</option>
+                            <option value="In Use">In Use</option>
+                            <option value="Checked Out">Checked Out</option>
+                            <option value="Maintenance">Maintenance</option>
+                        </select>
+                    </div>
+                    <div id="inventory-list"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Add Item Modal -->
+    <div class="modal-overlay" id="add-item-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Add Inventory Item</h2>
+                <button class="modal-close" onclick="closeModal('add-item-modal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="margin-bottom:16px">
+                    <label>Item Name *</label>
+                    <input type="text" id="item-name" placeholder="e.g. Dell Laptop XPS 15">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="item-category">
+                            <option value="IT Assets">IT Assets</option>
+                            <option value="Electronic Components">Electronics</option>
+                            <option value="Event Equipment">Event Equipment</option>
+                            <option value="Mechanical Division">Mechanical</option>
+                            <option value="Office Assets">Office Assets</option>
+                            <option value="Dead Stock">Dead Stock</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Sub-Category</label>
+                        <input type="text" id="item-subcategory" placeholder="e.g. Laptops">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="number" id="item-qty" value="1" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="item-status">
+                            <option value="Available">Available</option>
+                            <option value="In Use">In Use</option>
+                            <option value="Checked Out">Checked Out</option>
+                            <option value="Maintenance">Maintenance</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="item-location" placeholder="e.g. Office">
+                    </div>
+                    <div class="form-group">
+                        <label>Value (₹)</label>
+                        <input type="number" id="item-value" placeholder="0">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('add-item-modal')">Cancel</button>
+                <button class="btn btn-primary" onclick="addItem()"><i class="fas fa-plus"></i> Add Item</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PASS_HASH = '45374725a1231292e8d7d8d3e7d0858dc03e30e5b829fbe96e93b40a35b6d417';
+        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1vZusnsIiKOxKbfglslk5FrWtsD3jgoj8gouLYCpXNuA/gviz/tq?tqx=out:json&sheet=Master%20Inventory';
+        
+        let inventory = [];
+        let activity = [];
+
+        // Auth
+        async function hashPassword(str) {
+            const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+            return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+        
+        async function checkPassword() {
+            const hash = await hashPassword(document.getElementById('login-password').value);
+            if (hash === PASS_HASH) {
+                document.getElementById('login-overlay').classList.add('hidden');
+                sessionStorage.setItem('inv_auth', 'true');
+                init();
+            } else {
+                document.getElementById('login-error').classList.add('show');
+            }
+        }
+        
+        if (sessionStorage.getItem('inv_auth') === 'true') {
+            document.getElementById('login-overlay').classList.add('hidden');
+        }
+
+        // Init
+        function init() {
+            loadLocal();
+            setupNav();
+            updateDashboard();
+            renderInventory();
+            renderActivity();
+        }
+
+        function setupNav() {
+            document.querySelectorAll('.nav-item[data-page]').forEach(el => {
+                el.onclick = e => { e.preventDefault(); showPage(el.dataset.page); };
+            });
+            document.querySelectorAll('.nav-item[data-category]').forEach(el => {
+                el.onclick = e => { e.preventDefault(); filterByCategory(el.dataset.category); };
+            });
+        }
+
+        function showPage(id) {
+            document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + id)?.classList.add('active');
+            document.querySelectorAll('.nav-item[data-page]').forEach(n => n.classList.remove('active'));
+            document.querySelector(`.nav-item[data-page="${id}"]`)?.classList.add('active');
+        }
+
+        function filterByCategory(cat) {
+            showPage('inventory');
+            document.getElementById('category-filter').value = cat;
+            renderInventory();
+        }
+
+        // Storage
+        function loadLocal() {
+            const saved = localStorage.getItem('cft_inventory');
+            if (saved) {
+                const data = JSON.parse(saved);
+                inventory = data.inventory || [];
+                activity = data.activity || [];
+            }
+        }
+
+        function saveLocal() {
+            localStorage.setItem('cft_inventory', JSON.stringify({ inventory, activity }));
+        }
+
+        // Sync from Google Sheet
+        async function syncFromSheet() {
+            try {
+                const res = await fetch(SHEET_URL);
+                const text = await res.text();
+                const json = JSON.parse(text.substring(47, text.length - 2));
+                
+                const rows = json.table.rows;
+                const cols = json.table.cols.map(c => c.label || '');
+                
+                inventory = [];
+                rows.forEach((row, idx) => {
+                    if (row.c && row.c[0]?.v) {
+                        const item = {};
+                        cols.forEach((col, i) => {
+                            const key = col.toLowerCase().replace(/\s+/g, '_');
+                            item[key] = row.c[i]?.v || '';
+                        });
+                        item.id = item.item_id || `ITEM-${idx}`;
+                        item.name = item.item_name || '';
+                        item.quantity = parseInt(item.quantity) || 1;
+                        item.value = parseInt(item.value) || 0;
+                        inventory.push(item);
+                    }
+                });
+
+                saveLocal();
+                updateDashboard();
+                renderInventory();
+                addActivity('Synced from Google Sheet', 'sync');
+                alert('✅ Synced ' + inventory.length + ' items from Google Sheet!');
+            } catch (err) {
+                console.error(err);
+                alert('❌ Sync failed: ' + err.message);
+            }
+        }
+
+        // Add Item (local)
+        function addItem() {
+            const name = document.getElementById('item-name').value.trim();
+            if (!name) { alert('Enter item name'); return; }
+
+            const cat = document.getElementById('item-category').value;
+            const prefix = {'IT Assets':'IT','Electronic Components':'EC','Event Equipment':'EV','Mechanical Division':'MC','Office Assets':'OA','Dead Stock':'DS'}[cat] || 'XX';
+            const id = prefix + '-' + String(Date.now()).slice(-6);
+
+            inventory.push({
+                id, name, category: cat,
+                sub_category: document.getElementById('item-subcategory').value.trim(),
+                quantity: parseInt(document.getElementById('item-qty').value) || 1,
+                status: document.getElementById('item-status').value,
+                location: document.getElementById('item-location').value.trim(),
+                value: parseInt(document.getElementById('item-value').value) || 0,
+                local: true
+            });
+
+            saveLocal();
+            updateDashboard();
+            renderInventory();
+            addActivity(`Added: ${name}`, 'add');
+            closeModal('add-item-modal');
+            
+            // Clear form
+            document.getElementById('item-name').value = '';
+            document.getElementById('item-subcategory').value = '';
+            document.getElementById('item-qty').value = '1';
+            document.getElementById('item-location').value = '';
+            document.getElementById('item-value').value = '';
+
+            alert('✅ Item added locally!\n\nTo save permanently, open Google Sheet and add it there.');
+        }
+
+        function addActivity(text, type) {
+            activity.unshift({ text, type, time: new Date().toLocaleString() });
+            if (activity.length > 20) activity = activity.slice(0, 20);
+            saveLocal();
+            renderActivity();
+        }
+
+        // Update Dashboard
+        function updateDashboard() {
+            const counts = {
+                'IT Assets': { items: 0, units: 0 },
+                'Electronic Components': { items: 0, units: 0 },
+                'Event Equipment': { items: 0, units: 0 },
+                'Mechanical Division': { items: 0, units: 0 },
+                'Office Assets': { items: 0, units: 0 },
+                'Dead Stock': { items: 0, units: 0 }
+            };
+
+            let total = 0, value = 0, checkout = 0, dead = 0;
+            const cats = new Set();
+
+            inventory.forEach(item => {
+                const qty = item.quantity || 1;
+                const cat = item.category;
+                if (counts[cat]) {
+                    counts[cat].items++;
+                    counts[cat].units += qty;
+                    cats.add(cat);
+                }
+                total += qty;
+                value += (item.value || 0) * qty;
+                if ((item.status || '').toLowerCase().includes('check')) checkout += qty;
+                if (cat === 'Dead Stock') dead += qty;
+            });
+
+            document.getElementById('stat-total').textContent = total;
+            document.getElementById('stat-categories').textContent = cats.size;
+            document.getElementById('stat-checkout').textContent = checkout;
+            document.getElementById('stat-dead').textContent = dead;
+            document.getElementById('stat-value').textContent = formatValue(value);
+
+            document.getElementById('count-it-items').textContent = counts['IT Assets'].items;
+            document.getElementById('count-it-units').textContent = counts['IT Assets'].units;
+            document.getElementById('count-electronic-items').textContent = counts['Electronic Components'].items;
+            document.getElementById('count-electronic-units').textContent = counts['Electronic Components'].units;
+            document.getElementById('count-event-items').textContent = counts['Event Equipment'].items;
+            document.getElementById('count-event-units').textContent = counts['Event Equipment'].units;
+            document.getElementById('count-mechanical-items').textContent = counts['Mechanical Division'].items;
+            document.getElementById('count-mechanical-units').textContent = counts['Mechanical Division'].units;
+            document.getElementById('count-office-items').textContent = counts['Office Assets'].items;
+            document.getElementById('count-office-units').textContent = counts['Office Assets'].units;
+            document.getElementById('count-dead-items').textContent = counts['Dead Stock'].items;
+            document.getElementById('count-dead-units').textContent = counts['Dead Stock'].units;
+
+            document.getElementById('dead-badge').textContent = counts['Dead Stock'].items;
+
+            // Show sync banner if local items exist
+            const hasLocal = inventory.some(i => i.local);
+            document.getElementById('sync-banner').style.display = hasLocal ? 'flex' : 'none';
+        }
+
+        function formatValue(v) {
+            if (v >= 10000000) return '₹' + (v/10000000).toFixed(1) + 'Cr';
+            if (v >= 100000) return '₹' + (v/100000).toFixed(1) + 'L';
+            if (v >= 1000) return '₹' + (v/1000).toFixed(1) + 'K';
+            return '₹' + v;
+        }
+
+        // Render
+        function renderInventory() {
+            const search = (document.getElementById('search-input')?.value || '').toLowerCase();
+            const cat = document.getElementById('category-filter')?.value || '';
+            const status = document.getElementById('status-filter')?.value || '';
+
+            let filtered = inventory.filter(i => {
+                if (search && !i.name?.toLowerCase().includes(search) && !i.id?.toLowerCase().includes(search)) return false;
+                if (cat && i.category !== cat) return false;
+                if (status && i.status !== status) return false;
+                return true;
+            });
+
+            const container = document.getElementById('inventory-list');
+            if (!filtered.length) {
+                container.innerHTML = '<div class="empty-state"><i class="fas fa-box-open"></i><h3>No items found</h3><p>Add items or sync from Google Sheet</p></div>';
+                return;
+            }
+
+            container.innerHTML = `<table class="inventory-table">
+                <thead><tr><th>ID</th><th>Item Name</th><th>Category</th><th>Qty</th><th>Status</th><th>Location</th><th>Value</th></tr></thead>
+                <tbody>${filtered.map(i => `<tr>
+                    <td><span class="item-id">${i.id}${i.local ? ' 🔸' : ''}</span></td>
+                    <td>${i.name}</td>
+                    <td>${i.category}</td>
+                    <td>${i.quantity || 1}</td>
+                    <td><span class="status-badge ${(i.status||'').toLowerCase().replace(' ','-')}">${i.status || 'Available'}</span></td>
+                    <td>${i.location || '-'}</td>
+                    <td>${i.value ? '₹' + i.value.toLocaleString() : '-'}</td>
+                </tr>`).join('')}</tbody></table>`;
+        }
+
+        function renderActivity() {
+            const container = document.getElementById('activity-list');
+            if (!activity.length) {
+                container.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i><p>No activity yet</p></div>';
+                return;
+            }
+            container.innerHTML = activity.slice(0, 5).map(a => `
+                <div class="activity-item">
+                    <div class="activity-icon"><i class="fas fa-${a.type === 'sync' ? 'sync' : 'plus'}"></i></div>
+                    <div><div class="activity-title">${a.text}</div><div class="activity-sub">${a.time}</div></div>
+                </div>
+            `).join('');
+        }
+
+        // Modal
+        function showAddItemModal() { document.getElementById('add-item-modal').classList.add('show'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+        document.querySelectorAll('.modal-overlay').forEach(m => m.onclick = e => { if (e.target === m) m.classList.remove('show'); });
+
+        // Start
+        if (sessionStorage.getItem('inv_auth') === 'true') init();
+    </script>
+</body>
+</html>

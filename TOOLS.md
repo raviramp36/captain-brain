@@ -18,11 +18,17 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
   - Departments: 19fpEHJG8XBoy8BHVZDWkrCG979usyqCw
   - Workflows: 1Tzp24BTiQPdPI8vlrQVx46fBmJoIv3wR
   - Config: 1rL9L8C31f-COdvH2G16J-sAba-Q0k3vc
+  - Inventory Manager: 1RmPnNRh3tCO7TQ-Nv1mauNxltf7O6re5
 
 ### Notion (Read-Only)
 - Integration Token: `ntn_h83600787745Xh34HaAJhATiy0ywr9hXEJREROAz3wZcMe`
 - API Version: 2022-06-28
 - Mode: READ-ONLY reconnaissance — no changes without Ravi's approval
+
+### Netlify (Deployments)
+- Account: Ravi's Gmail
+- Token: nfp_NFhSoquZvyMTYrAQdpJT4ctfB9PrUzAA5b6d
+- Sites: craftech360-hr.netlify.app (HR Dashboard)
 
 ### eTimeOffice (Attendance System)
 - Platform: Bio-Park D01 / Team Office
@@ -31,6 +37,48 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 - Corporate ID: CRAFTECH360
 - Username: CRAFTECH360
 - Password: Craftech@360
+
+### Mac Mini (Singe's)
+- Tailscale: singes-mac-mini (100.102.96.57)
+- SSH User: singe
+- SSH Password: ravi381381
+- OpenClaw path: /Users/singe/.npm-global/bin/openclaw
+- Workspace: /Users/Shared/clawd/agents/singe
+- Agent name: Singe
+
+---
+
+## Audio Transcription (Whisper)
+- **Tool:** OpenAI Whisper (base model)
+- **Command:** `whisper <audio_file> --model base --language en --output_format txt`
+- **Installed:** 2026-02-18
+- Works with voice notes (.ogg, .mp3, .wav, etc.)
+
+### Fireflies.ai (Meeting Notes)
+- **URL:** https://fireflies.ai
+- **Email:** Captain@craftech360.com
+- **Password:** Craf!Tech_360#Mail9
+- **API Key:** feb648e9-cefe-480f-b881-1997a2788b9c
+- **API Endpoint:** https://api.fireflies.ai/graphql
+- **Purpose:** Record meetings, generate summaries & action items
+- **Created:** 2026-02-18
+- **Status:** ✅ Connected & Working
+
+### Notion Meeting Notes
+- **Page:** Captain Meeting Notes
+- **Page ID:** 30b1f24c-adb6-818d-af1f-d0a7b1c9c586
+- **URL:** https://www.notion.so/Captain-Meeting-Notes-30b1f24cadb6818daf1fd0a7b1c9c586
+- **Purpose:** Store all meeting MoMs with title + date headings
+
+---
+
+## Captain's VPS (Self - for Singe's reference)
+- **Tailscale IP:** 100.115.115.89
+- **SSH User:** root
+- **SSH Password:** 1J(bz11qEEwqC'5aw0l6
+- **OpenClaw path:** /root/.openclaw
+- **Workspace:** /root/.openclaw/workspace
+- **Gateway port:** 18789
 
 ---
 
