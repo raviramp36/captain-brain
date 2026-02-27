@@ -80,6 +80,29 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 - **Workspace:** /root/.openclaw/workspace
 - **Gateway port:** 18789
 
+### ⚠️ Config Landmines (NEVER change these!)
+Learned the hard way on 2026-02-19:
+1. `gateway.mode` → must be `"local"` (not "remote")
+2. `plugins.entries.whatsapp.enabled` → must be `true`
+3. `gateway.bind` → must be `"loopback"` (not "localhost")
+4. **Swap space** → at least 2GB (OOM killer will murder DMs otherwise!)
+5. **Device scopes** → must include `operator.write` for message tool (OpenClaw bug #22574)
+
+**Startup check:**
+```bash
+# Config check
+jq '{mode: .gateway.mode, bind: .gateway.bind, wa: .plugins.entries.whatsapp.enabled}' ~/.openclaw/openclaw.json
+# Should return: {"mode": "local", "bind": "loopback", "wa": true}
+
+# Swap check
+free -h | grep -i swap
+# Should show at least 2GB swap
+
+# Device scope check (must have operator.write)
+jq '.[].scopes' ~/.openclaw/devices/paired.json
+# Should include "operator.write" for message tool to work
+```
+
 ---
 
 ## What Goes Here

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exit Undertaking - Craftech360</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fff;
+            padding: 0.75in 1in;
+            max-width: 8.5in;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px double #2c5282;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .company-name {
+            font-size: 24pt;
+            font-weight: bold;
+            color: #2c5282;
+            letter-spacing: 2px;
+        }
+        
+        .document-title {
+            font-size: 16pt;
+            font-weight: bold;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 10pt;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .employee-info {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .info-label {
+            font-weight: bold;
+            min-width: 120px;
+        }
+        
+        .info-value {
+            border-bottom: 1px solid #333;
+            flex: 1;
+            min-width: 150px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #2c5282;
+            border-bottom: 1px solid #2c5282;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .highlight-box {
+            background: #f7fafc;
+            border-left: 4px solid #2c5282;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .warning-box {
+            background: #fff5f5;
+            border-left: 4px solid #c53030;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .checklist-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .checklist-table th {
+            background: #2c5282;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .checklist-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            vertical-align: middle;
+        }
+        
+        .checklist-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #333;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        
+        .checkbox-cell {
+            width: 40px;
+            text-align: center;
+        }
+        
+        .signature-cell {
+            width: 150px;
+        }
+        
+        .blank-line {
+            border-bottom: 1px solid #333;
+            display: inline-block;
+            min-width: 200px;
+            margin: 0 5px;
+        }
+        
+        .blank-short {
+            border-bottom: 1px solid #333;
+            display: inline-block;
+            min-width: 100px;
+            margin: 0 5px;
+        }
+        
+        .signature-section {
+            margin-top: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .signature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .signature-block {
+            border-top: 1px solid #333;
+            padding-top: 10px;
+        }
+        
+        .signature-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .undertaking-statement {
+            background: #ebf8ff;
+            border: 2px solid #2c5282;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">CRAFTECH360</div>
+        <div class="document-title">Exit Undertaking</div>
+        <div class="subtitle">Separation Clearance & Confidentiality Reaffirmation</div>
+    </div>
+
+    <div class="employee-info">
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="info-label">Employee Name:</span>
+                <span class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Employee ID:</span>
+                <span class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Department:</span>
+                <span class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Designation:</span>
+                <span class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Date of Joining:</span>
+                <span class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Last Working Day:</span>
+                <span class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Reason for Separation:</span>
+                <span class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Reporting Manager:</span>
+                <span class="info-value"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">1. Asset Return Checklist</div>
+        <p>The following Company assets have been returned and verified:</p>
+        
+        <table class="checklist-table">
+            <thead>
+                <tr>
+                    <th class="checkbox-cell">✓</th>
+                    <th>Item</th>
+                    <th>Details/Serial No.</th>
+                    <th>Condition</th>
+                    <th class="signature-cell">Received By</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Laptop</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Charger & Accessories</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Mobile Phone</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>SIM Card</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>ID Card / Access Card</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Keys (Office/Cabinet/Vehicle)</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Uniform / Company Apparel</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Tools / Equipment</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Books / Manuals / Documents</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Credit Card / Fuel Card</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Other:</strong></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title">2. Data Deletion & Handover</div>
+        
+        <table class="checklist-table">
+            <thead>
+                <tr>
+                    <th class="checkbox-cell">✓</th>
+                    <th>Action</th>
+                    <th>Details</th>
+                    <th class="signature-cell">Verified By</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Work files transferred to manager/team</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Company data deleted from personal devices</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Personal files removed from Company devices</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Password/credentials handed over</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Pending tasks/projects documented</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Client contacts/relationships transitioned</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title">3. Access Revocation</div>
+        
+        <table class="checklist-table">
+            <thead>
+                <tr>
+                    <th class="checkbox-cell">✓</th>
+                    <th>System/Access</th>
+                    <th>Revoked On</th>
+                    <th class="signature-cell">IT Sign-off</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Email Account (Google Workspace)</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Slack / Communication Tools</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Google Drive / Cloud Storage</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Project Management Tools</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Source Code / GitHub / Repositories</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Client Systems / Portals</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>VPN / Remote Access</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td class="checkbox-cell"><span class="checkbox"></span></td>
+                    <td><strong>Building / Biometric Access</strong></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <div class="section-title">4. Department Clearance</div>
+        
+        <table class="checklist-table">
+            <thead>
+                <tr>
+                    <th>Department</th>
+                    <th>Cleared</th>
+                    <th>Remarks</th>
+                    <th>Signature & Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Reporting Manager</strong></td>
+                    <td style="text-align:center;"><span class="checkbox"></span></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>IT / Systems</strong></td>
+                    <td style="text-align:center;"><span class="checkbox"></span></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Finance / Accounts</strong></td>
+                    <td style="text-align:center;"><span class="checkbox"></span></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>HR & Admin</strong></td>
+                    <td style="text-align:center;"><span class="checkbox"></span></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><strong>Operations</strong></td>
+                    <td style="text-align:center;"><span class="checkbox"></span></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <div class="section-title">5. Settlement Details</div>
+        <div class="info-grid" style="margin-top:15px;">
+            <div class="info-item">
+                <span class="info-label">Notice Period Served:</span>
+                <span class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Notice Period Waived:</span>
+                <span class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Leave Encashment Days:</span>
+                <span class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Pending Reimbursements:</span>
+                <span class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Recovery Amount (if any):</span>
+                <span class="info-value"></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Final Settlement Date:</span>
+                <span class="info-value"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">6. Reaffirmation of Confidentiality</div>
+        
+        <div class="undertaking-statement">
+            <strong>I HEREBY UNDERTAKE AND CONFIRM THAT:</strong>
+        </div>
+        
+        <ol>
+            <li><strong>Continuing Confidentiality:</strong> I understand and agree that my obligations under the Non-Disclosure Agreement and Employment Agreement regarding confidentiality, non-compete, and non-solicitation <strong>continue to apply</strong> after my separation from the Company, as specified in those agreements.</li>
+            
+            <li><strong>No Retention of Confidential Information:</strong> I confirm that I have not retained, copied, or transferred any Confidential Information of the Company, including but not limited to:
+                <ul>
+                    <li>Client lists, contact information, and project details</li>
+                    <li>Source code, technical designs, and proprietary software</li>
+                    <li>Business plans, pricing, and financial information</li>
+                    <li>Trade secrets, processes, and methodologies</li>
+                    <li>Employee data and organizational information</li>
+                </ul>
+            </li>
+            
+            <li><strong>Data Deletion:</strong> I confirm that I have permanently deleted all Company data from my personal devices, cloud storage accounts, and any other locations under my control.</li>
+            
+            <li><strong>Return of Property:</strong> I confirm that I have returned all Company property, documents, and materials in my possession.</li>
+            
+            <li><strong>Non-Solicitation:</strong> I understand that for a period of <strong>twelve (12) months</strong> from my last working day, I shall not:
+                <ul>
+                    <li>Solicit or attempt to solicit any employees of the Company</li>
+                    <li>Solicit or attempt to divert clients with whom I had dealings during my employment</li>
+                </ul>
+            </li>
+            
+            <li><strong>Non-Disparagement:</strong> I agree not to make any false, misleading, or disparaging statements about the Company, its products, services, management, or employees.</li>
+            
+            <li><strong>Cooperation:</strong> I agree to cooperate with the Company in any matters related to my employment, including responding to reasonable inquiries and providing information about projects I worked on.</li>
+        </ol>
+        
+        <div class="warning-box">
+            <strong>⚠️ Warning:</strong> Violation of these undertakings may result in legal action, including injunctive relief and claims for damages. The Company reserves all rights under applicable laws and agreements signed during employment.
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">7. Exit Interview</div>
+        <p style="margin-bottom: 15px;">
+            <span class="checkbox"></span> Exit interview conducted on: <span class="blank-short"></span>
+            by: <span class="blank-line"></span>
+        </p>
+        <p>
+            <span class="checkbox"></span> Exit interview waived / Employee declined
+        </p>
+    </div>
+
+    <div class="signature-section">
+        <div class="section-title">8. Final Acknowledgment</div>
+        
+        <p>I, <span class="blank-line"></span>, acknowledge that:</p>
+        <ul>
+            <li>All information provided in this document is true and accurate</li>
+            <li>I have read and understood my continuing obligations</li>
+            <li>I have had the opportunity to ask questions and seek clarification</li>
+            <li>My separation from the Company is effective as of the last working day stated above</li>
+        </ul>
+        
+        <div class="signature-grid">
+            <div>
+                <div class="signature-block">
+                    <div class="signature-label">Employee Signature</div>
+                </div>
+                <p>Name: <span class="blank-line"></span></p>
+                <p>Date: <span class="blank-line"></span></p>
+            </div>
+            <div>
+                <div class="signature-block">
+                    <div class="signature-label">HR Representative</div>
+                </div>
+                <p>Name: <span class="blank-line"></span></p>
+                <p>Title: <span class="blank-line"></span></p>
+                <p>Date: <span class="blank-line"></span></p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 40px;">
+            <div class="signature-grid">
+                <div>
+                    <div class="signature-block">
+                        <div class="signature-label">Reporting Manager</div>
+                    </div>
+                    <p>Name: <span class="blank-line"></span></p>
+                    <p>Date: <span class="blank-line"></span></p>
+                </div>
+                <div>
+                    <div class="signature-block">
+                        <div class="signature-label">Authorized Signatory</div>
+                    </div>
+                    <p>Name: <span class="blank-line"></span></p>
+                    <p>Title: <span class="blank-line"></span></p>
+                    <p>Date: <span class="blank-line"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; text-align: center; font-size: 9pt; color: #666; border-top: 1px solid #ddd; padding-top: 20px;">
+        <strong>CRAFTECH360 PRIVATE LIMITED</strong><br>
+        Registered Office: Bangalore, Karnataka, India<br>
+        This document is confidential and forms part of the employee's separation records.
+    </div>
+</body>
+</html>

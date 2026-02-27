@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procurement | Craftech360 Mission Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{'body':['IBM Plex Sans','sans-serif'],'heading':['Sora','sans-serif']}}}}</script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-body bg-slate-50 text-slate-900 min-h-screen">
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl flex items-center justify-center mx-auto mb-4"><span class="text-white text-2xl font-bold">C</span></div>
+                <h1 class="font-heading text-2xl font-semibold">Mission Control</h1>
+                <p class="text-slate-500 mt-2">Craftech360 Operations Platform</p>
+            </div>
+            <form id="auth-form" class="space-y-4">
+                <input type="password" id="auth-code" class="input" placeholder="Enter access code">
+                <button type="submit" class="w-full btn btn-primary py-3">Sign In</button>
+                <p id="auth-error" class="text-red-500 text-sm text-center hidden">Invalid access code</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" class="hidden flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">
+            <div class="p-4 border-b border-slate-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg flex items-center justify-center"><span class="text-white font-bold">C</span></div>
+                    <div><div class="font-heading font-semibold text-slate-900">Craftech360</div><div class="text-[10px] uppercase tracking-wider text-slate-500 font-medium">Mission Control</div></div>
+                </div>
+            </div>
+            <nav class="flex-1 px-3 py-4 space-y-6 overflow-y-auto">
+                <div><p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Overview</p>
+                    <a href="index.html" class="nav-item"><i data-lucide="bar-chart-3" class="w-4 h-4"></i>Dashboard</a>
+                    <a href="activity.html" class="nav-item"><i data-lucide="activity" class="w-4 h-4"></i>Activity Feed</a>
+                </div>
+                <div><p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Work</p>
+                    <a href="tasks.html" class="nav-item"><i data-lucide="layout-grid" class="w-4 h-4"></i>Tasks</a>
+                    <a href="procurement.html" class="nav-item active"><i data-lucide="shopping-cart" class="w-4 h-4"></i>Procurement</a>
+                </div>
+                <div><p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Resources</p>
+                    <a href="products.html" class="nav-item"><i data-lucide="box" class="w-4 h-4"></i>Products</a>
+                </div>
+                <div><p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Administration</p>
+                    <a href="organization.html" class="nav-item"><i data-lucide="building-2" class="w-4 h-4"></i>Organization</a>
+                    <a href="agents.html" class="nav-item"><i data-lucide="bot" class="w-4 h-4"></i>Agents</a>
+                    <a href="integrations.html" class="nav-item"><i data-lucide="network" class="w-4 h-4"></i>Integrations</a>
+                </div>
+            </nav>
+            <div class="p-4 border-t border-slate-200"><div class="flex items-center gap-2 text-xs text-slate-500"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>All systems operational</div></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto">
+            <!-- Header -->
+            <div class="bg-white border-b border-slate-200 px-8 py-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="font-heading text-2xl font-semibold text-slate-900">Procurement</h1>
+                        <p class="text-sm text-slate-500 mt-1">Track vendors, rentals, and orders for projects</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button onclick="openModal('add-vendor-modal')" class="btn btn-secondary">
+                            <i data-lucide="building" class="w-4 h-4 mr-2"></i>Add Vendor
+                        </button>
+                        <button onclick="openModal('add-rental-modal')" class="btn btn-secondary">
+                            <i data-lucide="package" class="w-4 h-4 mr-2"></i>Add Rental
+                        </button>
+                        <button onclick="openModal('add-order-modal')" class="btn btn-primary">
+                            <i data-lucide="shopping-bag" class="w-4 h-4 mr-2"></i>Add Order
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="bg-white border-b border-slate-200 px-8">
+                <div class="flex gap-1">
+                    <button id="tab-overview" class="tab-btn active" onclick="switchTab('overview')">
+                        <i data-lucide="layout-dashboard" class="w-4 h-4"></i>Overview
+                    </button>
+                    <button id="tab-vendors" class="tab-btn" onclick="switchTab('vendors')">
+                        <i data-lucide="building" class="w-4 h-4"></i>Vendors
+                    </button>
+                    <button id="tab-rentals" class="tab-btn" onclick="switchTab('rentals')">
+                        <i data-lucide="package" class="w-4 h-4"></i>Rentals
+                    </button>
+                    <button id="tab-orders" class="tab-btn" onclick="switchTab('orders')">
+                        <i data-lucide="shopping-bag" class="w-4 h-4"></i>Orders
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-8">
+                <!-- Overview Tab -->
+                <div id="content-overview">
+                    <!-- Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                        <div class="kpi-card">
+                            <div class="flex items-center justify-between mb-4">
+                                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Active Vendors</p>
+                                <div class="p-2 bg-blue-50 rounded-lg text-blue-600"><i data-lucide="building" class="w-4 h-4"></i></div>
+                            </div>
+                            <h3 class="font-heading text-3xl font-bold text-slate-900" id="stat-vendors">0</h3>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="flex items-center justify-between mb-4">
+                                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Active Rentals</p>
+                                <div class="p-2 bg-amber-50 rounded-lg text-amber-600"><i data-lucide="package" class="w-4 h-4"></i></div>
+                            </div>
+                            <h3 class="font-heading text-3xl font-bold text-slate-900" id="stat-rentals">0</h3>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="flex items-center justify-between mb-4">
+                                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Pending Orders</p>
+                                <div class="p-2 bg-purple-50 rounded-lg text-purple-600"><i data-lucide="shopping-bag" class="w-4 h-4"></i></div>
+                            </div>
+                            <h3 class="font-heading text-3xl font-bold text-slate-900" id="stat-orders">0</h3>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="flex items-center justify-between mb-4">
+                                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">This Month Spend</p>
+                                <div class="p-2 bg-emerald-50 rounded-lg text-emerald-600"><i data-lucide="indian-rupee" class="w-4 h-4"></i></div>
+                            </div>
+                            <h3 class="font-heading text-3xl font-bold text-slate-900">₹<span id="stat-spend">0</span></h3>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="chart-card">
+                            <h3 class="font-heading font-semibold mb-4">Recent Rentals</h3>
+                            <div id="recent-rentals" class="space-y-3">
+                                <p class="text-slate-500 text-sm">No rentals yet</p>
+                            </div>
+                        </div>
+                        <div class="chart-card">
+                            <h3 class="font-heading font-semibold mb-4">Recent Orders</h3>
+                            <div id="recent-orders" class="space-y-3">
+                                <p class="text-slate-500 text-sm">No orders yet</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vendors Tab -->
+                <div id="content-vendors" class="hidden">
+                    <div class="chart-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-heading font-semibold">Vendors</h3>
+                            <input type="text" id="search-vendors" class="input w-64" placeholder="Search vendors...">
+                        </div>
+                        <div id="vendors-list" class="space-y-3">
+                            <p class="text-slate-500 text-sm">No vendors added yet</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rentals Tab -->
+                <div id="content-rentals" class="hidden">
+                    <div class="chart-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-heading font-semibold">Rentals</h3>
+                            <select id="filter-rental-status" class="select w-48">
+                                <option value="">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="returned">Returned</option>
+                                <option value="overdue">Overdue</option>
+                            </select>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Vendor</th>
+                                        <th>Project</th>
+                                        <th>Rental Period</th>
+                                        <th>Cost</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="rentals-table"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders Tab -->
+                <div id="content-orders" class="hidden">
+                    <div class="chart-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-heading font-semibold">Orders</h3>
+                            <select id="filter-order-status" class="select w-48">
+                                <option value="">All Status</option>
+                                <option value="ordered">Ordered</option>
+                                <option value="shipped">Shipped</option>
+                                <option value="delivered">Delivered</option>
+                            </select>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Source</th>
+                                        <th>Project</th>
+                                        <th>Order Date</th>
+                                        <th>Expected Delivery</th>
+                                        <th>Cost</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="orders-table"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Vendor Modal -->
+    <div id="add-vendor-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="font-heading text-xl font-semibold">Add Vendor</h2>
+                <button onclick="closeModal('add-vendor-modal')" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <form id="vendor-form" class="modal-body space-y-4">
+                <input type="hidden" id="vendor-id">
+                <div>
+                    <label class="label">Vendor Name *</label>
+                    <input type="text" id="vendor-name" class="input" placeholder="Company name" required>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="label">Category</label>
+                        <select id="vendor-category" class="select">
+                            <option value="equipment">Equipment Rental</option>
+                            <option value="transport">Transport</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="supplies">Supplies</option>
+                            <option value="services">Services</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="label">Contact Person</label>
+                        <input type="text" id="vendor-contact" class="input" placeholder="Name">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="label">Phone</label>
+                        <input type="tel" id="vendor-phone" class="input" placeholder="+91...">
+                    </div>
+                    <div>
+                        <label class="label">Email</label>
+                        <input type="email" id="vendor-email" class="input" placeholder="email@vendor.com">
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Notes</label>
+                    <textarea id="vendor-notes" class="textarea" rows="2" placeholder="Payment terms, specialties, etc."></textarea>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button onclick="closeModal('add-vendor-modal')" class="btn btn-secondary">Cancel</button>
+                <button onclick="saveVendor()" class="btn btn-primary">Save Vendor</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Rental Modal -->
+    <div id="add-rental-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="font-heading text-xl font-semibold">Add Rental</h2>
+                <button onclick="closeModal('add-rental-modal')" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <form id="rental-form" class="modal-body space-y-4">
+                <input type="hidden" id="rental-id">
+                <div>
+                    <label class="label">Item Description *</label>
+                    <input type="text" id="rental-item" class="input" placeholder="e.g., 5x Laptops, LED Screen" required>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="label">Vendor *</label>
+                        <select id="rental-vendor" class="select" required>
+                            <option value="">Select vendor...</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="label">Project</label>
+                        <input type="text" id="rental-project" class="input" placeholder="e.g., Dell Annual Meet">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="label">Start Date *</label>
+                        <input type="date" id="rental-start" class="input" required>
+                    </div>
+                    <div>
+                        <label class="label">Return Date *</label>
+                        <input type="date" id="rental-end" class="input" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="label">Cost (₹)</label>
+                        <input type="number" id="rental-cost" class="input" placeholder="0">
+                    </div>
+                    <div>
+                        <label class="label">Status</label>
+                        <select id="rental-status" class="select">
+                            <option value="active">Active</option>
+                            <option value="returned">Returned</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Notes</label>
+                    <textarea id="rental-notes" class="textarea" rows="2" placeholder="Pickup location, condition, etc."></textarea>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button onclick="closeModal('add-rental-modal')" class="btn btn-secondary">Cancel</button>
+                <button onclick="saveRental()" class="btn btn-primary">Save Rental</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Order Modal -->
+    <div id="add-order-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="font-heading text-xl font-semibold">Add Order</h2>
+                <button onclick="closeModal('add-order-modal')" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <form id="order-form" class="modal-body space-y-4">
+                <input type="hidden" id="order-id">
+                <div>
+                    <label class="label">Item Description *</label>
+                    <input type="text" id="order-item" class="input" placeholder="e.g., HDMI Cables x10" required>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="label">Source/Store *</label>
+                        <input type="text" id="order-source" class="input" placeholder="e.g., Amazon, Flipkart" required>
+                    </div>
+                    <div>
+                        <label class="label">Project</label>
+                        <input type="text" id="order-project" class="input" placeholder="e.g., Dell Annual Meet">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="label">Order Date</label>
+                        <input type="date" id="order-date" class="input">
+                    </div>
+                    <div>
+                        <label class="label">Expected Delivery</label>
+                        <input type="date" id="order-delivery" class="input">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="label">Cost (₹)</label>
+                        <input type="number" id="order-cost" class="input" placeholder="0">
+                    </div>
+                    <div>
+                        <label class="label">Status</label>
+                        <select id="order-status" class="select">
+                            <option value="ordered">Ordered</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="label">Tracking Number</label>
+                    <input type="text" id="order-tracking" class="input" placeholder="Tracking ID">
+                </div>
+                <div>
+                    <label class="label">Notes</label>
+                    <textarea id="order-notes" class="textarea" rows="2" placeholder="Order details, links, etc."></textarea>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button onclick="closeModal('add-order-modal')" class="btn btn-secondary">Cancel</button>
+                <button onclick="saveOrder()" class="btn btn-primary">Save Order</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script src="js/procurement.js"></script>
+    <script>lucide.createIcons();</script>
+    <style>
+        .tab-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #64748b;
+            border-bottom: 2px solid transparent;
+            transition: all 0.15s;
+        }
+        .tab-btn:hover {
+            color: #334155;
+        }
+        .tab-btn.active {
+            color: #1e40af;
+            border-bottom-color: #2563eb;
+        }
+    </style>
+</body>
+</html>

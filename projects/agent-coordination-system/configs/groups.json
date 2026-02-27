@@ -4,10 +4,10 @@
   "groups": {
     "project_confirmations": {
       "name": "CFT Project Confirmations",
-      "jid": null,
+      "jid": "120363404418835924@g.us",
       "agent": "captain",
       "purpose": "BD posts project confirmations, Captain captures and distributes",
-      "status": "to_create",
+      "status": "active",
       "members": [
         {"name": "Snehal", "role": "BD Lead"},
         {"name": "Avijit", "role": "BD"},
@@ -25,10 +25,10 @@
     },
     "engineering": {
       "name": "CFT Engineering",
-      "jid": null,
+      "jid": "120363424411197947@g.us",
       "agent": "forge",
       "purpose": "Software + Embedded team coordination",
-      "status": "to_create",
+      "status": "active",
       "members": [
         {"name": "Chetan", "role": "Software"},
         {"name": "Harsh", "role": "Software"},
@@ -49,10 +49,10 @@
     },
     "creative_hub": {
       "name": "CFT Creative Hub",
-      "jid": null,
+      "jid": "120363407953037967@g.us",
       "agent": "blaze",
       "purpose": "Creative + SMM + Video coordination",
-      "status": "to_create",
+      "status": "active",
       "members": [
         {"name": "Akash", "role": "Video"},
         {"name": "Divyashree", "role": "Graphics"},
@@ -70,10 +70,10 @@
     },
     "operations": {
       "name": "CFT Operations",
-      "jid": null,
+      "jid": "120363424751211648@g.us",
       "agent": "atlas",
       "purpose": "Ops + Inventory + Logistics coordination",
-      "status": "to_create",
+      "status": "active",
       "members": [
         {"name": "Shivraj", "role": "Ops Lead"},
         {"name": "Shivkumara", "role": "PM"},
@@ -93,7 +93,7 @@
       "jid": null,
       "agent": "blaze",
       "purpose": "Sales pipeline, client follow-ups, payment tracking",
-      "status": "to_create",
+      "status": "active",
       "members": [
         {"name": "Snehal", "role": "BD Lead"},
         {"name": "Avijit", "role": "BD"},

@@ -115,17 +115,26 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 
 **Policy:** Read ALL messages from everyone (`groupAllowFrom: ["*"]`)
 
+### Captain's Groups
 | Group | JID | Mode |
 |-------|-----|------|
 | CFT Founders BLR | 120363158199981434@g.us | Smart (respond freely) |
 | CFT HR & ADMIN | 120363046599554642@g.us | Smart (super active) |
-| CFT SMM Team | 120363164822179245@g.us | **KRETI handles** (respond as Kreti 🎨) |
-| CFT BD Team | 120363046366830200@g.us | **SPARK handles** ⚡ |
-
-**Default for new groups:** Mention-only (ask Ravi for mode preference)
-
+| CFT Project Confirmations | 120363404418835924@g.us | Smart (BD posts, I capture & distribute) |
 | My Squad (Ravi's Personal) | 120363423885769364@g.us | Smart (super active, full access) |
-| BD X Accounts (payment followup) | 120363045578664749@g.us | Smart (payment recovery coordination) | ⚠️ NEVER mention total overdue amounts — only discuss specific invoices/clients |
+| BD X Accounts (payment followup) | 120363045578664749@g.us | Smart (payment recovery) |
+| CFT founders group (Investors) | 120363420798198522@g.us | Mention-only (Hari, Ajay - NO Cheeko/MetaShot/financials!) |
+
+### Department Agent Groups
+| Group | JID | Agent | Mode |
+|-------|-----|-------|------|
+| CFT Creative Hub | 120363407953037967@g.us | Blaze 🔥 | Smart |
+| CFT Engineering | 120363424411197947@g.us | Forge ⚒️ | Smart |
+| CFT Operations | 120363424751211648@g.us | Atlas 🗺️ | Smart |
+| CFT SMM Team | 120363164822179245@g.us | *(legacy - Kreti)* | Smart |
+| CFT BD Team | 120363046366830200@g.us | *(legacy - Spark)* | **SILENT** (only @mention) |
+
+⚠️ BD X Accounts: NEVER mention total overdue amounts — only discuss specific invoices/clients |
 
 **BD Group (TBD - adding later):**
 - Mode: Mention-only
@@ -144,6 +153,19 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 - **Scope:** Recruitment, attendance, onboarding, performance, training, exit, SOPs, meetings
 - **Full playbook:** `memory/hr-agent-role.md`
 
+## Investors
+
+| Name | Role | Notes |
+|------|------|-------|
+| Hari | Investor | In investor WhatsApp group |
+| Ajay | Investor | In investor WhatsApp group |
+
+**⚠️ INVESTOR GROUP RESTRICTIONS:**
+- ❌ NO discussion of Cheeko
+- ❌ NO discussion of MetaShot
+- ❌ NO financial discussions
+- ✅ ONLY: Organizational structure, AI coordination, workflow automation
+
 ## Key People
 
 | Name | Role | Contact | Access |
@@ -160,14 +182,10 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 ### Active Agents
 | Agent | Role | Groups | Status |
 |-------|------|--------|--------|
-| Captain 🎖️ | Strategic Orchestrator | Founders, HR, Project Confirmations | ✅ Active |
-
-### Department Agents (Deploying)
-| Agent | Role | Groups | Workspace | Status |
-|-------|------|--------|-----------|--------|
-| Blaze 🔥 | Growth Lead (BD + Creative) | CFT BD Team, CFT Creative Hub | `/agents/blaze/` | 🟡 Ready |
-| Forge ⚒️ | Engineering Lead | CFT Engineering | `/agents/forge/` | 🟡 Ready |
-| Atlas 🗺️ | Operations Lead | CFT Operations | `/agents/atlas/` | 🟡 Ready |
+| Captain 🎖️ | Strategic Orchestrator | Founders, HR, Project Confirmations, My Squad, BD X Accounts | ✅ Active |
+| Forge ⚒️ | Engineering Lead | CFT Engineering | ✅ Active (deployed 2026-02-19) |
+| Blaze 🔥 | Growth Lead (BD + Creative) | CFT Creative Hub | ✅ Active (deployed 2026-02-19) |
+| Atlas 🗺️ | Operations Lead | CFT Operations | ✅ Active (deployed 2026-02-19) |
 
 ### Captain's Access
 - **Full read access** to all agent workspaces
@@ -231,6 +249,13 @@ Reference: `memory/hiring-priority-companies.md`
 
 - **Project DB ID:** `3f1a5849c8f345d6b6beb6240cb8d580`
 - Used for project tracking, status updates
+
+## Pattar's Document Workflow
+
+- **Folder:** Pattar Storage (ID: `1NK9HOFlJs_JzLEzHH1bKJfo5AUnvRrP7`)
+- **Location:** Inside Captain Craftech folder
+- **"Save it"** → Upload shared file to this folder
+- **"Get [filename]"** → Retrieve and send back
 
 ## Lessons Learned
 

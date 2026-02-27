@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Document Templates - Craftech360</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e4e4e4;
+            padding: 40px 20px;
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #00d9ff;
+            margin-bottom: 10px;
+        }
+
+        .header p { color: #8892b0; }
+
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .doc-card {
+            background: linear-gradient(145deg, #1e2a4a 0%, #16213e 100%);
+            border: 1px solid #0f3460;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .doc-card:hover {
+            border-color: #00d9ff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,217,255,0.1);
+        }
+
+        .doc-card.high { border-left: 4px solid #e94560; }
+        .doc-card.medium { border-left: 4px solid #f39c12; }
+
+        .doc-icon { font-size: 2.5rem; margin-bottom: 15px; }
+
+        .doc-title {
+            font-size: 1.2rem;
+            color: #00d9ff;
+            margin-bottom: 10px;
+        }
+
+        .doc-desc {
+            color: #8892b0;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .doc-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+        }
+
+        .doc-badge.high { background: rgba(233,69,96,0.2); color: #e94560; }
+        .doc-badge.medium { background: rgba(241,196,15,0.2); color: #f39c12; }
+        .doc-badge.ready { background: rgba(46,204,113,0.2); color: #2ecc71; }
+        .doc-badge.pending { background: rgba(108,117,125,0.2); color: #8892b0; }
+
+        .doc-actions { display: flex; gap: 10px; }
+
+        .doc-btn {
+            flex: 1;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .doc-btn.view {
+            background: linear-gradient(135deg, #00d9ff 0%, #0f3460 100%);
+            color: white;
+        }
+
+        .doc-btn.print {
+            background: rgba(255,255,255,0.1);
+            color: #e4e4e4;
+            border: 1px solid #0f3460;
+        }
+
+        .doc-btn:hover { transform: scale(1.02); }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: #00d9ff;
+            text-decoration: none;
+        }
+
+        .back-link:hover { text-decoration: underline; }
+
+        .info-box {
+            background: rgba(0,217,255,0.1);
+            border: 1px solid #00d9ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-box h3 { color: #00d9ff; margin-bottom: 10px; }
+        .info-box p { color: #8892b0; font-size: 0.95rem; }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.8rem; }
+            .doc-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../onboarding-tracker.html" class="back-link">← Back to Onboarding Tracker</a>
+
+        <div class="header">
+            <h1>📄 HR Document Templates</h1>
+            <p>Employment agreements and policy documents for Craftech360</p>
+        </div>
+
+        <div class="info-box">
+            <h3>📋 How to Use</h3>
+            <p>Click "View" to open the document template. Use the "Print" button on each document to save as PDF or print. Fill in the blanks with employee details before printing.</p>
+        </div>
+
+        <div class="doc-grid">
+            <!-- Employment Agreement -->
+            <div class="doc-card high">
+                <div class="doc-icon">📜</div>
+                <span class="doc-badge ready">✅ Ready</span>
+                <span class="doc-badge high">High Priority</span>
+                <h3 class="doc-title">Employment Agreement</h3>
+                <p class="doc-desc">Comprehensive employment contract covering position, compensation, confidentiality, IP, non-compete, and termination terms.</p>
+                <div class="doc-actions">
+                    <a href="Employment_Agreement.html" class="doc-btn view">📄 View</a>
+                </div>
+            </div>
+
+            <!-- NDA -->
+            <div class="doc-card high">
+                <div class="doc-icon">🔒</div>
+                <span class="doc-badge ready">✅ Ready</span>
+                <span class="doc-badge high">High Priority</span>
+                <h3 class="doc-title">Non-Disclosure Agreement (NDA)</h3>
+                <p class="doc-desc">Protects confidential business information including client data, financials, salaries, and technical information.</p>
+                <div class="doc-actions">
+                    <a href="NDA.html" class="doc-btn view">📄 View</a>
+                </div>
+            </div>
+
+            <!-- Salary Confidentiality -->
+            <div class="doc-card high">
+                <div class="doc-icon">💰</div>
+                <span class="doc-badge ready">✅ Ready</span>
+                <span class="doc-badge high">High Priority</span>
+                <h3 class="doc-title">Salary Confidentiality Declaration</h3>
+                <p class="doc-desc">Employee declaration to not disclose own or others' salary information. Includes consequences for breach.</p>
+                <div class="doc-actions">
+                    <a href="Salary_Confidentiality.html" class="doc-btn view">📄 View</a>
+                </div>
+            </div>
+
+            <!-- SIM Card Agreement -->
+            <div class="doc-card high">
+                <div class="doc-icon">📱</div>
+                <span class="doc-badge ready">✅ Ready</span>
+                <span class="doc-badge high">High Priority</span>
+                <h3 class="doc-title">Company SIM Card Agreement</h3>
+                <p class="doc-desc">For employees using company SIM cards registered under Director's name. Includes indemnity and liability clauses.</p>
+                <div class="doc-actions">
+                    <a href="SIM_Card_Agreement.html" class="doc-btn view">📄 View</a>
+                </div>
+            </div>
+
+            <!-- IT & Software Policy -->
+            <div class="doc-card high">
+                <div class="doc-icon">💻</div>
+                <span class="doc-badge ready">✅ Ready</span>
+                <span class="doc-badge high">High Priority</span>
+                <h3 class="doc-title">IT & Software Usage Policy</h3>
+                <p class="doc-desc">Prohibits pirated software, regulates company email usage, defines personal liability for violations. Critical for legal protection.</p>
+                <div class="doc-actions">
+                    <a href="IT_Software_Policy.html" class="doc-btn view">📄 View</a>
+                </div>
+            </div>
+
+            <!-- Asset Agreement -->
+            <div class="doc-card high">
+                <div class="doc-icon">💻</div>
+                <span class="doc-badge ready">✅ Ready</span>
+                <span class="doc-badge high">High Priority</span>
+                <h3 class="doc-title">Asset Usage & Responsibility Agreement</h3>
+                <p class="doc-desc">Covers laptop, mobile, keyboard, mouse handover. Includes care guidelines, damage liability matrix, and return process.</p>
+                <div class="doc-actions">
+                    <a href="Asset_Agreement.html" class="doc-btn view">📄 View</a>
+                </div>
+            </div>
+
+            <!-- Non-Compete (Pending) -->
+            <div class="doc-card medium">
+                <div class="doc-icon">🚫</div>
+                <span class="doc-badge pending">⏳ Pending</span>
+                <span class="doc-badge medium">Medium Priority</span>
+                <h3 class="doc-title">Non-Compete & Non-Solicitation</h3>
+                <p class="doc-desc">Prevents employees from joining competitors and soliciting clients/employees. (Included in Employment Agreement)</p>
+                <div class="doc-actions">
+                    <span class="doc-btn print" style="opacity: 0.5;">Included in Employment Agreement</span>
+                </div>
+            </div>
+
+            <!-- Code of Conduct (Pending) -->
+            <div class="doc-card medium">
+                <div class="doc-icon">📋</div>
+                <span class="doc-badge pending">⏳ Pending</span>
+                <span class="doc-badge medium">Medium Priority</span>
+                <h3 class="doc-title">Code of Conduct</h3>
+                <p class="doc-desc">Behavioral and ethical standards including disciplinary matrix.</p>
+                <div class="doc-actions">
+                    <span class="doc-btn print" style="opacity: 0.5;">Coming Soon</span>
+                </div>
+            </div>
+
+            <!-- Info Security Policy (Pending) -->
+            <div class="doc-card medium">
+                <div class="doc-icon">🛡️</div>
+                <span class="doc-badge pending">⏳ Pending</span>
+                <span class="doc-badge medium">Medium Priority</span>
+                <h3 class="doc-title">Information Security Policy</h3>
+                <p class="doc-desc">Rules for handling company data, devices, and systems.</p>
+                <div class="doc-actions">
+                    <span class="doc-btn print" style="opacity: 0.5;">Coming Soon</span>
+                </div>
+            </div>
+
+            <!-- Exit Undertaking (Pending) -->
+            <div class="doc-card medium">
+                <div class="doc-icon">🚪</div>
+                <span class="doc-badge pending">⏳ Pending</span>
+                <span class="doc-badge medium">Medium Priority</span>
+                <h3 class="doc-title">Exit Undertaking</h3>
+                <p class="doc-desc">Signed at separation - return of property, data deletion, reaffirmation of confidentiality.</p>
+                <div class="doc-actions">
+                    <span class="doc-btn print" style="opacity: 0.5;">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top: 50px; text-align: center; color: #8892b0; font-size: 0.9rem;">
+            <p>🎖️ Created by Captain | Craftech360</p>
+            <p style="margin-top: 10px;">⚖️ <strong>Note:</strong> Please have these documents reviewed by a legal professional before use.</p>
+        </div>
+    </div>
+</body>
+</html>
