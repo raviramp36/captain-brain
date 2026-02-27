@@ -55,6 +55,15 @@
                     <span>Checkout Item</span>
                 </a>
                 <div class="nav-divider"></div>
+                <a href="#" class="nav-item" data-view="builds">
+                    <span class="nav-icon">🔨</span>
+                    <span>Product Builds</span>
+                </a>
+                <a href="#" class="nav-item" data-view="createBuild">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Build Product</span>
+                </a>
+                <div class="nav-divider"></div>
                 <a href="#" class="nav-item" data-view="purchaseRequests">
                     <span class="nav-icon">🛒</span>
                     <span>Purchase Requests</span>
@@ -112,10 +121,10 @@
                             <span class="stat-label">In Use</span>
                         </div>
                     </div>
-                    <div class="stat-card clickable" onclick="toggleValueVisibility()">
+                    <div class="stat-card">
                         <div class="stat-icon">💰</div>
                         <div class="stat-info">
-                            <span class="stat-value" id="totalValue">Click to reveal</span>
+                            <span class="stat-value" id="totalValue">₹0</span>
                             <span class="stat-label">Total Value</span>
                         </div>
                     </div>
@@ -144,12 +153,11 @@
                         <select id="categoryFilter" onchange="filterItems()">
                             <option value="">All Categories</option>
                             <option value="IT Assets">IT Assets</option>
-                            <option value="Electronic Components">Electronic Components</option>
+                            <option value="Electronics">Electronics</option>
                             <option value="Event Equipment">Event Equipment</option>
                             <option value="Mechanical Division">Mechanical Division</option>
                             <option value="Office Assets">Office Assets</option>
                             <option value="Dead Stock">Dead Stock</option>
-                            <option value="Rented Equipment">Rented Equipment</option>
                         </select>
                         <select id="statusFilter" onchange="filterItems()">
                             <option value="">All Status</option>
@@ -197,7 +205,7 @@
                                 <select id="itemCategory" required onchange="updateItemId(); toggleRentalFields()">
                                     <option value="">Select Category</option>
                                     <option value="IT Assets">IT Assets</option>
-                                    <option value="Electronic Components">Electronic Components</option>
+                                    <option value="Electronics">Electronics</option>
                                     <option value="Event Equipment">Event Equipment</option>
                                     <option value="Mechanical Division">Mechanical Division</option>
                                     <option value="Office Assets">Office Assets</option>
@@ -297,7 +305,7 @@
                             <option value="Inspection">🔍 Inspection</option>
                             <option value="Closed">✅ Closed</option>
                         </select>
-                        <input type="text" id="dcSearch" class="search-input" placeholder="Search by event/client..." onkeyup="filterDCs()">
+                        <input type="text" id="dcSearch" placeholder="Search by event/client..." onkeyup="filterDCs()">
                     </div>
                     <button class="btn-primary" onclick="switchView('createDC')">+ Create DC</button>
                 </div>
@@ -537,15 +545,20 @@
 
             <!-- Daily Log View -->
             <section id="dailyLogView" class="view">
-                <!-- Toolbar like DC/PR -->
-                <div class="toolbar">
-                    <div class="filter-group">
-                        <button class="log-filter-btn active" data-filter="all" onclick="filterDailyLog('all')">All</button>
-                        <button class="log-filter-btn" data-filter="Requested" onclick="filterDailyLog('Requested')">📋 Requested</button>
-                        <button class="log-filter-btn" data-filter="Handed Over" onclick="filterDailyLog('Handed Over')">🤝 Handed Over</button>
-                        <button class="log-filter-btn" data-filter="Returned" onclick="filterDailyLog('Returned')">✅ Returned</button>
+                <div class="view-header">
+                    <div>
+                        <h2>📋 Daily Inventory Log</h2>
+                        <p class="view-subtitle">Track R&D checkouts and returns</p>
                     </div>
-                    <button class="btn-primary" onclick="switchView('checkoutItem')">+ New Checkout</button>
+                    <button class="btn-primary" onclick="switchView('checkoutItem')">📤 New Checkout</button>
+                </div>
+                
+                <!-- Log Filters -->
+                <div class="log-filters">
+                    <button class="log-filter-btn active" data-filter="all" onclick="filterDailyLog('all')">All</button>
+                    <button class="log-filter-btn" data-filter="Requested" onclick="filterDailyLog('Requested')">📋 Requested</button>
+                    <button class="log-filter-btn" data-filter="Handed Over" onclick="filterDailyLog('Handed Over')">🤝 Handed Over</button>
+                    <button class="log-filter-btn" data-filter="Returned" onclick="filterDailyLog('Returned')">✅ Returned</button>
                 </div>
                 
                 <!-- Log List -->
@@ -605,6 +618,93 @@
                     </form>
                 </div>
             </section>
+
+            <!-- Product Builds List View -->
+            <section id="buildsView" class="view">
+                <div class="toolbar">
+                    <div class="filter-group">
+                        <button class="build-filter-btn active" data-filter="all" onclick="filterBuilds('all')">All</button>
+                        <button class="build-filter-btn" data-filter="In Progress" onclick="filterBuilds('In Progress')">🔧 In Progress</button>
+                        <button class="build-filter-btn" data-filter="Completed" onclick="filterBuilds('Completed')">✅ Completed</button>
+                        <button class="build-filter-btn" data-filter="Cancelled" onclick="filterBuilds('Cancelled')">❌ Cancelled</button>
+                    </div>
+                    <button class="btn-primary" onclick="switchView('createBuild')">+ New Build</button>
+                </div>
+                <div id="buildsList" class="builds-list">
+                    <!-- Builds will be loaded here -->
+                </div>
+            </section>
+
+            <!-- Create Build View -->
+            <section id="createBuildView" class="view">
+                <div class="card form-card">
+                    <h3>🔨 Build New Product</h3>
+                    <form id="createBuildForm" onsubmit="createBuild(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Product Name *</label>
+                                <input type="text" id="buildProductName" required placeholder="e.g., BATAK PRO Unit #5">
+                            </div>
+                            <div class="form-group">
+                                <label>Target Category</label>
+                                <select id="buildTargetCategory">
+                                    <option value="Event Equipment">Event Equipment</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="IT Assets">IT Assets</option>
+                                </select>
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Description</label>
+                                <textarea id="buildDescription" rows="2" placeholder="What is this product for?"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Created By *</label>
+                                <input type="text" id="buildCreatedBy" required placeholder="Your name">
+                            </div>
+                            <div class="form-group">
+                                <label>Estimated Value (₹)</label>
+                                <input type="number" id="buildEstValue" min="0" placeholder="Final product value">
+                            </div>
+                        </div>
+                        
+                        <h4 style="margin: 24px 0 16px; color: var(--primary-light);">📦 Select Components</h4>
+                        
+                        <div class="build-components-section">
+                            <div class="build-search-box">
+                                <input type="text" id="buildItemSearch" placeholder="Search components..." onkeyup="filterBuildItems()">
+                            </div>
+                            
+                            <div class="build-items-container">
+                                <div class="build-available-items">
+                                    <h5>Available Components</h5>
+                                    <div id="buildAvailableItemsList" class="build-items-list">
+                                        <!-- Available items will be listed here -->
+                                    </div>
+                                </div>
+                                
+                                <div class="build-selected-items">
+                                    <h5>Selected Components (<span id="buildSelectedCount">0</span>)</h5>
+                                    <div id="buildSelectedItemsList" class="build-items-list">
+                                        <!-- Selected items will be listed here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">🔨 Create Build</button>
+                            <button type="button" class="btn-secondary" onclick="switchView('builds')">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Build Detail View -->
+            <section id="buildDetailView" class="view">
+                <div id="buildDetailContainer">
+                    <!-- Build details will be loaded here -->
+                </div>
+            </section>
         </main>
     </div>
 
@@ -630,7 +730,7 @@
                         <label>Category *</label>
                         <select id="editItemCategory" required onchange="updateEditSubCategory(); toggleEditRentalFields()">
                             <option value="IT Assets">IT Assets</option>
-                            <option value="Electronic Components">Electronic Components</option>
+                            <option value="Electronics">Electronics</option>
                             <option value="Event Equipment">Event Equipment</option>
                             <option value="Mechanical Division">Mechanical Division</option>
                             <option value="Office Assets">Office Assets</option>
@@ -766,35 +866,6 @@
                 <button class="btn-checkin-confirm" id="confirmCheckinBtn" onclick="confirmCheckin()">
                     Confirm Check In & Close DC ✓
                 </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Edit DC Modal -->
-    <div id="editDCModal" class="modal">
-        <div class="modal-content modal-lg">
-            <div class="modal-header">
-                <h3>✏️ Edit DC Items</h3>
-                <button class="close-btn" onclick="closeEditDCModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p style="color: var(--text-muted); margin-bottom: 16px;">Add or remove items from this delivery channel.</p>
-                
-                <div class="dc-items-selector">
-                    <div class="available-items">
-                        <h5>Available Items</h5>
-                        <input type="text" id="editDCItemSearch" class="search-input" placeholder="Search items..." onkeyup="filterEditDCItems()">
-                        <div class="items-list" id="editDCAvailableItems"></div>
-                    </div>
-                    <div class="selected-items">
-                        <h5>Items in DC (<span id="editDCSelectedCount">0</span>)</h5>
-                        <div class="items-list" id="editDCSelectedItems"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn-secondary" onclick="closeEditDCModal()">Cancel</button>
-                <button class="btn-primary" onclick="saveEditDC()">💾 Save Changes</button>
             </div>
         </div>
     </div>

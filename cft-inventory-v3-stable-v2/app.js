@@ -1,38 +1,16 @@
 // CFT Inventory System v3 - App Logic
 
-// Helper function to format date as DD-MM-YYYY
-function formatDate(dateStr) {
-    if (!dateStr) return '-';
-    try {
-        const date = new Date(dateStr);
-        if (isNaN(date.getTime())) return dateStr;
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day}-${month}-${year}`;
-    } catch (e) {
-        return dateStr;
-    }
-}
-
-// Helper to get today's date as DD-MM-YYYY
-function getTodayFormatted() {
-    const date = new Date();
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
-}
-
 const CONFIG = {
     SHEET_ID: '1MrwDU0XtemyfpwWNX551ulfUIAFECB4cLCPhNJH1yuo',
-    // Apps Script API for all operations
-    APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbz5NUNgUzjSlve0yid25XI5MsnXodhpDifaq2Sqb-3W6w7fnhWQd8oy9CzLFiQ11gd5/exec'
+    // Using Netlify function to proxy CSV (avoids CORS issues)
+    CSV_URL: '/.netlify/functions/get-inventory',
+    // Google Apps Script for write operations (deployed from the spreadsheet)
+    APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwZijq5gtTfSswm1p3zRT0BVbrftNPIqHdusWXLGOlxNcfdJLe4YGxpXmjPGKvAIc0t/exec'
 };
 
 const CATEGORY_PREFIXES = {
     'IT Assets': 'IT',
-    'Electronic Components': 'EC',
+    'Electronics': 'EC',
     'Event Equipment': 'EV',
     'Mechanical Division': 'MC',
     'Office Assets': 'OA',
@@ -42,7 +20,7 @@ const CATEGORY_PREFIXES = {
 
 const CATEGORY_ICONS = {
     'IT Assets': '💻',
-    'Electronic Components': '🔌',
+    'Electronics': '🔌',
     'Event Equipment': '🎪',
     'Mechanical Division': '⚙️',
     'Office Assets': '🪑',
@@ -52,7 +30,7 @@ const CATEGORY_ICONS = {
 
 const CATEGORY_COLORS = {
     'IT Assets': '#6366f1',
-    'Electronic Components': '#22c55e',
+    'Electronics': '#22c55e',
     'Event Equipment': '#f59e0b',
     'Mechanical Division': '#ef4444',
     'Office Assets': '#3b82f6',
@@ -78,7 +56,7 @@ const SUB_CATEGORIES = {
         'Printers',
         'Peripherals'
     ],
-    'Electronic Components': [
+    'Electronics': [
         'Microcontrollers',
         'Power Supplies',
         'Sensors',
@@ -218,18 +196,19 @@ function parseCSV(csv) {
     return lines;
 }
 
-// Load Data from Google Sheets (via Apps Script API)
+// Load Data from Google Sheets (via CSV export)
 async function loadData() {
     try {
-        // Fetch from Apps Script API
+        // Add cache-busting parameter
         const cacheBuster = Date.now();
-        const response = await fetch(CONFIG.APPS_SCRIPT_URL + '?action=inventory&_=' + cacheBuster, {
+        const response = await fetch(CONFIG.CSV_URL + '?_=' + cacheBuster, {
             cache: 'no-store'
         });
-        const data = await response.json();
+        const csvText = await response.text();
+        const data = parseCSV(csvText);
         
         if (data && data.length > 1) {
-            // Skip header row, data is already an array of arrays
+            // Skip header row
             inventoryData = data.slice(1).filter(row => row[0]).map((row, index) => ({
                 rowIndex: index + 2, // +2 because of 0-index and header
                 itemId: row[0] || '',
@@ -240,7 +219,7 @@ async function loadData() {
                 status: row[5] || 'Available',
                 location: row[6] || '',
                 value: parseInt(row[7]) || 0,
-                addedDate: row[8] ? new Date(row[8]).toISOString().split('T')[0] : '',
+                addedDate: row[8] || '',
                 notes: row[9] || '',
                 // Rental fields (columns K-P)
                 returnDate: row[10] || '',
@@ -277,13 +256,7 @@ function updateDashboard() {
     document.getElementById('totalItems').textContent = totalItems;
     document.getElementById('availableItems').textContent = availableItems;
     document.getElementById('inUseItems').textContent = inUseItems;
-    // Store total value for click-to-reveal
-    actualTotalValue = totalValue;
-    if (!valueVisible) {
-        document.getElementById('totalValue').textContent = 'Click to reveal';
-    } else {
-        document.getElementById('totalValue').textContent = '₹' + totalValue.toLocaleString('en-IN');
-    }
+    document.getElementById('totalValue').textContent = '₹' + totalValue.toLocaleString('en-IN');
     
     // Category Chart
     const categoryChart = document.getElementById('categoryChart');
@@ -686,12 +659,13 @@ const DC_STATUS_LABELS = {
 async function loadDCData() {
     try {
         const cacheBuster = Date.now();
-        const response = await fetch(CONFIG.APPS_SCRIPT_URL + '?action=deliveryChannels&_=' + cacheBuster, {
+        const response = await fetch('/.netlify/functions/get-delivery-channels?_=' + cacheBuster, {
             cache: 'no-store'
         });
-        const data = await response.json();
+        const csvText = await response.text();
+        const data = parseCSV(csvText);
         
-        if (data && Array.isArray(data) && data.length > 1) {
+        if (data && data.length > 1) {
             dcData = data.slice(1).filter(row => row[0]).map((row, index) => ({
                 rowIndex: index + 2,
                 dcNumber: row[0] || '',
@@ -760,7 +734,7 @@ function updateDCList() {
                 </div>
                 <div class="dc-card-detail">
                     <span class="dc-card-detail-label">Event Date</span>
-                    <span class="dc-card-detail-value">${formatDate(dc.eventDate)}</span>
+                    <span class="dc-card-detail-value">${dc.eventDate}</span>
                 </div>
                 <div class="dc-card-detail">
                     <span class="dc-card-detail-label">Location</span>
@@ -776,7 +750,7 @@ function updateDCList() {
                 </div>
                 <div class="dc-card-detail">
                     <span class="dc-card-detail-label">Created</span>
-                    <span class="dc-card-detail-value">${formatDate(dc.createdDate)}</span>
+                    <span class="dc-card-detail-value">${dc.createdDate}</span>
                 </div>
             </div>
         </div>
@@ -1013,13 +987,11 @@ function viewDCDetail(dcNumber) {
     const currentStep = statusMap[dc.status] || 0;
     
     // Determine which action buttons to show
-    let editBtn = '';
     let checkOutBtn = '';
     let checkInBtn = '';
     
-    // Show Edit and Check Out buttons when Draft
+    // Show Check Out button when Draft (simplified - no approval needed)
     if (['Draft', 'Pending Approval', 'Approved'].includes(dc.status)) {
-        editBtn = `<button class="btn-edit-dc" onclick="openEditDCModal('${dcNumber}')">✏️ Edit DC</button>`;
         checkOutBtn = `<button class="btn-checkout" onclick="openCheckoutModal('${dcNumber}')">📤 Check Out</button>`;
     }
     
@@ -1035,14 +1007,12 @@ function viewDCDetail(dcNumber) {
                 <p style="color: var(--text-muted);">${dc.dcNumber} • ${dc.activity}</p>
             </div>
             <div class="dc-detail-actions">
-                ${editBtn}
                 ${checkOutBtn}
                 ${checkInBtn}
                 <button class="btn-pdf-download" onclick="downloadPDF('${dcNumber}')">
                     <span>📄</span> Download PDF
                 </button>
                 <button class="btn-back" onclick="switchView('deliveryChannels')">← Back</button>
-                <button class="btn-delete-dc" onclick="deleteDC('${dcNumber}')">🗑️ Delete</button>
             </div>
         </div>
         
@@ -1068,7 +1038,7 @@ function viewDCDetail(dcNumber) {
                 </div>
                 <div class="dc-detail-field">
                     <span class="dc-detail-field-label">Event Date</span>
-                    <span class="dc-detail-field-value">${formatDate(dc.eventDate)}</span>
+                    <span class="dc-detail-field-value">${dc.eventDate}</span>
                 </div>
                 <div class="dc-detail-field">
                     <span class="dc-detail-field-label">Location</span>
@@ -1169,12 +1139,11 @@ function viewDCDetail(dcNumber) {
 // Load DC Items
 async function loadDCItems(dcNumber) {
     try {
-        const response = await fetch(CONFIG.APPS_SCRIPT_URL + '?action=dcItems&_=' + Date.now());
-        const data = await response.json();
+        const response = await fetch('/.netlify/functions/get-dc-items?dc=' + dcNumber + '&_=' + Date.now());
+        const csvText = await response.text();
+        const data = parseCSV(csvText);
         
-        const items = Array.isArray(data) && data.length > 1 
-            ? data.slice(1).filter(row => row[0] === dcNumber)
-            : [];
+        const items = data.slice(1).filter(row => row[0] === dcNumber);
         
         const container = document.getElementById('dcItemsTable');
         if (items.length === 0) {
@@ -1288,43 +1257,6 @@ async function closeDC(dcNumber) {
     }
 }
 
-// Delete DC (Admin Only)
-const ADMIN_PASSWORD = 'cft@admin123';
-
-async function deleteDC(dcNumber) {
-    const password = prompt('🔐 Admin Password Required:');
-    if (!password) return;
-    
-    if (password !== ADMIN_PASSWORD) {
-        showToast('❌ Invalid admin password!', 'error');
-        return;
-    }
-    
-    if (!confirm(`⚠️ DELETE ${dcNumber}?\n\nThis will permanently delete:\n- The delivery channel\n- All items linked to it\n\nThis action cannot be undone!`)) {
-        return;
-    }
-    
-    try {
-        showToast('Deleting DC...', 'success');
-        
-        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=deleteDC', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ dcNumber })
-        });
-        
-        showToast('🗑️ DC Deleted!', 'success');
-        setTimeout(() => {
-            loadDCData();
-            switchView('deliveryChannels');
-        }, 1500);
-    } catch (error) {
-        console.error('Error deleting DC:', error);
-        showToast('Error deleting DC', 'error');
-    }
-}
-
 // WhatsApp Share
 function shareToWhatsApp(dcNumber) {
     const dc = dcData.find(d => d.dcNumber === dcNumber);
@@ -1365,9 +1297,10 @@ async function downloadPDF(dcNumber) {
     let itemsHtml = '<tr><td colspan="5" style="text-align:center;padding:20px;color:#666;">No items</td></tr>';
     let totalItems = 0;
     try {
-        const response = await fetch(CONFIG.APPS_SCRIPT_URL + '?action=dcItems&_=' + Date.now());
-        const data = await response.json();
-        const items = (Array.isArray(data) && data.length > 1 ? data.slice(1) : []).filter(row => row[0] === dcNumber);
+        const response = await fetch('/.netlify/functions/get-dc-items?dc=' + dcNumber + '&_=' + Date.now());
+        const csvText = await response.text();
+        const data = parseCSV(csvText);
+        const items = data.slice(1).filter(row => row[0] === dcNumber);
         
         if (items.length > 0) {
             totalItems = items.reduce((sum, item) => sum + (parseInt(item[4]) || 0), 0);
@@ -1463,7 +1396,7 @@ async function downloadPDF(dcNumber) {
                     <div class="doc-info">
                         <div class="doc-title">DELIVERY CHALLAN</div>
                         <div class="doc-number">${dc.dcNumber}</div>
-                        <div class="doc-date">Date: ${formatDate(dc.createdDate) || getTodayFormatted()}</div>
+                        <div class="doc-date">Date: ${dc.createdDate || new Date().toISOString().split('T')[0]}</div>
                     </div>
                 </div>
                 
@@ -1473,7 +1406,7 @@ async function downloadPDF(dcNumber) {
                     <tr>
                         <td style="width:25%"><div class="label">Event Name</div><div class="value">${dc.eventName}</div></td>
                         <td style="width:25%"><div class="label">Activity</div><div class="value">${dc.activity}</div></td>
-                        <td style="width:25%"><div class="label">Event Date</div><div class="value">${formatDate(dc.eventDate)}</div></td>
+                        <td style="width:25%"><div class="label">Event Date</div><div class="value">${dc.eventDate}</div></td>
                         <td style="width:25%"><div class="label">Client</div><div class="value">${dc.clientName}</div></td>
                     </tr>
                     <tr>
@@ -1497,8 +1430,8 @@ async function downloadPDF(dcNumber) {
                 <div class="section-title">Logistics & Approvals</div>
                 <table class="info-table">
                     <tr>
-                        <td style="width:20%"><div class="label">Dispatch Date</div><div class="value">${formatDate(dc.dispatchDate) || '-'}</div></td>
-                        <td style="width:20%"><div class="label">Expected Return</div><div class="value">${formatDate(dc.expectedReturn) || '-'}</div></td>
+                        <td style="width:20%"><div class="label">Dispatch Date</div><div class="value">${dc.dispatchDate || '-'}</div></td>
+                        <td style="width:20%"><div class="label">Expected Return</div><div class="value">${dc.expectedReturn || '-'}</div></td>
                         <td style="width:20%"><div class="label">Carrier / Vehicle</div><div class="value">${dc.carrierName || '-'}<br>${dc.vehicleNumber || ''}</div></td>
                         <td style="width:20%"><div class="label">Event Executor</div><div class="value">${dc.sitePOC || '-'}</div></td>
                         <td style="width:20%"><div class="label">DC Approver</div><div class="value">${dc.pmApprover || '-'}</div></td>
@@ -1510,13 +1443,13 @@ async function downloadPDF(dcNumber) {
                 <table class="items-table">
                     <thead>
                         <tr>
-                            <th style="width:70px;">Item SKU</th>
-                            <th style="width:120px;">Name</th>
-                            <th style="width:100px;">Description</th>
-                            <th style="width:40px;text-align:center;">Qty</th>
-                            <th style="width:40px;text-align:center;">Out</th>
-                            <th style="width:40px;text-align:center;">In</th>
-                            <th style="min-width:150px;">Remarks</th>
+                            <th style="width:80px;">Item SKU</th>
+                            <th style="width:150px;">Name</th>
+                            <th>Description</th>
+                            <th style="width:50px;text-align:center;">Qty</th>
+                            <th style="width:50px;text-align:center;">Out</th>
+                            <th style="width:50px;text-align:center;">In</th>
+                            <th style="width:80px;">Remarks</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -1599,17 +1532,16 @@ async function openCheckoutModal(dcNumber) {
     modal.classList.add('active');
     
     try {
-        const response = await fetch(CONFIG.APPS_SCRIPT_URL + '?action=dcItems&_=' + Date.now());
-        const data = await response.json();
-        checkoutItems = (Array.isArray(data) && data.length > 1 ? data.slice(1) : [])
-            .filter(row => row[0] === dcNumber)
-            .map(item => ({
-                itemId: item[1],
-                itemName: item[2],
-                category: item[3],
-                qty: parseInt(item[4]) || 1,
-                checked: false
-            }));
+        const response = await fetch('/.netlify/functions/get-dc-items?dc=' + dcNumber + '&_=' + Date.now());
+        const csvText = await response.text();
+        const data = parseCSV(csvText);
+        checkoutItems = data.slice(1).filter(row => row[0] === dcNumber).map(item => ({
+            itemId: item[1],
+            itemName: item[2],
+            category: item[3],
+            qty: parseInt(item[4]) || 1,
+            checked: false
+        }));
         
         if (checkoutItems.length === 0) {
             itemsList.innerHTML = '<p style="text-align:center;padding:20px;color:var(--text-muted);">No items in this DC</p>';
@@ -1689,17 +1621,16 @@ async function openCheckinModal(dcNumber) {
     modal.classList.add('active');
     
     try {
-        const response = await fetch(CONFIG.APPS_SCRIPT_URL + '?action=dcItems&_=' + Date.now());
-        const data = await response.json();
-        checkinItems = (Array.isArray(data) && data.length > 1 ? data.slice(1) : [])
-            .filter(row => row[0] === dcNumber)
-            .map(item => ({
-                itemId: item[1],
-                itemName: item[2],
-                category: item[3],
-                qty: parseInt(item[4]) || 1,
-                checked: false
-            }));
+        const response = await fetch('/.netlify/functions/get-dc-items?dc=' + dcNumber + '&_=' + Date.now());
+        const csvText = await response.text();
+        const data = parseCSV(csvText);
+        checkinItems = data.slice(1).filter(row => row[0] === dcNumber).map(item => ({
+            itemId: item[1],
+            itemName: item[2],
+            category: item[3],
+            qty: parseInt(item[4]) || 1,
+            checked: false
+        }));
         
         if (checkinItems.length === 0) {
             itemsList.innerHTML = '<p style="text-align:center;padding:20px;color:var(--text-muted);">No items to check in</p>';
@@ -1849,11 +1780,12 @@ const PR_STATUS_LABELS = {
 // Load PR Data
 async function loadPRData() {
     try {
-        const response = await fetch(CONFIG.APPS_SCRIPT_URL + '?action=purchaseRequests&_=' + Date.now());
-        const data = await response.json();
+        const response = await fetch('/.netlify/functions/get-purchase-requests?_=' + Date.now());
+        const csvText = await response.text();
+        const data = parseCSV(csvText);
         
-        if (Array.isArray(data) && data.length > 1) {
-            prData = data.slice(1).filter(row => row[0]).map(row => ({
+        if (data.length > 1) {
+            prData = data.slice(1).map(row => ({
                 prNumber: row[0] || '',
                 itemName: row[1] || '',
                 description: row[2] || '',
@@ -2512,12 +2444,13 @@ let filteredLogData = [];
 async function loadDailyLogData() {
     try {
         const cacheBuster = Date.now();
-        const response = await fetch(CONFIG.APPS_SCRIPT_URL + '?action=dailyLog&_=' + cacheBuster, {
+        const response = await fetch('/.netlify/functions/get-daily-log?_=' + cacheBuster, {
             cache: 'no-store'
         });
-        const data = await response.json();
+        const csvText = await response.text();
+        const data = parseCSV(csvText);
         
-        if (Array.isArray(data) && data.length > 1) {
+        if (data && data.length > 0) {
             dailyLogData = data.slice(1).filter(row => row[0]).map((row, index) => ({
                 rowIndex: index + 2,
                 logId: row[0] || '',
@@ -2813,172 +2746,557 @@ switchView = function(viewName) {
 
 // ==================== END DAILY LOG ====================
 
-// Toggle total value visibility
-let valueVisible = false;
-let actualTotalValue = 0;
+// ==================== PRODUCT BUILDS ====================
 
-function toggleValueVisibility() {
-    valueVisible = !valueVisible;
-    const el = document.getElementById('totalValue');
-    if (valueVisible) {
-        el.textContent = '₹' + actualTotalValue.toLocaleString('en-IN');
-    } else {
-        el.textContent = 'Click to reveal';
-    }
-}
+let buildsData = [];
+let filteredBuilds = [];
+let selectedBuildItems = [];
+let currentBuildFilter = 'all';
 
-// ==================== EDIT DC FUNCTIONALITY ====================
-
-let editDCNumber = '';
-let editDCItems = [];
-
-function openEditDCModal(dcNumber) {
-    editDCNumber = dcNumber;
-    editDCItems = [];
-    
-    // Load current DC items
-    loadEditDCCurrentItems(dcNumber);
-    
-    // Populate available items
-    populateEditDCAvailableItems();
-    
-    document.getElementById('editDCModal').classList.add('active');
-}
-
-function closeEditDCModal() {
-    document.getElementById('editDCModal').classList.remove('active');
-    editDCNumber = '';
-    editDCItems = [];
-}
-
-async function loadEditDCCurrentItems(dcNumber) {
+// Load Builds Data
+async function loadBuildsData() {
     try {
-        const response = await fetch(CONFIG.APPS_SCRIPT_URL + '?action=dcItems&_=' + Date.now());
-        const data = await response.json();
+        const cacheBuster = Date.now();
+        const response = await fetch('/.netlify/functions/get-builds?_=' + cacheBuster, {
+            cache: 'no-store'
+        });
+        const csvText = await response.text();
+        const data = parseCSV(csvText);
         
-        if (Array.isArray(data) && data.length > 1) {
-            const items = data.slice(1).filter(row => row[0] === dcNumber);
-            editDCItems = items.map(item => ({
-                itemId: item[1],
-                name: item[2],
-                category: item[3],
-                qty: parseInt(item[4]) || 1
+        if (data && data.length > 0) {
+            buildsData = data.slice(1).filter(row => row[0]).map((row, index) => ({
+                rowIndex: index + 2,
+                buildId: row[0] || '',
+                productName: row[1] || '',
+                description: row[2] || '',
+                targetCategory: row[3] || 'Event Equipment',
+                status: row[4] || 'In Progress',
+                createdBy: row[5] || '',
+                createdDate: row[6] || '',
+                completedDate: row[7] || '',
+                resultItemId: row[8] || '',
+                estValue: parseInt(row[9]) || 0,
+                componentCount: parseInt(row[10]) || 0
             }));
+            
+            filteredBuilds = [...buildsData];
+            updateBuildsList();
         }
-        
-        updateEditDCSelectedList();
-        populateEditDCAvailableItems();
     } catch (error) {
-        console.error('Error loading DC items:', error);
+        console.error('Error loading builds:', error);
+        buildsData = [];
+        filteredBuilds = [];
+        updateBuildsList();
     }
 }
 
-function populateEditDCAvailableItems() {
-    const container = document.getElementById('editDCAvailableItems');
+// Update Builds List
+function updateBuildsList() {
+    const container = document.getElementById('buildsList');
     if (!container) return;
     
-    const search = (document.getElementById('editDCItemSearch')?.value || '').toLowerCase();
-    
-    const availableItems = inventoryData.filter(item => 
-        item.status === 'Available' && 
-        item.quantity > 0 &&
-        !editDCItems.find(i => i.itemId === item.itemId) &&
-        (!search || item.name.toLowerCase().includes(search) || item.itemId.toLowerCase().includes(search))
-    );
-    
-    container.innerHTML = availableItems.map(item => `
-        <div class="item-row" onclick="addItemToEditDC('${item.itemId}', '${item.name.replace(/'/g, "\\'")}', '${item.category}', ${item.quantity})">
-            <div class="item-row-info">
-                <div class="item-row-name">${item.name}</div>
-                <div class="item-row-meta">${item.itemId} • ${item.category} • Qty: ${item.quantity}</div>
+    if (filteredBuilds.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state" style="text-align: center; padding: 60px; color: var(--text-muted);">
+                <div style="font-size: 48px; margin-bottom: 16px;">🔨</div>
+                <p>No product builds yet. Click "Build Product" to create one!</p>
             </div>
-            <div class="item-row-action">+ Add</div>
-        </div>
-    `).join('') || '<p style="color: var(--text-muted); padding: 20px; text-align: center;">No items available</p>';
-}
-
-function filterEditDCItems() {
-    populateEditDCAvailableItems();
-}
-
-function addItemToEditDC(itemId, name, category, maxQty) {
-    const qty = prompt('Quantity (max ' + maxQty + '):', '1');
-    if (!qty) return;
-    
-    const qtyNum = Math.min(parseInt(qty) || 1, maxQty);
-    
-    editDCItems.push({
-        itemId: itemId,
-        name: name,
-        category: category,
-        qty: qtyNum
-    });
-    
-    updateEditDCSelectedList();
-    populateEditDCAvailableItems();
-}
-
-function removeItemFromEditDC(itemId) {
-    editDCItems = editDCItems.filter(i => i.itemId !== itemId);
-    updateEditDCSelectedList();
-    populateEditDCAvailableItems();
-}
-
-function updateEditDCSelectedList() {
-    const container = document.getElementById('editDCSelectedItems');
-    const countEl = document.getElementById('editDCSelectedCount');
-    
-    if (countEl) countEl.textContent = editDCItems.length;
-    
-    if (!container) return;
-    
-    if (editDCItems.length === 0) {
-        container.innerHTML = '<p style="color: var(--text-muted); padding: 20px; text-align: center;">No items selected</p>';
+        `;
         return;
     }
     
-    container.innerHTML = editDCItems.map(item => `
-        <div class="item-row selected">
-            <div class="item-row-info">
-                <div class="item-row-name">${item.name}</div>
-                <div class="item-row-meta">${item.itemId} • Qty: ${item.qty}</div>
+    container.innerHTML = filteredBuilds.map(build => {
+        const statusClass = build.status.toLowerCase().replace(/\s+/g, '');
+        return `
+            <div class="build-card" onclick="viewBuildDetail('${build.buildId}')">
+                <div class="build-card-header">
+                    <div>
+                        <div class="build-card-title">${build.productName}</div>
+                        <div class="build-card-number">${build.buildId} • ${build.targetCategory}</div>
+                    </div>
+                    <span class="build-card-status build-status-${statusClass}">${build.status}</span>
+                </div>
+                <div class="build-card-details">
+                    <div class="build-card-detail">
+                        <span class="build-card-detail-label">Components</span>
+                        <span class="build-card-detail-value">${build.componentCount} items</span>
+                    </div>
+                    <div class="build-card-detail">
+                        <span class="build-card-detail-label">Est. Value</span>
+                        <span class="build-card-detail-value">₹${build.estValue.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div class="build-card-detail">
+                        <span class="build-card-detail-label">Created By</span>
+                        <span class="build-card-detail-value">${build.createdBy}</span>
+                    </div>
+                    <div class="build-card-detail">
+                        <span class="build-card-detail-label">Date</span>
+                        <span class="build-card-detail-value">${build.createdDate}</span>
+                    </div>
+                </div>
             </div>
-            <button class="item-remove-btn" onclick="removeItemFromEditDC('${item.itemId}')">✕</button>
+        `;
+    }).join('');
+}
+
+// Filter Builds
+function filterBuilds(status) {
+    currentBuildFilter = status;
+    
+    // Update active button
+    document.querySelectorAll('.build-filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === status);
+    });
+    
+    if (status === 'all') {
+        filteredBuilds = [...buildsData];
+    } else {
+        filteredBuilds = buildsData.filter(b => b.status === status);
+    }
+    
+    updateBuildsList();
+}
+
+// Populate Available Items for Build
+function populateBuildItems() {
+    const container = document.getElementById('buildAvailableItemsList');
+    if (!container) return;
+    
+    // Filter only Electronics category with available qty > 0
+    const availableItems = inventoryData.filter(item => 
+        item.category === 'Electronics' && 
+        item.status === 'Available' && 
+        item.quantity > 0
+    );
+    
+    if (availableItems.length === 0) {
+        container.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-muted);">No electronics components available</div>';
+        return;
+    }
+    
+    container.innerHTML = availableItems.map(item => {
+        const isSelected = selectedBuildItems.find(s => s.itemId === item.itemId);
+        return `
+            <div class="build-item-row ${isSelected ? 'selected' : ''}" onclick="toggleBuildItem('${item.itemId}')">
+                <div class="build-item-info">
+                    <div class="build-item-name">${item.name}</div>
+                    <div class="build-item-meta">${item.itemId} • Avail: ${item.quantity}</div>
+                </div>
+                <div class="build-item-qty">
+                    <input type="number" min="1" max="${item.quantity}" value="1" 
+                           onclick="event.stopPropagation()" 
+                           onchange="updateBuildItemQty('${item.itemId}', this.value)"
+                           id="build-qty-${item.itemId}">
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Filter Build Items by search
+function filterBuildItems() {
+    const search = document.getElementById('buildItemSearch')?.value.toLowerCase() || '';
+    const container = document.getElementById('buildAvailableItemsList');
+    
+    const availableItems = inventoryData.filter(item => 
+        item.category === 'Electronics' && 
+        item.status === 'Available' && 
+        item.quantity > 0 &&
+        (!search || item.name.toLowerCase().includes(search) || item.itemId.toLowerCase().includes(search))
+    );
+    
+    if (availableItems.length === 0) {
+        container.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-muted);">No matching components</div>';
+        return;
+    }
+    
+    container.innerHTML = availableItems.map(item => {
+        const isSelected = selectedBuildItems.find(s => s.itemId === item.itemId);
+        const selectedItem = selectedBuildItems.find(s => s.itemId === item.itemId);
+        return `
+            <div class="build-item-row ${isSelected ? 'selected' : ''}" onclick="toggleBuildItem('${item.itemId}')">
+                <div class="build-item-info">
+                    <div class="build-item-name">${item.name}</div>
+                    <div class="build-item-meta">${item.itemId} • Avail: ${item.quantity}</div>
+                </div>
+                <div class="build-item-qty">
+                    <input type="number" min="1" max="${item.quantity}" value="${selectedItem?.qty || 1}" 
+                           onclick="event.stopPropagation()" 
+                           onchange="updateBuildItemQty('${item.itemId}', this.value)"
+                           id="build-qty-${item.itemId}">
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Toggle Build Item Selection
+function toggleBuildItem(itemId) {
+    const item = inventoryData.find(i => i.itemId === itemId);
+    if (!item) return;
+    
+    const existingIndex = selectedBuildItems.findIndex(s => s.itemId === itemId);
+    const qtyInput = document.getElementById(`build-qty-${itemId}`);
+    const qty = parseInt(qtyInput?.value) || 1;
+    
+    if (existingIndex >= 0) {
+        selectedBuildItems.splice(existingIndex, 1);
+    } else {
+        selectedBuildItems.push({
+            itemId: item.itemId,
+            name: item.name,
+            category: item.category,
+            qty: qty,
+            maxQty: item.quantity,
+            value: item.value
+        });
+    }
+    
+    updateSelectedBuildItems();
+    filterBuildItems();
+}
+
+// Update Build Item Quantity
+function updateBuildItemQty(itemId, qty) {
+    const item = selectedBuildItems.find(s => s.itemId === itemId);
+    if (item) {
+        item.qty = Math.min(Math.max(1, parseInt(qty) || 1), item.maxQty);
+    }
+    updateSelectedBuildItems();
+}
+
+// Update Selected Build Items List
+function updateSelectedBuildItems() {
+    const container = document.getElementById('buildSelectedItemsList');
+    const countSpan = document.getElementById('buildSelectedCount');
+    
+    if (countSpan) countSpan.textContent = selectedBuildItems.length;
+    
+    if (!container) return;
+    
+    if (selectedBuildItems.length === 0) {
+        container.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-muted);">No components selected</div>';
+        return;
+    }
+    
+    container.innerHTML = selectedBuildItems.map(item => `
+        <div class="build-item-row selected">
+            <div class="build-item-info">
+                <div class="build-item-name">${item.name}</div>
+                <div class="build-item-meta">${item.itemId} • Using: ${item.qty} of ${item.maxQty}</div>
+            </div>
+            <button class="build-item-remove" onclick="removeBuildItem('${item.itemId}')">✕</button>
         </div>
     `).join('');
 }
 
-async function saveEditDC() {
-    if (editDCItems.length === 0) {
-        showToast('Please add at least one item!', 'error');
+// Remove Build Item
+function removeBuildItem(itemId) {
+    selectedBuildItems = selectedBuildItems.filter(i => i.itemId !== itemId);
+    updateSelectedBuildItems();
+    filterBuildItems();
+}
+
+// Generate Build ID
+function generateBuildId() {
+    const count = buildsData.length + 1;
+    return `BLD-${String(count).padStart(3, '0')}`;
+}
+
+// Create Build
+async function createBuild(e) {
+    e.preventDefault();
+    
+    if (selectedBuildItems.length === 0) {
+        showToast('Please select at least one component!', 'error');
         return;
     }
     
+    const buildId = generateBuildId();
+    const today = new Date().toISOString().split('T')[0];
+    
+    // Calculate total component value
+    const totalComponentValue = selectedBuildItems.reduce((sum, item) => sum + (item.value * item.qty), 0);
+    const estValue = parseInt(document.getElementById('buildEstValue').value) || totalComponentValue;
+    
+    const buildData = {
+        action: 'createBuild',
+        buildId: buildId,
+        productName: document.getElementById('buildProductName').value,
+        description: document.getElementById('buildDescription').value,
+        targetCategory: document.getElementById('buildTargetCategory').value,
+        status: 'In Progress',
+        createdBy: document.getElementById('buildCreatedBy').value,
+        createdDate: today,
+        completedDate: '',
+        resultItemId: '',
+        estValue: estValue,
+        componentCount: selectedBuildItems.length,
+        items: selectedBuildItems
+    };
+    
     try {
-        showToast('Saving changes...', 'success');
+        showToast('Creating build...', 'success');
         
-        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=updateDCItems', {
+        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=createBuild', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(buildData)
+        });
+        
+        showToast(`✅ Build ${buildId} created!`, 'success');
+        
+        // Reset form
+        document.getElementById('createBuildForm').reset();
+        selectedBuildItems = [];
+        updateSelectedBuildItems();
+        
+        // Reload data and switch view
+        setTimeout(() => {
+            loadBuildsData();
+            loadData(); // Reload inventory to reflect qty changes
+            switchView('builds');
+        }, 1500);
+        
+    } catch (error) {
+        console.error('Error creating build:', error);
+        showToast('Failed to create build', 'error');
+    }
+}
+
+// View Build Detail
+async function viewBuildDetail(buildId) {
+    const build = buildsData.find(b => b.buildId === buildId);
+    if (!build) return;
+    
+    const container = document.getElementById('buildDetailContainer');
+    
+    const statuses = ['In Progress', 'Completed'];
+    const currentStep = build.status === 'Completed' ? 1 : 0;
+    
+    // Action buttons based on status
+    let actionButtons = '';
+    if (build.status === 'In Progress') {
+        actionButtons = `
+            <button class="btn-complete-build" onclick="completeBuild('${buildId}')">✅ Complete Build</button>
+            <button class="btn-cancel-build" onclick="cancelBuild('${buildId}')">Cancel Build</button>
+        `;
+    }
+    
+    container.innerHTML = `
+        <div class="build-detail-header">
+            <div>
+                <h2 class="build-detail-title">${build.productName}</h2>
+                <p class="build-detail-subtitle">${build.buildId} • ${build.targetCategory}</p>
+            </div>
+            <div class="build-detail-actions">
+                ${actionButtons}
+                <button class="btn-back" onclick="switchView('builds')">← Back</button>
+            </div>
+        </div>
+        
+        <div class="build-status-tabs">
+            ${statuses.map((status, idx) => `
+                <div class="build-status-tab ${idx <= currentStep ? (idx < currentStep ? 'completed' : 'active') : ''}">
+                    ${status}
+                </div>
+            `).join('')}
+        </div>
+        
+        ${build.status === 'Completed' && build.resultItemId ? `
+            <div class="build-detail-section" style="background: rgba(34, 197, 94, 0.1); border-color: var(--success);">
+                <h4 style="color: var(--success);">✅ Build Completed</h4>
+                <p>New inventory item created: <strong>${build.resultItemId}</strong></p>
+            </div>
+        ` : ''}
+        
+        <div class="build-detail-section">
+            <h4>Build Details</h4>
+            <div class="build-detail-grid">
+                <div class="build-detail-field">
+                    <div class="build-detail-field-label">Product Name</div>
+                    <div class="build-detail-field-value">${build.productName}</div>
+                </div>
+                <div class="build-detail-field">
+                    <div class="build-detail-field-label">Target Category</div>
+                    <div class="build-detail-field-value">${build.targetCategory}</div>
+                </div>
+                <div class="build-detail-field">
+                    <div class="build-detail-field-label">Est. Value</div>
+                    <div class="build-detail-field-value">₹${build.estValue.toLocaleString('en-IN')}</div>
+                </div>
+                <div class="build-detail-field">
+                    <div class="build-detail-field-label">Components</div>
+                    <div class="build-detail-field-value">${build.componentCount} items</div>
+                </div>
+                <div class="build-detail-field">
+                    <div class="build-detail-field-label">Created By</div>
+                    <div class="build-detail-field-value">${build.createdBy}</div>
+                </div>
+                <div class="build-detail-field">
+                    <div class="build-detail-field-label">Created Date</div>
+                    <div class="build-detail-field-value">${build.createdDate}</div>
+                </div>
+            </div>
+            ${build.description ? `<div style="margin-top: 16px;"><div class="build-detail-field-label">Description</div><div class="build-detail-field-value">${build.description}</div></div>` : ''}
+        </div>
+        
+        <div class="build-detail-section">
+            <h4>Components Used</h4>
+            <div id="buildComponentsTable">Loading components...</div>
+        </div>
+    `;
+    
+    switchView('buildDetail');
+    loadBuildComponents(buildId);
+}
+
+// Load Build Components
+async function loadBuildComponents(buildId) {
+    try {
+        const response = await fetch('/.netlify/functions/get-build-items?build=' + buildId + '&_=' + Date.now());
+        const csvText = await response.text();
+        const data = parseCSV(csvText);
+        
+        const items = data.slice(1).filter(row => row[0] === buildId);
+        
+        const container = document.getElementById('buildComponentsTable');
+        if (items.length === 0) {
+            container.innerHTML = '<p style="color: var(--text-muted);">No components found</p>';
+            return;
+        }
+        
+        container.innerHTML = `
+            <table class="build-components-table">
+                <thead>
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Qty Used</th>
+                        <th>Date Added</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${items.map(item => `
+                        <tr>
+                            <td><code>${item[1]}</code></td>
+                            <td>${item[2]}</td>
+                            <td>${item[3]}</td>
+                            <td>${item[4]}</td>
+                            <td>${item[5]}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+    } catch (error) {
+        console.error('Error loading build components:', error);
+        document.getElementById('buildComponentsTable').innerHTML = '<p style="color: var(--danger);">Error loading components</p>';
+    }
+}
+
+// Complete Build
+async function completeBuild(buildId) {
+    const build = buildsData.find(b => b.buildId === buildId);
+    if (!build) return;
+    
+    if (!confirm(`Complete build "${build.productName}"?\n\nThis will:\n• Create a new ${build.targetCategory} item\n• Mark build as completed`)) {
+        return;
+    }
+    
+    const today = new Date().toISOString().split('T')[0];
+    
+    try {
+        showToast('Completing build...', 'success');
+        
+        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=completeBuild', {
             method: 'POST',
             mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                dcNumber: editDCNumber,
-                items: editDCItems
+                buildId: buildId,
+                productName: build.productName,
+                targetCategory: build.targetCategory,
+                estValue: build.estValue,
+                description: build.description,
+                completedDate: today
             })
         });
         
-        closeEditDCModal();
-        showToast('✅ DC items updated!', 'success');
+        showToast('✅ Build completed! New item created.', 'success');
         
         setTimeout(() => {
-            loadDCData();
-            viewDCDetail(editDCNumber);
+            loadBuildsData();
+            loadData(); // Reload inventory to show new item
+            viewBuildDetail(buildId);
         }, 1500);
         
     } catch (error) {
-        console.error('Error saving DC:', error);
-        showToast('Failed to save changes', 'error');
+        console.error('Error completing build:', error);
+        showToast('Failed to complete build', 'error');
     }
 }
 
-// ==================== END EDIT DC ====================
+// Cancel Build
+async function cancelBuild(buildId) {
+    const build = buildsData.find(b => b.buildId === buildId);
+    if (!build) return;
+    
+    if (!confirm(`Cancel build "${build.productName}"?\n\nThis will:\n• Restore component quantities to inventory\n• Mark build as cancelled`)) {
+        return;
+    }
+    
+    try {
+        showToast('Cancelling build...', 'success');
+        
+        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=cancelBuild', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ buildId: buildId })
+        });
+        
+        showToast('Build cancelled. Components restored.', 'success');
+        
+        setTimeout(() => {
+            loadBuildsData();
+            loadData(); // Reload inventory
+            switchView('builds');
+        }, 1500);
+        
+    } catch (error) {
+        console.error('Error cancelling build:', error);
+        showToast('Failed to cancel build', 'error');
+    }
+}
+
+// Update switchView for Build views
+const buildOriginalSwitchView = switchView;
+switchView = function(viewName) {
+    // Handle Build views
+    if (viewName === 'builds') {
+        loadBuildsData();
+    }
+    if (viewName === 'createBuild') {
+        selectedBuildItems = [];
+        updateSelectedBuildItems();
+        populateBuildItems();
+    }
+    
+    // Call original
+    buildOriginalSwitchView(viewName);
+    
+    // Update title for Build views
+    const buildTitles = {
+        builds: 'Product Builds',
+        createBuild: 'Build New Product',
+        buildDetail: 'Build Details'
+    };
+    if (buildTitles[viewName]) {
+        document.getElementById('pageTitle').textContent = buildTitles[viewName];
+    }
+};
+
+// ==================== END PRODUCT BUILDS ====================
