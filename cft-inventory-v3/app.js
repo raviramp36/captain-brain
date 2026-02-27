@@ -2745,3 +2745,558 @@ switchView = function(viewName) {
 };
 
 // ==================== END DAILY LOG ====================
+
+// ==================== PRODUCT BUILDS ====================
+
+let buildsData = [];
+let filteredBuilds = [];
+let selectedBuildItems = [];
+let currentBuildFilter = 'all';
+
+// Load Builds Data
+async function loadBuildsData() {
+    try {
+        const cacheBuster = Date.now();
+        const response = await fetch('/.netlify/functions/get-builds?_=' + cacheBuster, {
+            cache: 'no-store'
+        });
+        const csvText = await response.text();
+        const data = parseCSV(csvText);
+        
+        if (data && data.length > 0) {
+            buildsData = data.slice(1).filter(row => row[0]).map((row, index) => ({
+                rowIndex: index + 2,
+                buildId: row[0] || '',
+                productName: row[1] || '',
+                description: row[2] || '',
+                targetCategory: row[3] || 'Event Equipment',
+                status: row[4] || 'In Progress',
+                createdBy: row[5] || '',
+                createdDate: row[6] || '',
+                completedDate: row[7] || '',
+                resultItemId: row[8] || '',
+                estValue: parseInt(row[9]) || 0,
+                componentCount: parseInt(row[10]) || 0
+            }));
+            
+            filteredBuilds = [...buildsData];
+            updateBuildsList();
+        }
+    } catch (error) {
+        console.error('Error loading builds:', error);
+        buildsData = [];
+        filteredBuilds = [];
+        updateBuildsList();
+    }
+}
+
+// Update Builds List
+function updateBuildsList() {
+    const container = document.getElementById('buildsList');
+    if (!container) return;
+    
+    if (filteredBuilds.length === 0) {
+        container.innerHTML = `
+            <div class="empty-state" style="text-align: center; padding: 60px; color: var(--text-muted);">
+                <div style="font-size: 48px; margin-bottom: 16px;">🔨</div>
+                <p>No product builds yet. Click "Build Product" to create one!</p>
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = filteredBuilds.map(build => {
+        const statusClass = build.status.toLowerCase().replace(/\s+/g, '');
+        return `
+            <div class="build-card" onclick="viewBuildDetail('${build.buildId}')">
+                <div class="build-card-header">
+                    <div>
+                        <div class="build-card-title">${build.productName}</div>
+                        <div class="build-card-number">${build.buildId} • ${build.targetCategory}</div>
+                    </div>
+                    <span class="build-card-status build-status-${statusClass}">${build.status}</span>
+                </div>
+                <div class="build-card-details">
+                    <div class="build-card-detail">
+                        <span class="build-card-detail-label">Components</span>
+                        <span class="build-card-detail-value">${build.componentCount} items</span>
+                    </div>
+                    <div class="build-card-detail">
+                        <span class="build-card-detail-label">Est. Value</span>
+                        <span class="build-card-detail-value">₹${build.estValue.toLocaleString('en-IN')}</span>
+                    </div>
+                    <div class="build-card-detail">
+                        <span class="build-card-detail-label">Created By</span>
+                        <span class="build-card-detail-value">${build.createdBy}</span>
+                    </div>
+                    <div class="build-card-detail">
+                        <span class="build-card-detail-label">Date</span>
+                        <span class="build-card-detail-value">${build.createdDate}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Filter Builds
+function filterBuilds(status) {
+    currentBuildFilter = status;
+    
+    // Update active button
+    document.querySelectorAll('.build-filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === status);
+    });
+    
+    if (status === 'all') {
+        filteredBuilds = [...buildsData];
+    } else {
+        filteredBuilds = buildsData.filter(b => b.status === status);
+    }
+    
+    updateBuildsList();
+}
+
+// Populate Available Items for Build
+function populateBuildItems() {
+    const container = document.getElementById('buildAvailableItemsList');
+    if (!container) return;
+    
+    // Filter only Electronics category with available qty > 0
+    const availableItems = inventoryData.filter(item => 
+        item.category === 'Electronics' && 
+        item.status === 'Available' && 
+        item.quantity > 0
+    );
+    
+    if (availableItems.length === 0) {
+        container.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-muted);">No electronics components available</div>';
+        return;
+    }
+    
+    container.innerHTML = availableItems.map(item => {
+        const isSelected = selectedBuildItems.find(s => s.itemId === item.itemId);
+        return `
+            <div class="build-item-row ${isSelected ? 'selected' : ''}" onclick="toggleBuildItem('${item.itemId}')">
+                <div class="build-item-info">
+                    <div class="build-item-name">${item.name}</div>
+                    <div class="build-item-meta">${item.itemId} • Avail: ${item.quantity}</div>
+                </div>
+                <div class="build-item-qty">
+                    <input type="number" min="1" max="${item.quantity}" value="1" 
+                           onclick="event.stopPropagation()" 
+                           onchange="updateBuildItemQty('${item.itemId}', this.value)"
+                           id="build-qty-${item.itemId}">
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Filter Build Items by search
+function filterBuildItems() {
+    const search = document.getElementById('buildItemSearch')?.value.toLowerCase() || '';
+    const container = document.getElementById('buildAvailableItemsList');
+    
+    const availableItems = inventoryData.filter(item => 
+        item.category === 'Electronics' && 
+        item.status === 'Available' && 
+        item.quantity > 0 &&
+        (!search || item.name.toLowerCase().includes(search) || item.itemId.toLowerCase().includes(search))
+    );
+    
+    if (availableItems.length === 0) {
+        container.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-muted);">No matching components</div>';
+        return;
+    }
+    
+    container.innerHTML = availableItems.map(item => {
+        const isSelected = selectedBuildItems.find(s => s.itemId === item.itemId);
+        const selectedItem = selectedBuildItems.find(s => s.itemId === item.itemId);
+        return `
+            <div class="build-item-row ${isSelected ? 'selected' : ''}" onclick="toggleBuildItem('${item.itemId}')">
+                <div class="build-item-info">
+                    <div class="build-item-name">${item.name}</div>
+                    <div class="build-item-meta">${item.itemId} • Avail: ${item.quantity}</div>
+                </div>
+                <div class="build-item-qty">
+                    <input type="number" min="1" max="${item.quantity}" value="${selectedItem?.qty || 1}" 
+                           onclick="event.stopPropagation()" 
+                           onchange="updateBuildItemQty('${item.itemId}', this.value)"
+                           id="build-qty-${item.itemId}">
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// Toggle Build Item Selection
+function toggleBuildItem(itemId) {
+    const item = inventoryData.find(i => i.itemId === itemId);
+    if (!item) return;
+    
+    const existingIndex = selectedBuildItems.findIndex(s => s.itemId === itemId);
+    const qtyInput = document.getElementById(`build-qty-${itemId}`);
+    const qty = parseInt(qtyInput?.value) || 1;
+    
+    if (existingIndex >= 0) {
+        selectedBuildItems.splice(existingIndex, 1);
+    } else {
+        selectedBuildItems.push({
+            itemId: item.itemId,
+            name: item.name,
+            category: item.category,
+            qty: qty,
+            maxQty: item.quantity,
+            value: item.value
+        });
+    }
+    
+    updateSelectedBuildItems();
+    filterBuildItems();
+}
+
+// Update Build Item Quantity
+function updateBuildItemQty(itemId, qty) {
+    const item = selectedBuildItems.find(s => s.itemId === itemId);
+    if (item) {
+        item.qty = Math.min(Math.max(1, parseInt(qty) || 1), item.maxQty);
+    }
+    updateSelectedBuildItems();
+}
+
+// Update Selected Build Items List
+function updateSelectedBuildItems() {
+    const container = document.getElementById('buildSelectedItemsList');
+    const countSpan = document.getElementById('buildSelectedCount');
+    
+    if (countSpan) countSpan.textContent = selectedBuildItems.length;
+    
+    if (!container) return;
+    
+    if (selectedBuildItems.length === 0) {
+        container.innerHTML = '<div style="padding: 20px; text-align: center; color: var(--text-muted);">No components selected</div>';
+        return;
+    }
+    
+    container.innerHTML = selectedBuildItems.map(item => `
+        <div class="build-item-row selected">
+            <div class="build-item-info">
+                <div class="build-item-name">${item.name}</div>
+                <div class="build-item-meta">${item.itemId} • Using: ${item.qty} of ${item.maxQty}</div>
+            </div>
+            <button class="build-item-remove" onclick="removeBuildItem('${item.itemId}')">✕</button>
+        </div>
+    `).join('');
+}
+
+// Remove Build Item
+function removeBuildItem(itemId) {
+    selectedBuildItems = selectedBuildItems.filter(i => i.itemId !== itemId);
+    updateSelectedBuildItems();
+    filterBuildItems();
+}
+
+// Generate Build ID
+function generateBuildId() {
+    const count = buildsData.length + 1;
+    return `BLD-${String(count).padStart(3, '0')}`;
+}
+
+// Create Build
+async function createBuild(e) {
+    e.preventDefault();
+    
+    if (selectedBuildItems.length === 0) {
+        showToast('Please select at least one component!', 'error');
+        return;
+    }
+    
+    const buildId = generateBuildId();
+    const today = new Date().toISOString().split('T')[0];
+    
+    // Calculate total component value
+    const totalComponentValue = selectedBuildItems.reduce((sum, item) => sum + (item.value * item.qty), 0);
+    const estValue = parseInt(document.getElementById('buildEstValue').value) || totalComponentValue;
+    
+    const buildData = {
+        action: 'createBuild',
+        buildId: buildId,
+        productName: document.getElementById('buildProductName').value,
+        description: document.getElementById('buildDescription').value,
+        targetCategory: document.getElementById('buildTargetCategory').value,
+        status: 'In Progress',
+        createdBy: document.getElementById('buildCreatedBy').value,
+        createdDate: today,
+        completedDate: '',
+        resultItemId: '',
+        estValue: estValue,
+        componentCount: selectedBuildItems.length,
+        items: selectedBuildItems
+    };
+    
+    try {
+        showToast('Creating build...', 'success');
+        
+        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=createBuild', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(buildData)
+        });
+        
+        showToast(`✅ Build ${buildId} created!`, 'success');
+        
+        // Reset form
+        document.getElementById('createBuildForm').reset();
+        selectedBuildItems = [];
+        updateSelectedBuildItems();
+        
+        // Reload data and switch view
+        setTimeout(() => {
+            loadBuildsData();
+            loadData(); // Reload inventory to reflect qty changes
+            switchView('builds');
+        }, 1500);
+        
+    } catch (error) {
+        console.error('Error creating build:', error);
+        showToast('Failed to create build', 'error');
+    }
+}
+
+// View Build Detail
+async function viewBuildDetail(buildId) {
+    const build = buildsData.find(b => b.buildId === buildId);
+    if (!build) return;
+    
+    const container = document.getElementById('buildDetailContainer');
+    
+    const statuses = ['In Progress', 'Completed'];
+    const currentStep = build.status === 'Completed' ? 1 : 0;
+    
+    // Action buttons based on status
+    let actionButtons = '';
+    if (build.status === 'In Progress') {
+        actionButtons = `
+            <button class="btn-complete-build" onclick="completeBuild('${buildId}')">✅ Complete Build</button>
+            <button class="btn-cancel-build" onclick="cancelBuild('${buildId}')">Cancel Build</button>
+        `;
+    }
+    
+    container.innerHTML = `
+        <div class="build-detail-header">
+            <div>
+                <h2 class="build-detail-title">${build.productName}</h2>
+                <p class="build-detail-subtitle">${build.buildId} • ${build.targetCategory}</p>
+            </div>
+            <div class="build-detail-actions">
+                ${actionButtons}
+                <button class="btn-back" onclick="switchView('builds')">← Back</button>
+            </div>
+        </div>
+        
+        <div class="build-status-tabs">
+            ${statuses.map((status, idx) => `
+                <div class="build-status-tab ${idx <= currentStep ? (idx < currentStep ? 'completed' : 'active') : ''}">
+                    ${status}
+                </div>
+            `).join('')}
+        </div>
+        
+        ${build.status === 'Completed' && build.resultItemId ? `
+            <div class="build-detail-section" style="background: rgba(34, 197, 94, 0.1); border-color: var(--success);">
+                <h4 style="color: var(--success);">✅ Build Completed</h4>
+                <p>New inventory item created: <strong>${build.resultItemId}</strong></p>
+            </div>
+        ` : ''}
+        
+        <div class="build-detail-section">
+            <h4>Build Details</h4>
+            <div class="build-detail-grid">
+                <div class="build-detail-field">
+                    <div class="build-detail-field-label">Product Name</div>
+                    <div class="build-detail-field-value">${build.productName}</div>
+                </div>
+                <div class="build-detail-field">
+                    <div class="build-detail-field-label">Target Category</div>
+                    <div class="build-detail-field-value">${build.targetCategory}</div>
+                </div>
+                <div class="build-detail-field">
+                    <div class="build-detail-field-label">Est. Value</div>
+                    <div class="build-detail-field-value">₹${build.estValue.toLocaleString('en-IN')}</div>
+                </div>
+                <div class="build-detail-field">
+                    <div class="build-detail-field-label">Components</div>
+                    <div class="build-detail-field-value">${build.componentCount} items</div>
+                </div>
+                <div class="build-detail-field">
+                    <div class="build-detail-field-label">Created By</div>
+                    <div class="build-detail-field-value">${build.createdBy}</div>
+                </div>
+                <div class="build-detail-field">
+                    <div class="build-detail-field-label">Created Date</div>
+                    <div class="build-detail-field-value">${build.createdDate}</div>
+                </div>
+            </div>
+            ${build.description ? `<div style="margin-top: 16px;"><div class="build-detail-field-label">Description</div><div class="build-detail-field-value">${build.description}</div></div>` : ''}
+        </div>
+        
+        <div class="build-detail-section">
+            <h4>Components Used</h4>
+            <div id="buildComponentsTable">Loading components...</div>
+        </div>
+    `;
+    
+    switchView('buildDetail');
+    loadBuildComponents(buildId);
+}
+
+// Load Build Components
+async function loadBuildComponents(buildId) {
+    try {
+        const response = await fetch('/.netlify/functions/get-build-items?build=' + buildId + '&_=' + Date.now());
+        const csvText = await response.text();
+        const data = parseCSV(csvText);
+        
+        const items = data.slice(1).filter(row => row[0] === buildId);
+        
+        const container = document.getElementById('buildComponentsTable');
+        if (items.length === 0) {
+            container.innerHTML = '<p style="color: var(--text-muted);">No components found</p>';
+            return;
+        }
+        
+        container.innerHTML = `
+            <table class="build-components-table">
+                <thead>
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Qty Used</th>
+                        <th>Date Added</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${items.map(item => `
+                        <tr>
+                            <td><code>${item[1]}</code></td>
+                            <td>${item[2]}</td>
+                            <td>${item[3]}</td>
+                            <td>${item[4]}</td>
+                            <td>${item[5]}</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+    } catch (error) {
+        console.error('Error loading build components:', error);
+        document.getElementById('buildComponentsTable').innerHTML = '<p style="color: var(--danger);">Error loading components</p>';
+    }
+}
+
+// Complete Build
+async function completeBuild(buildId) {
+    const build = buildsData.find(b => b.buildId === buildId);
+    if (!build) return;
+    
+    if (!confirm(`Complete build "${build.productName}"?\n\nThis will:\n• Create a new ${build.targetCategory} item\n• Mark build as completed`)) {
+        return;
+    }
+    
+    const today = new Date().toISOString().split('T')[0];
+    
+    try {
+        showToast('Completing build...', 'success');
+        
+        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=completeBuild', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                buildId: buildId,
+                productName: build.productName,
+                targetCategory: build.targetCategory,
+                estValue: build.estValue,
+                description: build.description,
+                completedDate: today
+            })
+        });
+        
+        showToast('✅ Build completed! New item created.', 'success');
+        
+        setTimeout(() => {
+            loadBuildsData();
+            loadData(); // Reload inventory to show new item
+            viewBuildDetail(buildId);
+        }, 1500);
+        
+    } catch (error) {
+        console.error('Error completing build:', error);
+        showToast('Failed to complete build', 'error');
+    }
+}
+
+// Cancel Build
+async function cancelBuild(buildId) {
+    const build = buildsData.find(b => b.buildId === buildId);
+    if (!build) return;
+    
+    if (!confirm(`Cancel build "${build.productName}"?\n\nThis will:\n• Restore component quantities to inventory\n• Mark build as cancelled`)) {
+        return;
+    }
+    
+    try {
+        showToast('Cancelling build...', 'success');
+        
+        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=cancelBuild', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ buildId: buildId })
+        });
+        
+        showToast('Build cancelled. Components restored.', 'success');
+        
+        setTimeout(() => {
+            loadBuildsData();
+            loadData(); // Reload inventory
+            switchView('builds');
+        }, 1500);
+        
+    } catch (error) {
+        console.error('Error cancelling build:', error);
+        showToast('Failed to cancel build', 'error');
+    }
+}
+
+// Update switchView for Build views
+const buildOriginalSwitchView = switchView;
+switchView = function(viewName) {
+    // Handle Build views
+    if (viewName === 'builds') {
+        loadBuildsData();
+    }
+    if (viewName === 'createBuild') {
+        selectedBuildItems = [];
+        updateSelectedBuildItems();
+        populateBuildItems();
+    }
+    
+    // Call original
+    buildOriginalSwitchView(viewName);
+    
+    // Update title for Build views
+    const buildTitles = {
+        builds: 'Product Builds',
+        createBuild: 'Build New Product',
+        buildDetail: 'Build Details'
+    };
+    if (buildTitles[viewName]) {
+        document.getElementById('pageTitle').textContent = buildTitles[viewName];
+    }
+};
+
+// ==================== END PRODUCT BUILDS ====================
