@@ -1,11 +1,11 @@
 // Netlify serverless function to fetch build items (components) from Google Sheets
 const SHEET_ID = '1MrwDU0XtemyfpwWNX551ulfUIAFECB4cLCPhNJH1yuo';
-const BUILD_ITEMS_GID = '2'; // Build_Items tab - will create with gid=2
 
 exports.handler = async (event, context) => {
   try {
     const cacheBuster = Date.now();
-    const SHEET_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${BUILD_ITEMS_GID}&_=${cacheBuster}`;
+    // Use sheet name instead of gid for reliability
+    const SHEET_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Build_Items&_=${cacheBuster}`;
     
     const response = await fetch(SHEET_CSV_URL, {
       headers: {

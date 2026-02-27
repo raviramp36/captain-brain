@@ -5,7 +5,7 @@ const CONFIG = {
     // Using Netlify function to proxy CSV (avoids CORS issues)
     CSV_URL: '/.netlify/functions/get-inventory',
     // Google Apps Script for write operations (deployed from the spreadsheet)
-    APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbytl8nzknzcMmltlmuTML_JvjInyL2lBolmK3qNqMuLRcrSfvnDSF3e1KNvGiEcbRxX/exec'
+    APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwA1phPMdWIWatYFd5RO30JeXBPukzKSQhqHUEMs33Gh9zQXDkbH7mb7hY0gzt4raKL/exec'
 };
 
 const CATEGORY_PREFIXES = {
