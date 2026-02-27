@@ -10,7 +10,7 @@ const CONFIG = {
 
 const CATEGORY_PREFIXES = {
     'IT Assets': 'IT',
-    'Electronic Components': 'EC',
+    'Electronics': 'EC',
     'Event Equipment': 'EV',
     'Mechanical Division': 'MC',
     'Office Assets': 'OA',
@@ -20,7 +20,7 @@ const CATEGORY_PREFIXES = {
 
 const CATEGORY_ICONS = {
     'IT Assets': '💻',
-    'Electronic Components': '🔌',
+    'Electronics': '🔌',
     'Event Equipment': '🎪',
     'Mechanical Division': '⚙️',
     'Office Assets': '🪑',
@@ -30,7 +30,7 @@ const CATEGORY_ICONS = {
 
 const CATEGORY_COLORS = {
     'IT Assets': '#6366f1',
-    'Electronic Components': '#22c55e',
+    'Electronics': '#22c55e',
     'Event Equipment': '#f59e0b',
     'Mechanical Division': '#ef4444',
     'Office Assets': '#3b82f6',
@@ -56,7 +56,7 @@ const SUB_CATEGORIES = {
         'Printers',
         'Peripherals'
     ],
-    'Electronic Components': [
+    'Electronics': [
         'Microcontrollers',
         'Power Supplies',
         'Sensors',
