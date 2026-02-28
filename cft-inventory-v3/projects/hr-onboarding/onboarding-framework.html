@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craftech360 - Employee Onboarding & Protection Framework</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e4e4e4;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #00d9ff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0,217,255,0.3);
+        }
+
+        .header .subtitle {
+            color: #8892b0;
+            font-size: 1.1rem;
+        }
+
+        .header .version {
+            display: inline-block;
+            background: #e94560;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 15px;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-tab {
+            padding: 12px 25px;
+            background: #1a1a2e;
+            border: 2px solid #0f3460;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: #0f3460;
+            border-color: #00d9ff;
+            color: #00d9ff;
+        }
+
+        /* Sections */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: linear-gradient(145deg, #1e2a4a 0%, #16213e 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid #0f3460;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #0f3460;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #e94560 0%, #0f3460 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            color: #00d9ff;
+        }
+
+        .card-subtitle {
+            color: #8892b0;
+            font-size: 0.9rem;
+        }
+
+        /* Phase Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #00d9ff, #e94560);
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(15, 52, 96, 0.5);
+            border-radius: 10px;
+            border-left: 3px solid #00d9ff;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            background: #00d9ff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0,217,255,0.5);
+        }
+
+        .timeline-item h4 {
+            color: #00d9ff;
+            margin-bottom: 10px;
+        }
+
+        /* Checklist */
+        .checklist {
+            display: grid;
+            gap: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 15px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .checklist-item:hover {
+            background: rgba(0,217,255,0.1);
+        }
+
+        .checklist-item .check {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #00d9ff;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .checklist-item.required .check {
+            background: rgba(0,217,255,0.2);
+        }
+
+        .checklist-item.optional .check {
+            border-color: #8892b0;
+        }
+
+        .checklist-item .label {
+            flex: 1;
+        }
+
+        .checklist-item .badge {
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 10px;
+            background: #e94560;
+        }
+
+        .checklist-item .badge.optional {
+            background: #0f3460;
+        }
+
+        /* Document Cards Grid */
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .doc-card {
+            background: linear-gradient(145deg, #1e2a4a 0%, #16213e 100%);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #0f3460;
+            transition: all 0.3s ease;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-5px);
+            border-color: #00d9ff;
+            box-shadow: 0 10px 30px rgba(0,217,255,0.1);
+        }
+
+        .doc-card .priority {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .doc-card .priority.high {
+            background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+        }
+
+        .doc-card .priority.medium {
+            background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%);
+            color: #1a1a2e;
+        }
+
+        .doc-card .doc-title {
+            font-size: 1.2rem;
+            color: #00d9ff;
+            margin-bottom: 10px;
+        }
+
+        .doc-card .doc-purpose {
+            color: #8892b0;
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .doc-card .doc-sections {
+            list-style: none;
+        }
+
+        .doc-card .doc-sections li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .doc-card .doc-sections li::before {
+            content: '→';
+            color: #00d9ff;
+        }
+
+        /* Status Table */
+        .status-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .status-table th,
+        .status-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #0f3460;
+        }
+
+        .status-table th {
+            background: rgba(0,217,255,0.1);
+            color: #00d9ff;
+            font-weight: 600;
+        }
+
+        .status-table tr:hover {
+            background: rgba(0,217,255,0.05);
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        .status-badge.pending {
+            background: rgba(241,196,15,0.2);
+            color: #f1c40f;
+        }
+
+        .status-badge.complete {
+            background: rgba(46,204,113,0.2);
+            color: #2ecc71;
+        }
+
+        /* Competitor List */
+        .competitor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .competitor-item {
+            background: rgba(233,69,96,0.1);
+            border: 1px solid rgba(233,69,96,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .competitor-item::before {
+            content: '⚠️';
+        }
+
+        /* Disciplinary Matrix */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .matrix-table th,
+        .matrix-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #0f3460;
+        }
+
+        .matrix-table th {
+            background: #0f3460;
+            color: #00d9ff;
+        }
+
+        .matrix-table .severity-minor { background: rgba(241,196,15,0.1); }
+        .matrix-table .severity-moderate { background: rgba(230,126,34,0.1); }
+        .matrix-table .severity-severe { background: rgba(233,69,96,0.1); }
+
+        /* Implementation Timeline */
+        .impl-phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .impl-phase {
+            background: rgba(15,52,96,0.5);
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 4px solid #00d9ff;
+        }
+
+        .impl-phase h4 {
+            color: #00d9ff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .impl-phase ul {
+            list-style: none;
+        }
+
+        .impl-phase li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .impl-phase li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2ecc71;
+        }
+
+        /* Alert Box */
+        .alert {
+            background: rgba(233,69,96,0.1);
+            border: 1px solid rgba(233,69,96,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .alert-icon {
+            font-size: 1.5rem;
+        }
+
+        .alert-content h4 {
+            color: #e94560;
+            margin-bottom: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            color: #8892b0;
+            border-top: 1px solid #0f3460;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .doc-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎖️ Craftech360</h1>
+            <p class="subtitle">Employee Onboarding & Protection Framework</p>
+            <span class="version">v1.0 DRAFT - Pending Approval</span>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('overview')">📊 Overview</div>
+            <div class="nav-tab" onclick="showSection('onboarding')">📋 Onboarding Process</div>
+            <div class="nav-tab" onclick="showSection('documents')">📄 Protection Documents</div>
+            <div class="nav-tab" onclick="showSection('implementation')">🚀 Implementation</div>
+            <div class="nav-tab" onclick="showSection('status')">✅ Status Tracker</div>
+        </div>
+
+        <!-- Overview Section -->
+        <div id="overview" class="section active">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🎯</div>
+                    <div>
+                        <div class="card-title">Framework Purpose</div>
+                        <div class="card-subtitle">Comprehensive employee lifecycle management</div>
+                    </div>
+                </div>
+                <p>This framework establishes a robust onboarding process and employee protection system for Craftech360, addressing:</p>
+                <ul style="margin: 20px 0; padding-left: 20px;">
+                    <li>Complete document collection & KYC verification</li>
+                    <li>Employment agreements & legal protection</li>
+                    <li>Confidentiality & information security</li>
+                    <li>Company asset protection (including SIM cards)</li>
+                    <li>Structured induction & integration program</li>
+                </ul>
+            </div>
+
+            <div class="alert">
+                <div class="alert-icon">🚨</div>
+                <div class="alert-content">
+                    <h4>Critical Issue Addressed</h4>
+                    <p>Recent incidents of competitor poaching and internal leaks of client information, financial data, and salary details. This framework implements strict controls and legally binding agreements.</p>
+                </div>
+            </div>
+
+            <div class="doc-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">📋</div>
+                        <div>
+                            <div class="card-title">Onboarding Checklist</div>
+                            <div class="card-subtitle">64 items across 5 phases</div>
+                        </div>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>Phase 1: Pre-Joining</h4>
+                            <p>Document collection, KYC, background verification</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Phase 2: Agreements</h4>
+                            <p>8 legal documents to sign before/on Day 1</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Phase 3: Day 1 Setup</h4>
+                            <p>ID, biometric, email, access, assets</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Phase 4: Induction</h4>
+                            <p>3-day orientation program</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Phase 5: Confirmation</h4>
+                            <p>30/60/90 day reviews → Confirmation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">🔒</div>
+                        <div>
+                            <div class="card-title">Protection Documents</div>
+                            <div class="card-subtitle">8 critical legal documents</div>
+                        </div>
+                    </div>
+                    <div class="checklist">
+                        <div class="checklist-item required">
+                            <div class="check">1</div>
+                            <span class="label">NDA (Non-Disclosure Agreement)</span>
+                            <span class="badge">HIGH</span>
+                        </div>
+                        <div class="checklist-item required">
+                            <div class="check">2</div>
+                            <span class="label">Non-Compete & Non-Solicitation</span>
+                            <span class="badge">HIGH</span>
+                        </div>
+                        <div class="checklist-item required">
+                            <div class="check">3</div>
+                            <span class="label">Company SIM Card Agreement</span>
+                            <span class="badge">HIGH</span>
+                        </div>
+                        <div class="checklist-item required">
+                            <div class="check">4</div>
+                            <span class="label">Salary Confidentiality Declaration</span>
+                            <span class="badge">HIGH</span>
+                        </div>
+                        <div class="checklist-item required">
+                            <div class="check">5</div>
+                            <span class="label">Information Security Policy</span>
+                            <span class="badge optional">MED</span>
+                        </div>
+                        <div class="checklist-item required">
+                            <div class="check">6</div>
+                            <span class="label">Code of Conduct</span>
+                            <span class="badge optional">MED</span>
+                        </div>
+                        <div class="checklist-item required">
+                            <div class="check">7</div>
+                            <span class="label">Employment Agreement</span>
+                            <span class="badge optional">MED</span>
+                        </div>
+                        <div class="checklist-item required">
+                            <div class="check">8</div>
+                            <span class="label">Exit Undertaking</span>
+                            <span class="badge optional">MED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Onboarding Section -->
+        <div id="onboarding" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📁</div>
+                    <div>
+                        <div class="card-title">Phase 1: Pre-Joining Documents</div>
+                        <div class="card-subtitle">Collect before Day 1</div>
+                    </div>
+                </div>
+                
+                <h4 style="color: #00d9ff; margin: 15px 0 10px;">Personal Documents</h4>
+                <div class="checklist">
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Resume/CV (latest version)</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Passport-size photographs (4 copies)</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Aadhaar Card (original for verification)</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">PAN Card (original for verification)</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item optional">
+                        <div class="check"></div>
+                        <span class="label">Address Proof (if different from Aadhaar)</span>
+                        <span class="badge optional">Optional</span>
+                    </div>
+                </div>
+
+                <h4 style="color: #00d9ff; margin: 25px 0 10px;">Educational Documents</h4>
+                <div class="checklist">
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">10th Marksheet</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">12th Marksheet</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Degree Certificate</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item optional">
+                        <div class="check"></div>
+                        <span class="label">Other Certifications (if relevant)</span>
+                        <span class="badge optional">Optional</span>
+                    </div>
+                </div>
+
+                <h4 style="color: #00d9ff; margin: 25px 0 10px;">Previous Employment</h4>
+                <div class="checklist">
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Experience Letter(s) - All previous employers</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Relieving Letter - Last employer</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Last 3 Months Payslips</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item optional">
+                        <div class="check"></div>
+                        <span class="label">NOC (if from competitor/sensitive industry)</span>
+                        <span class="badge optional">Conditional</span>
+                    </div>
+                    <div class="checklist-item optional">
+                        <div class="check"></div>
+                        <span class="label">Form 16 (Last year)</span>
+                        <span class="badge optional">Optional</span>
+                    </div>
+                </div>
+
+                <h4 style="color: #00d9ff; margin: 25px 0 10px;">KYC & Verification</h4>
+                <div class="checklist">
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Bank Account Details (cancelled cheque/passbook)</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Emergency Contact 1 (name, relation, phone)</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Emergency Contact 2</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Blood Group</span>
+                        <span class="badge">Required</span>
+                    </div>
+                    <div class="checklist-item optional">
+                        <div class="check"></div>
+                        <span class="label">Medical Conditions (if any)</span>
+                        <span class="badge optional">Optional</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📝</div>
+                    <div>
+                        <div class="card-title">Phase 2: Employment Agreements</div>
+                        <div class="card-subtitle">Sign before/on Day 1</div>
+                    </div>
+                </div>
+                <div class="checklist">
+                    <div class="checklist-item required">
+                        <div class="check">1</div>
+                        <span class="label">Offer Letter (issued & signed)</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">2</div>
+                        <span class="label">Employment Agreement (master contract)</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">3</div>
+                        <span class="label">NDA - Non-Disclosure Agreement</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">4</div>
+                        <span class="label">Non-Compete & Non-Solicitation Agreement</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">5</div>
+                        <span class="label">Salary Confidentiality Declaration</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">6</div>
+                        <span class="label">Code of Conduct Acknowledgment</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">7</div>
+                        <span class="label">Information Security Policy Agreement</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">8</div>
+                        <span class="label">Company Asset Agreement (laptop, SIM, etc.)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🖥️</div>
+                    <div>
+                        <div class="card-title">Phase 3: Day 1 Administrative Setup</div>
+                        <div class="card-subtitle">Completed by HR/Admin/IT</div>
+                    </div>
+                </div>
+                <div class="checklist">
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Employee ID generated</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Biometric registration (eTimeOffice)</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Email account created (@craftech360.com)</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">WhatsApp group additions (relevant groups)</span>
+                    </div>
+                    <div class="checklist-item optional">
+                        <div class="check"></div>
+                        <span class="label">Slack workspace access</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Workstation/Laptop assignment (asset register)</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Access card / Office keys</span>
+                    </div>
+                    <div class="checklist-item optional">
+                        <div class="check"></div>
+                        <span class="label">Company SIM card (with signed agreement)</span>
+                    </div>
+                    <div class="checklist-item required">
+                        <div class="check">✓</div>
+                        <span class="label">Welcome kit handover</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🎓</div>
+                    <div>
+                        <div class="card-title">Phase 4: Induction Program (Day 1-3)</div>
+                        <div class="card-subtitle">Structured orientation</div>
+                    </div>
+                </div>
+                
+                <div class="impl-phases">
+                    <div class="impl-phase">
+                        <h4>📅 Day 1: Company Overview</h4>
+                        <ul>
+                            <li>Welcome by HR (1 hour)</li>
+                            <li>Company history, vision, mission (30 min)</li>
+                            <li>Products & services overview (1 hour)</li>
+                            <li>Team introductions (30 min)</li>
+                            <li>Office tour (30 min)</li>
+                        </ul>
+                    </div>
+                    <div class="impl-phase">
+                        <h4>📅 Day 2: Department Deep-Dive</h4>
+                        <ul>
+                            <li>Department introduction (1 hour)</li>
+                            <li>Role & responsibilities (1 hour)</li>
+                            <li>Tools & systems training (2 hours)</li>
+                            <li>Current projects overview (1 hour)</li>
+                        </ul>
+                    </div>
+                    <div class="impl-phase">
+                        <h4>📅 Day 3: Policies & Wrap-up</h4>
+                        <ul>
+                            <li>Leave & attendance policy (30 min)</li>
+                            <li>Performance review process (30 min)</li>
+                            <li>Communication & escalation (30 min)</li>
+                            <li>Q&A session (30 min)</li>
+                            <li>Buddy assignment (if applicable)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">✅</div>
+                    <div>
+                        <div class="card-title">Phase 5: Follow-up & Confirmation</div>
+                        <div class="card-subtitle">Probation period milestones</div>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>Day 3-5: HR Check-in</h4>
+                        <p>Settling in? Any issues? Clarity on role?</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Day 5-7: Manager Check-in</h4>
+                        <p>Task clarity? Resource needs? Questions?</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Day 30: First Review</h4>
+                        <p>Informal feedback from manager</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Day 60: Mid-Probation Review</h4>
+                        <p>Progress check, areas of improvement</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>Day 90: Probation Review</h4>
+                        <p>Formal evaluation → Confirmation or Extension</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Documents Section -->
+        <div id="documents" class="section">
+            <div class="alert">
+                <div class="alert-icon">⚖️</div>
+                <div class="alert-content">
+                    <h4>Legal Review Required</h4>
+                    <p>All documents should be reviewed by a labor lawyer for enforceability under Indian law and Karnataka Shops & Establishments Act compliance before final implementation.</p>
+                </div>
+            </div>
+
+            <div class="doc-grid">
+                <!-- NDA -->
+                <div class="doc-card">
+                    <span class="priority high">HIGH PRIORITY</span>
+                    <h3 class="doc-title">📜 1. NDA (Non-Disclosure Agreement)</h3>
+                    <p class="doc-purpose">Comprehensive protection of all confidential business information</p>
+                    <ul class="doc-sections">
+                        <li>Definitions (Confidential Information scope)</li>
+                        <li>Client Information protection</li>
+                        <li>Financial Information protection</li>
+                        <li>Salary & HR Information protection</li>
+                        <li>Business & Technical Information</li>
+                        <li>Employee Obligations</li>
+                        <li>Term: During + 3 years post-employment</li>
+                        <li>Remedies: Injunction + Damages</li>
+                    </ul>
+                </div>
+
+                <!-- Non-Compete -->
+                <div class="doc-card">
+                    <span class="priority high">HIGH PRIORITY</span>
+                    <h3 class="doc-title">🚫 2. Non-Compete & Non-Solicitation</h3>
+                    <p class="doc-purpose">Block competitor poaching and client stealing</p>
+                    <ul class="doc-sections">
+                        <li>Non-Compete (during employment)</li>
+                        <li>Non-Solicitation of Employees (12-24 mo)</li>
+                        <li>Non-Solicitation of Clients (12-24 mo)</li>
+                        <li>Moonlighting Prohibition</li>
+                        <li>Named Competitors List</li>
+                        <li>Indemnification clause</li>
+                    </ul>
+                </div>
+
+                <!-- SIM Card -->
+                <div class="doc-card">
+                    <span class="priority high">HIGH PRIORITY</span>
+                    <h3 class="doc-title">📱 3. Company SIM Card Agreement</h3>
+                    <p class="doc-purpose">Protect directors from SIM misuse liability</p>
+                    <ul class="doc-sections">
+                        <li>SIM Details & Assignment</li>
+                        <li>Acknowledgment (Director's name on SIM)</li>
+                        <li>Permitted Use (business only)</li>
+                        <li>Prohibited Activities</li>
+                        <li>Employee Liability clause</li>
+                        <li>Director Indemnification</li>
+                        <li>Return & Handover policy</li>
+                        <li>Monitoring Notice</li>
+                    </ul>
+                </div>
+
+                <!-- Salary Confidentiality -->
+                <div class="doc-card">
+                    <span class="priority high">HIGH PRIORITY</span>
+                    <h3 class="doc-title">💰 4. Salary Confidentiality Declaration</h3>
+                    <p class="doc-purpose">Stop internal salary discussions and leaks</p>
+                    <ul class="doc-sections">
+                        <li>Declaration of confidentiality</li>
+                        <li>Non-Disclosure of own salary</li>
+                        <li>Non-Inquiry of others' salary</li>
+                        <li>Non-Discussion policy</li>
+                        <li>Limited Exceptions</li>
+                        <li>Consequences (Warning → Termination)</li>
+                    </ul>
+                </div>
+
+                <!-- Info Security -->
+                <div class="doc-card">
+                    <span class="priority medium">MEDIUM PRIORITY</span>
+                    <h3 class="doc-title">🔐 5. Information Security Policy</h3>
+                    <p class="doc-purpose">Rules for handling company data and systems</p>
+                    <ul class="doc-sections">
+                        <li>Data Classification (4 levels)</li>
+                        <li>Device Security rules</li>
+                        <li>Data Handling rules</li>
+                        <li>Communication rules</li>
+                        <li>Access Control</li>
+                        <li>Social Media policy</li>
+                        <li>Incident Reporting</li>
+                        <li>Monitoring Notice</li>
+                    </ul>
+                </div>
+
+                <!-- Code of Conduct -->
+                <div class="doc-card">
+                    <span class="priority medium">MEDIUM PRIORITY</span>
+                    <h3 class="doc-title">📋 6. Code of Conduct</h3>
+                    <p class="doc-purpose">Behavioral and ethical standards</p>
+                    <ul class="doc-sections">
+                        <li>Professional Conduct</li>
+                        <li>Conflict of Interest</li>
+                        <li>Company Resources use</li>
+                        <li>Attendance & Punctuality</li>
+                        <li>Confidentiality reference</li>
+                        <li>Compliance requirements</li>
+                        <li>Disciplinary Matrix</li>
+                    </ul>
+                </div>
+
+                <!-- Employment Agreement -->
+                <div class="doc-card">
+                    <span class="priority medium">MEDIUM PRIORITY</span>
+                    <h3 class="doc-title">📃 7. Employment Agreement</h3>
+                    <p class="doc-purpose">Master employment contract</p>
+                    <ul class="doc-sections">
+                        <li>Position & Duties</li>
+                        <li>Compensation & Benefits</li>
+                        <li>Working Hours & Leave</li>
+                        <li>Probation Period</li>
+                        <li>Termination Clauses</li>
+                        <li>NDA & IP Assignment reference</li>
+                        <li>Non-Compete reference</li>
+                        <li>Dispute Resolution</li>
+                    </ul>
+                </div>
+
+                <!-- Exit Undertaking -->
+                <div class="doc-card">
+                    <span class="priority medium">MEDIUM PRIORITY</span>
+                    <h3 class="doc-title">🚪 8. Exit Undertaking</h3>
+                    <p class="doc-purpose">Secure company interests at separation</p>
+                    <ul class="doc-sections">
+                        <li>Employee & Separation Details</li>
+                        <li>Return of Property checklist</li>
+                        <li>Data Deletion confirmation</li>
+                        <li>Pending Obligations cleared</li>
+                        <li>Reaffirmation of NDA (3 years)</li>
+                        <li>Non-Solicitation reminder (12-24 mo)</li>
+                        <li>Forwarding Contact details</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Disciplinary Matrix -->
+            <div class="card" style="margin-top: 30px;">
+                <div class="card-header">
+                    <div class="card-icon">⚠️</div>
+                    <div>
+                        <div class="card-title">Disciplinary Matrix</div>
+                        <div class="card-subtitle">Consequences for policy violations</div>
+                    </div>
+                </div>
+                <table class="matrix-table">
+                    <thead>
+                        <tr>
+                            <th>Offense Level</th>
+                            <th>First Offense</th>
+                            <th>Second Offense</th>
+                            <th>Third Offense</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="severity-minor">
+                            <td><strong>Minor</strong><br><small>Late attendance, dress code</small></td>
+                            <td>Verbal Warning</td>
+                            <td>Written Warning</td>
+                            <td>Final Warning</td>
+                        </tr>
+                        <tr class="severity-moderate">
+                            <td><strong>Moderate</strong><br><small>Unauthorized absence, policy violations</small></td>
+                            <td>Written Warning</td>
+                            <td>Suspension</td>
+                            <td>Termination</td>
+                        </tr>
+                        <tr class="severity-severe">
+                            <td><strong>Severe</strong><br><small>Data leak, fraud, harassment, theft</small></td>
+                            <td>Suspension / Termination</td>
+                            <td>Termination</td>
+                            <td>Termination + Legal Action</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Named Competitors -->
+            <div class="card" style="margin-top: 30px;">
+                <div class="card-header">
+                    <div class="card-icon">🎯</div>
+                    <div>
+                        <div class="card-title">Named Competitors</div>
+                        <div class="card-subtitle">For Non-Compete & NDA reference</div>
+                    </div>
+                </div>
+                <div class="competitor-grid">
+                    <div class="competitor-item">Jaseil Creations</div>
+                    <div class="competitor-item">4Brains</div>
+                    <div class="competitor-item">Tagbin</div>
+                    <div class="competitor-item">MagicTap</div>
+                    <div class="competitor-item">InkinnCaps</div>
+                    <div class="competitor-item">Attah</div>
+                    <div class="competitor-item">Digital Jalebi</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Implementation Section -->
+        <div id="implementation" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">🚀</div>
+                    <div>
+                        <div class="card-title">Implementation Plan</div>
+                        <div class="card-subtitle">Phased rollout approach</div>
+                    </div>
+                </div>
+
+                <div class="impl-phases">
+                    <div class="impl-phase">
+                        <h4>📌 Phase 1: New Employees</h4>
+                        <p style="color: #8892b0; margin-bottom: 15px;">Immediate implementation</p>
+                        <ul>
+                            <li>All documents mandatory from Day 1</li>
+                            <li>No exceptions - part of joining process</li>
+                            <li>Cannot start work without signatures</li>
+                            <li>HR to maintain signed document folder</li>
+                        </ul>
+                    </div>
+                    <div class="impl-phase">
+                        <h4>📌 Phase 2: Existing Employees</h4>
+                        <p style="color: #8892b0; margin-bottom: 15px;">Within 2 weeks</p>
+                        <ul>
+                            <li>HR conducts group sessions</li>
+                            <li>Explain need: "Protecting everyone"</li>
+                            <li>Mandatory signing within deadline</li>
+                            <li>Refusals escalated to Founders</li>
+                        </ul>
+                    </div>
+                    <div class="impl-phase">
+                        <h4>📌 Phase 3: Legal Review</h4>
+                        <p style="color: #8892b0; margin-bottom: 15px;">Before deployment</p>
+                        <ul>
+                            <li>All documents reviewed by labor lawyer</li>
+                            <li>Karnataka compliance check</li>
+                            <li>Enforceability validation</li>
+                            <li>Final approval from Founders</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <div>
+                        <div class="card-title">Document Priority Order</div>
+                        <div class="card-subtitle">Recommended creation sequence</div>
+                    </div>
+                </div>
+                <table class="status-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Document</th>
+                            <th>Priority</th>
+                            <th>Reason</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>NDA</td>
+                            <td><span class="status-badge" style="background: rgba(233,69,96,0.2); color: #e94560;">🔴 HIGH</span></td>
+                            <td>Core protection - covers all data leaks</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Non-Compete & Non-Solicitation</td>
+                            <td><span class="status-badge" style="background: rgba(233,69,96,0.2); color: #e94560;">🔴 HIGH</span></td>
+                            <td>Competitor threat - immediate need</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>SIM Card Agreement</td>
+                            <td><span class="status-badge" style="background: rgba(233,69,96,0.2); color: #e94560;">🔴 HIGH</span></td>
+                            <td>Director protection - BD team priority</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Salary Confidentiality</td>
+                            <td><span class="status-badge" style="background: rgba(233,69,96,0.2); color: #e94560;">🔴 HIGH</span></td>
+                            <td>Recent leak incidents</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Information Security Policy</td>
+                            <td><span class="status-badge" style="background: rgba(241,196,15,0.2); color: #f1c40f;">🟡 MEDIUM</span></td>
+                            <td>Behavioral framework</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>Code of Conduct</td>
+                            <td><span class="status-badge" style="background: rgba(241,196,15,0.2); color: #f1c40f;">🟡 MEDIUM</span></td>
+                            <td>Overall standards</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>Employment Agreement</td>
+                            <td><span class="status-badge" style="background: rgba(241,196,15,0.2); color: #f1c40f;">🟡 MEDIUM</span></td>
+                            <td>Integrate NDA clauses</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>Exit Undertaking</td>
+                            <td><span class="status-badge" style="background: rgba(241,196,15,0.2); color: #f1c40f;">🟡 MEDIUM</span></td>
+                            <td>For departures</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Status Section -->
+        <div id="status" class="section">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">✅</div>
+                    <div>
+                        <div class="card-title">Document Status Tracker</div>
+                        <div class="card-subtitle">Current progress</div>
+                    </div>
+                </div>
+                <table class="status-table">
+                    <thead>
+                        <tr>
+                            <th>Document</th>
+                            <th>Structure</th>
+                            <th>Draft</th>
+                            <th>Legal Review</th>
+                            <th>Final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NDA</td>
+                            <td><span class="status-badge complete">✅ Done</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>Non-Compete & Non-Solicitation</td>
+                            <td><span class="status-badge complete">✅ Done</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>SIM Card Agreement</td>
+                            <td><span class="status-badge complete">✅ Done</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>Salary Confidentiality</td>
+                            <td><span class="status-badge complete">✅ Done</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>Information Security Policy</td>
+                            <td><span class="status-badge complete">✅ Done</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>Code of Conduct</td>
+                            <td><span class="status-badge complete">✅ Done</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>Employment Agreement</td>
+                            <td><span class="status-badge complete">✅ Done</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>Exit Undertaking</td>
+                            <td><span class="status-badge complete">✅ Done</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>Onboarding Checklist</td>
+                            <td><span class="status-badge complete">✅ Done</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                            <td><span class="status-badge pending">—</span></td>
+                            <td><span class="status-badge pending">⏳ Pending</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon">📝</div>
+                    <div>
+                        <div class="card-title">Next Steps</div>
+                        <div class="card-subtitle">Awaiting approval</div>
+                    </div>
+                </div>
+                <ol style="padding-left: 20px;">
+                    <li style="padding: 10px 0;">✅ Structure completed for all 8 protection documents</li>
+                    <li style="padding: 10px 0;">✅ Onboarding checklist structured (64 items)</li>
+                    <li style="padding: 10px 0;">⏳ <strong>Pattar to review & approve structure</strong></li>
+                    <li style="padding: 10px 0;">⏳ Select first document to draft in full</li>
+                    <li style="padding: 10px 0;">⏳ Draft with legal language</li>
+                    <li style="padding: 10px 0;">⏳ Legal review</li>
+                    <li style="padding: 10px 0;">⏳ Deploy to employees</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>🎖️ Craftech360 Employee Onboarding & Protection Framework</p>
+            <p style="margin-top: 10px; font-size: 0.9rem;">Created by Captain | Version 1.0 DRAFT | Pending Founder Approval</p>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active from all tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Activate clicked tab
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

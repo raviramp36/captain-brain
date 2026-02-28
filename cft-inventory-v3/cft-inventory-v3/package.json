@@ -1,0 +1,8 @@
+{
+  "name": "cft-inventory",
+  "version": "1.0.0",
+  "description": "Craftech360 Inventory Management System",
+  "dependencies": {
+    "googleapis": "^126.0.0"
+  }
+}

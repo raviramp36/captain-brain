@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Craftech360 Mission Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'body': ['IBM Plex Sans', 'sans-serif'],
+                        'heading': ['Sora', 'sans-serif'],
+                    },
+                    colors: {
+                        'app-bg': '#f8fafc',
+                        'surface': '#ffffff',
+                        'border': '#e2e8f0',
+                        'border-strong': '#cbd5e1',
+                        'text': '#0f172a',
+                        'text-muted': '#64748b',
+                        'text-quiet': '#94a3b8',
+                        'accent': '#2563eb',
+                        'accent-strong': '#1d4ed8',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-body bg-app-bg text-text min-h-screen">
+    <!-- Auth Modal -->
+    <div id="auth-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl flex items-center justify-center mx-auto mb-4">
+                    <span class="text-white text-2xl font-bold">C</span>
+                </div>
+                <h1 class="font-heading text-2xl font-semibold text-slate-900">Mission Control</h1>
+                <p class="text-slate-500 mt-2">Craftech360 Operations Platform</p>
+            </div>
+            <form id="auth-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Access Code</label>
+                    <input type="password" id="auth-code" 
+                        class="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Enter your access code">
+                </div>
+                <button type="submit" 
+                    class="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-medium transition">
+                    Sign In
+                </button>
+                <p id="auth-error" class="text-red-500 text-sm text-center hidden">Invalid access code</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="app" class="hidden flex h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">
+            <div class="p-4 border-b border-slate-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold">C</span>
+                    </div>
+                    <div>
+                        <div class="font-heading font-semibold text-slate-900">Craftech360</div>
+                        <div class="text-[10px] uppercase tracking-wider text-slate-500 font-medium">Mission Control</div>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="flex-1 px-3 py-4 space-y-6 overflow-y-auto">
+                <!-- Overview -->
+                <div>
+                    <p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Overview</p>
+                    <a href="index.html" class="nav-item active">
+                        <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+                        Dashboard
+                    </a>
+                    <a href="activity.html" class="nav-item">
+                        <i data-lucide="activity" class="w-4 h-4"></i>
+                        Activity Feed
+                    </a>
+                </div>
+
+                <!-- Work -->
+                <div>
+                    <p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Work</p>
+                    <a href="departments.html" class="nav-item">
+                        <i data-lucide="folder" class="w-4 h-4"></i>
+                        Departments
+                    </a>
+                    <a href="tasks.html" class="nav-item"><i data-lucide="layout-grid" class="w-4 h-4"></i>Tasks</a>
+                    <a href="procurement.html" class="nav-item"><i data-lucide="shopping-cart" class="w-4 h-4"></i>Procurement</a>
+                    
+                        <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                        Tasks
+                    </a>
+                    <a href="tags.html" class="nav-item">
+                        <i data-lucide="tags" class="w-4 h-4"></i>
+                        Tags
+                    </a>
+                    <a href="approvals.html" class="nav-item">
+                        <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                        Approvals
+                    </a>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Resources</p>
+                    <a href="products.html" class="nav-item">
+                        <i data-lucide="box" class="w-4 h-4"></i>
+                        Products
+                    </a>
+                </div>
+
+                <!-- Administration -->
+                <div>
+                    <p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Administration</p>
+                    <a href="organization.html" class="nav-item">
+                        <i data-lucide="building-2" class="w-4 h-4"></i>
+                        Organization
+                    </a>
+                    <a href="agents.html" class="nav-item">
+                        <i data-lucide="bot" class="w-4 h-4"></i>
+                        Agents
+                    </a>
+                    <a href="integrations.html" class="nav-item">
+                        <i data-lucide="network" class="w-4 h-4"></i>
+                        Integrations
+                    </a>
+                </div>
+            </nav>
+
+            <!-- System Status -->
+            <div class="p-4 border-t border-slate-200">
+                <div class="flex items-center gap-2 text-xs text-slate-500">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                    All systems operational
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto">
+            <!-- Header -->
+            <div class="bg-white border-b border-slate-200 px-8 py-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h1 class="font-heading text-2xl font-semibold text-slate-900">Dashboard</h1>
+                        <p class="text-sm text-slate-500 mt-1">Monitor Craftech360 operations</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <select id="range-filter" class="h-9 px-3 border border-slate-300 rounded-lg text-sm bg-white">
+                            <option value="7d">Last 7 days</option>
+                            <option value="14d">Last 14 days</option>
+                            <option value="30d">Last 30 days</option>
+                            <option value="90d">Last 90 days</option>
+                        </select>
+                        <button onclick="location.href='tasks.html'" class="h-9 px-4 bg-slate-900 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition flex items-center gap-2">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                            New Task
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Content -->
+            <div class="p-8">
+                <!-- KPI Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <!-- Active Agents -->
+                    <div class="kpi-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Active Agents</p>
+                            <div class="p-2 bg-blue-50 rounded-lg text-blue-600">
+                                <i data-lucide="bot" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-heading text-4xl font-bold text-slate-900">4</h3>
+                        <p class="text-xs text-slate-500 mt-2">Captain, Blaze, Forge, Atlas</p>
+                        <div class="mt-3 h-1 bg-slate-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full" style="width: 100%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Tasks in Progress -->
+                    <div class="kpi-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Tasks in Progress</p>
+                            <div class="p-2 bg-amber-50 rounded-lg text-amber-600">
+                                <i data-lucide="pen-square" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-heading text-4xl font-bold text-slate-900" id="tasks-progress">12</h3>
+                        <p class="text-xs text-slate-500 mt-2">Across all departments</p>
+                        <div class="mt-3 h-1 bg-slate-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-amber-500 to-amber-600 rounded-full" style="width: 60%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Completed This Week -->
+                    <div class="kpi-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Completed This Week</p>
+                            <div class="p-2 bg-emerald-50 rounded-lg text-emerald-600">
+                                <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-heading text-4xl font-bold text-slate-900" id="tasks-completed">28</h3>
+                        <p class="text-xs text-slate-500 mt-2">↑ 12% from last week</p>
+                        <div class="mt-3 h-1 bg-slate-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full" style="width: 85%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Team Members -->
+                    <div class="kpi-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Team Members</p>
+                            <div class="p-2 bg-purple-50 rounded-lg text-purple-600">
+                                <i data-lucide="users" class="w-4 h-4"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-heading text-4xl font-bold text-slate-900">30</h3>
+                        <p class="text-xs text-slate-500 mt-2">6 departments</p>
+                        <div class="mt-3 h-1 bg-slate-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-purple-500 to-purple-600 rounded-full" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <!-- Department Activity -->
+                    <div class="chart-card">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="font-heading text-base font-semibold text-slate-900">Department Activity</h3>
+                                <p class="text-sm text-slate-500 mt-1">Tasks by department this week</p>
+                            </div>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-24 text-sm text-slate-600">Engineering</div>
+                                <div class="flex-1 h-8 bg-slate-100 rounded-lg overflow-hidden">
+                                    <div class="h-full bg-blue-500 rounded-lg flex items-center justify-end px-3 text-white text-xs font-medium" style="width: 75%">18</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-24 text-sm text-slate-600">Creative</div>
+                                <div class="flex-1 h-8 bg-slate-100 rounded-lg overflow-hidden">
+                                    <div class="h-full bg-orange-500 rounded-lg flex items-center justify-end px-3 text-white text-xs font-medium" style="width: 60%">14</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-24 text-sm text-slate-600">Operations</div>
+                                <div class="flex-1 h-8 bg-slate-100 rounded-lg overflow-hidden">
+                                    <div class="h-full bg-green-500 rounded-lg flex items-center justify-end px-3 text-white text-xs font-medium" style="width: 50%">12</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-24 text-sm text-slate-600">BD</div>
+                                <div class="flex-1 h-8 bg-slate-100 rounded-lg overflow-hidden">
+                                    <div class="h-full bg-purple-500 rounded-lg flex items-center justify-end px-3 text-white text-xs font-medium" style="width: 40%">9</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-24 text-sm text-slate-600">HR</div>
+                                <div class="flex-1 h-8 bg-slate-100 rounded-lg overflow-hidden">
+                                    <div class="h-full bg-pink-500 rounded-lg flex items-center justify-end px-3 text-white text-xs font-medium" style="width: 25%">6</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Task Status Distribution -->
+                    <div class="chart-card">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h3 class="font-heading text-base font-semibold text-slate-900">Task Status</h3>
+                                <p class="text-sm text-slate-500 mt-1">Current task distribution</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="p-4 bg-amber-50 rounded-xl border border-amber-100">
+                                <div class="text-3xl font-bold text-amber-600">8</div>
+                                <div class="text-sm text-amber-700 mt-1">Pending</div>
+                            </div>
+                            <div class="p-4 bg-blue-50 rounded-xl border border-blue-100">
+                                <div class="text-3xl font-bold text-blue-600">12</div>
+                                <div class="text-sm text-blue-700 mt-1">In Progress</div>
+                            </div>
+                            <div class="p-4 bg-purple-50 rounded-xl border border-purple-100">
+                                <div class="text-3xl font-bold text-purple-600">5</div>
+                                <div class="text-sm text-purple-700 mt-1">Awaiting Approval</div>
+                            </div>
+                            <div class="p-4 bg-emerald-50 rounded-xl border border-emerald-100">
+                                <div class="text-3xl font-bold text-emerald-600">28</div>
+                                <div class="text-sm text-emerald-700 mt-1">Completed</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Row -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Active Agents -->
+                    <div class="chart-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-heading text-base font-semibold text-slate-900">Agent Status</h3>
+                            <a href="agents.html" class="text-sm text-blue-600 hover:text-blue-700">View all</a>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                                <div class="text-2xl">🎖️</div>
+                                <div class="flex-1">
+                                    <div class="font-medium text-slate-900">Captain</div>
+                                    <div class="text-xs text-slate-500">Strategic Orchestrator</div>
+                                </div>
+                                <span class="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full">Active</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                                <div class="text-2xl">🔥</div>
+                                <div class="flex-1">
+                                    <div class="font-medium text-slate-900">Blaze</div>
+                                    <div class="text-xs text-slate-500">Growth Lead</div>
+                                </div>
+                                <span class="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full">Active</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                                <div class="text-2xl">⚒️</div>
+                                <div class="flex-1">
+                                    <div class="font-medium text-slate-900">Forge</div>
+                                    <div class="text-xs text-slate-500">Engineering Lead</div>
+                                </div>
+                                <span class="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full">Active</span>
+                            </div>
+                            <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+                                <div class="text-2xl">🗺️</div>
+                                <div class="flex-1">
+                                    <div class="font-medium text-slate-900">Atlas</div>
+                                    <div class="text-xs text-slate-500">Operations Lead</div>
+                                </div>
+                                <span class="px-2 py-1 bg-emerald-100 text-emerald-700 text-xs font-medium rounded-full">Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="chart-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-heading text-base font-semibold text-slate-900">Recent Activity</h3>
+                            <a href="activity.html" class="text-sm text-blue-600 hover:text-blue-700">View all</a>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex gap-3 text-sm">
+                                <div class="w-2 h-2 mt-2 bg-emerald-500 rounded-full flex-shrink-0"></div>
+                                <div>
+                                    <div class="text-slate-700"><span class="font-medium">Forge</span> completed task "LED panel diagnostics"</div>
+                                    <div class="text-xs text-slate-400 mt-0.5">2 min ago</div>
+                                </div>
+                            </div>
+                            <div class="flex gap-3 text-sm">
+                                <div class="w-2 h-2 mt-2 bg-blue-500 rounded-full flex-shrink-0"></div>
+                                <div>
+                                    <div class="text-slate-700"><span class="font-medium">Blaze</span> created task "March content calendar"</div>
+                                    <div class="text-xs text-slate-400 mt-0.5">15 min ago</div>
+                                </div>
+                            </div>
+                            <div class="flex gap-3 text-sm">
+                                <div class="w-2 h-2 mt-2 bg-amber-500 rounded-full flex-shrink-0"></div>
+                                <div>
+                                    <div class="text-slate-700"><span class="font-medium">Atlas</span> updated task status to "In Progress"</div>
+                                    <div class="text-xs text-slate-400 mt-0.5">32 min ago</div>
+                                </div>
+                            </div>
+                            <div class="flex gap-3 text-sm">
+                                <div class="w-2 h-2 mt-2 bg-purple-500 rounded-full flex-shrink-0"></div>
+                                <div>
+                                    <div class="text-slate-700"><span class="font-medium">Captain</span> sent follow-up to BD team</div>
+                                    <div class="text-xs text-slate-400 mt-0.5">1 hour ago</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions / Integrations -->
+                    <div class="chart-card">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-heading text-base font-semibold text-slate-900">Integrations</h3>
+                            <a href="integrations.html" class="text-sm text-blue-600 hover:text-blue-700">Manage</a>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center text-white">
+                                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                                    </div>
+                                    <span class="font-medium text-slate-700">WhatsApp</span>
+                                </div>
+                                <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center text-white">
+                                        <i data-lucide="mail" class="w-4 h-4"></i>
+                                    </div>
+                                    <span class="font-medium text-slate-700">Google Workspace</span>
+                                </div>
+                                <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center text-white">
+                                        <i data-lucide="mic" class="w-4 h-4"></i>
+                                    </div>
+                                    <span class="font-medium text-slate-700">Fireflies.ai</span>
+                                </div>
+                                <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-slate-700 rounded-lg flex items-center justify-center text-white">
+                                        <i data-lucide="clock" class="w-4 h-4"></i>
+                                    </div>
+                                    <span class="font-medium text-slate-700">eTimeOffice</span>
+                                </div>
+                                <span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Company Stats Banner -->
+                <div class="mt-8 p-6 bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl text-white">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                        <div>
+                            <div class="text-3xl font-bold">1150+</div>
+                            <div class="text-sm text-slate-300 mt-1">Events Completed</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold">30</div>
+                            <div class="text-sm text-slate-300 mt-1">Cities</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold">7</div>
+                            <div class="text-sm text-slate-300 mt-1">Countries</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold">35M</div>
+                            <div class="text-sm text-slate-300 mt-1">People Reached</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

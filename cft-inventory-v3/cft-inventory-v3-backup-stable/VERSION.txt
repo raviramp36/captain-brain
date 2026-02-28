@@ -1,0 +1,18 @@
+CFT Inventory System v3
+========================
+Version: v3.1.0-stable
+Date: 2026-02-18
+Netlify Deploy ID: 69957b1db859291d67801627
+Netlify URL: https://craftech360-inventory.netlify.app
+
+Features:
+- 7 Categories (IT Assets, Electronic Components, Event Equipment, Mechanical Division, Office Assets, Dead Stock, Rented Equipment)
+- Standardized sub-categories per category
+- Full CRUD (Add/Edit/Delete)
+- Rental Equipment support with extra fields:
+  - Return Date, Event/Project, Vendor Name, Vendor Contact, Rental Cost, Deposit
+- Google Sheets backend
+- Real-time sync
+
+Google Sheet: 1MrwDU0XtemyfpwWNX551ulfUIAFECB4cLCPhNJH1yuo
+Apps Script: AKfycbxgrvkJMxdHjv_T3m8Oxp_QwMfIvyFtaend0BZa_DEeAWbzWmeRnd3bgfxcbOSw5vB3

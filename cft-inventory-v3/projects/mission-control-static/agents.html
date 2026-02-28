@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agents | Craftech360 Mission Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{'body':['IBM Plex Sans','sans-serif'],'heading':['Sora','sans-serif']}}}}</script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-body bg-slate-50 text-slate-900 min-h-screen">
+    <div id="auth-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl flex items-center justify-center mx-auto mb-4"><span class="text-white text-2xl font-bold">C</span></div>
+                <h1 class="font-heading text-2xl font-semibold">Mission Control</h1>
+                <p class="text-slate-500 mt-2">Craftech360 Operations Platform</p>
+            </div>
+            <form id="auth-form" class="space-y-4">
+                <input type="password" id="auth-code" class="input" placeholder="Enter access code">
+                <button type="submit" class="w-full btn btn-primary py-3">Sign In</button>
+                <p id="auth-error" class="text-red-500 text-sm text-center hidden">Invalid access code</p>
+            </form>
+        </div>
+    </div>
+
+    <div id="app" class="hidden flex h-screen">
+        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">
+            <div class="p-4 border-b border-slate-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg flex items-center justify-center"><span class="text-white font-bold">C</span></div>
+                    <div><div class="font-heading font-semibold text-slate-900">Craftech360</div><div class="text-[10px] uppercase tracking-wider text-slate-500 font-medium">Mission Control</div></div>
+                </div>
+            </div>
+            <nav class="flex-1 px-3 py-4 space-y-6 overflow-y-auto">
+                <div><p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Overview</p>
+                    <a href="index.html" class="nav-item"><i data-lucide="bar-chart-3" class="w-4 h-4"></i>Dashboard</a>
+                    <a href="activity.html" class="nav-item"><i data-lucide="activity" class="w-4 h-4"></i>Activity Feed</a>
+                </div>
+                <div><p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Work</p>
+                    <a href="departments.html" class="nav-item"><i data-lucide="folder" class="w-4 h-4"></i>Departments</a>
+                    <a href="tasks.html" class="nav-item"><i data-lucide="layout-grid" class="w-4 h-4"></i>Tasks</a>
+                    <a href="procurement.html" class="nav-item"><i data-lucide="shopping-cart" class="w-4 h-4"></i>Procurement</a>
+                    
+                    <a href="tags.html" class="nav-item"><i data-lucide="tags" class="w-4 h-4"></i>Tags</a>
+                    <a href="approvals.html" class="nav-item"><i data-lucide="check-circle-2" class="w-4 h-4"></i>Approvals</a>
+                </div>
+                <div><p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Resources</p>
+                    <a href="products.html" class="nav-item"><i data-lucide="box" class="w-4 h-4"></i>Products</a>
+                </div>
+                <div><p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Administration</p>
+                    <a href="organization.html" class="nav-item"><i data-lucide="building-2" class="w-4 h-4"></i>Organization</a>
+                    <a href="agents.html" class="nav-item active"><i data-lucide="bot" class="w-4 h-4"></i>Agents</a>
+                    <a href="integrations.html" class="nav-item"><i data-lucide="network" class="w-4 h-4"></i>Integrations</a>
+                </div>
+            </nav>
+            <div class="p-4 border-t border-slate-200"><div class="flex items-center gap-2 text-xs text-slate-500"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>All systems operational</div></div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto">
+            <div class="bg-white border-b border-slate-200 px-8 py-6">
+                <h1 class="font-heading text-2xl font-semibold text-slate-900">AI Agents</h1>
+                <p class="text-sm text-slate-500 mt-1">Manage AI agents orchestrating Craftech360 operations</p>
+            </div>
+
+            <div class="p-8">
+                <!-- Hierarchy -->
+                <div class="chart-card mb-8">
+                    <h3 class="font-heading text-lg font-semibold mb-6 text-center">Agent Hierarchy</h3>
+                    <div class="flex flex-col items-center">
+                        <div class="px-6 py-3 bg-gradient-to-r from-amber-100 to-amber-50 border-2 border-amber-300 rounded-xl text-center">
+                            <div class="text-2xl mb-1">👔</div>
+                            <div class="font-semibold">FOUNDERS</div>
+                            <div class="text-xs text-slate-500">Ravi • Pattar • Abilash • Pradeep</div>
+                        </div>
+                        <div class="w-0.5 h-8 bg-slate-300"></div>
+                        <div class="px-6 py-3 bg-gradient-to-r from-slate-100 to-slate-50 border-2 border-slate-400 rounded-xl text-center">
+                            <div class="text-2xl mb-1">🎖️</div>
+                            <div class="font-semibold">CAPTAIN</div>
+                            <div class="text-xs text-slate-500">Strategic Orchestrator</div>
+                        </div>
+                        <div class="w-0.5 h-8 bg-slate-300"></div>
+                        <div class="flex gap-4">
+                            <div class="px-4 py-3 bg-orange-50 border border-orange-200 rounded-xl text-center">
+                                <div class="text-xl">🔥</div>
+                                <div class="font-medium text-sm">BLAZE</div>
+                                <div class="text-xs text-slate-500">Growth</div>
+                            </div>
+                            <div class="px-4 py-3 bg-blue-50 border border-blue-200 rounded-xl text-center">
+                                <div class="text-xl">⚒️</div>
+                                <div class="font-medium text-sm">FORGE</div>
+                                <div class="text-xs text-slate-500">Engineering</div>
+                            </div>
+                            <div class="px-4 py-3 bg-green-50 border border-green-200 rounded-xl text-center">
+                                <div class="text-xl">🗺️</div>
+                                <div class="font-medium text-sm">ATLAS</div>
+                                <div class="text-xs text-slate-500">Operations</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agent Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Captain -->
+                    <div class="chart-card border-l-4 border-l-amber-500">
+                        <div class="flex items-start gap-4">
+                            <div class="text-5xl">🎖️</div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-heading text-xl font-semibold">Captain</h3>
+                                    <span class="badge badge-success">Active</span>
+                                </div>
+                                <p class="text-slate-500">Strategic Advisor & Orchestrator</p>
+                                <div class="mt-4 space-y-2 text-sm">
+                                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span class="text-slate-500">Role</span><span>Founder Liaison</span></div>
+                                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span class="text-slate-500">Access</span><span>Full read on all agents</span></div>
+                                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span class="text-slate-500">Groups</span><span>5 WhatsApp groups</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Blaze -->
+                    <div class="chart-card border-l-4 border-l-orange-500">
+                        <div class="flex items-start gap-4">
+                            <div class="text-5xl">🔥</div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-heading text-xl font-semibold">Blaze</h3>
+                                    <span class="badge badge-success">Active</span>
+                                </div>
+                                <p class="text-slate-500">Growth Lead</p>
+                                <div class="mt-4 space-y-2 text-sm">
+                                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span class="text-slate-500">Teams</span><span>BD + Creative</span></div>
+                                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span class="text-slate-500">Reports To</span><span>Captain</span></div>
+                                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span class="text-slate-500">Groups</span><span>CFT Creative Hub, CFT BD Team</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Forge -->
+                    <div class="chart-card border-l-4 border-l-blue-500">
+                        <div class="flex items-start gap-4">
+                            <div class="text-5xl">⚒️</div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-heading text-xl font-semibold">Forge</h3>
+                                    <span class="badge badge-success">Active</span>
+                                </div>
+                                <p class="text-slate-500">Engineering Lead</p>
+                                <div class="mt-4 space-y-2 text-sm">
+                                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span class="text-slate-500">Teams</span><span>Software + Embedded + R&D</span></div>
+                                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span class="text-slate-500">Reports To</span><span>Captain / Abilash</span></div>
+                                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span class="text-slate-500">Groups</span><span>CFT Engineering</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Atlas -->
+                    <div class="chart-card border-l-4 border-l-green-500">
+                        <div class="flex items-start gap-4">
+                            <div class="text-5xl">🗺️</div>
+                            <div class="flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="font-heading text-xl font-semibold">Atlas</h3>
+                                    <span class="badge badge-success">Active</span>
+                                </div>
+                                <p class="text-slate-500">Operations Lead</p>
+                                <div class="mt-4 space-y-2 text-sm">
+                                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span class="text-slate-500">Teams</span><span>Ops + Inventory + Logistics</span></div>
+                                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span class="text-slate-500">Reports To</span><span>Captain</span></div>
+                                    <div class="flex justify-between p-2 bg-slate-50 rounded"><span class="text-slate-500">Groups</span><span>CFT Operations</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/app.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,14 +1,14 @@
-functionsDirectory = "/root/.openclaw/workspace/cft-inventory-v3/netlify/functions"
-functionsDirectoryOrigin = "config-v1"
 plugins = []
 headers = []
 redirects = []
 
+[functions]
+
+[functions."*"]
+
 [build]
-publish = "/root/.openclaw/workspace/cft-inventory-v3"
-publishOrigin = "config"
-base = "/root/.openclaw/workspace/cft-inventory-v3"
-functions = "/root/.openclaw/workspace/cft-inventory-v3/netlify/functions"
+publish = "/root/.openclaw/workspace"
+publishOrigin = "default"
 
 [build.environment]
 
@@ -23,8 +23,3 @@ functions = "/root/.openclaw/workspace/cft-inventory-v3/netlify/functions"
 [build.processing.js]
 
 [build.services]
-
-[functions]
-
-[functions."*"]
-node_bundler = "esbuild"
