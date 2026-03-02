@@ -369,6 +369,24 @@ body {
     cursor: pointer;
 }
 
+.filter-group input {
+    padding: 10px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.filter-group input::placeholder {
+    color: var(--text-muted);
+}
+
+.filter-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
 .export-btn {
     padding: 10px 16px;
     background: var(--bg-card);
