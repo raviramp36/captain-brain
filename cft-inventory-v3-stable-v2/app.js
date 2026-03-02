@@ -1021,13 +1021,11 @@ function viewDCDetail(dcNumber) {
             <div class="dc-detail-actions">
                 ${checkOutBtn}
                 ${checkInBtn}
-                <button class="btn-edit" onclick="editDC('${dcNumber}')">✏️ Edit</button>
-                <button class="btn-delete" onclick="deleteDC('${dcNumber}')">🗑️ Delete</button>
+                <button class="btn-edit-dc" onclick="editDC('${dcNumber}')">✏️ Edit</button>
+                <button class="btn-delete-dc" onclick="deleteDC('${dcNumber}')">🗑️ Delete</button>
                 <button class="btn-pdf-download" onclick="downloadPDF('${dcNumber}')">
                     <span>📄</span> Download PDF
                 </button>
-                <button class="btn-edit-dc" onclick="editDC('${dcNumber}')">✏️ Edit</button>
-                <button class="btn-delete-dc" onclick="deleteDC('${dcNumber}')">🗑️ Delete</button>
                 <button class="btn-back" onclick="switchView('deliveryChannels')">← Back</button>
             </div>
         </div>
@@ -1689,11 +1687,18 @@ async function confirmCheckout() {
     // Update DC status to Dispatched
     await updateDCStatus(currentCheckoutDC, 'Dispatched');
     
-    // TODO: Update inventory items availability via Apps Script
-    // For now, just update status
+    // Update inventory items status to "In Use"
+    const itemIds = checkoutItems.map(item => item.itemId);
+    await fetch(CONFIG.APPS_SCRIPT_URL + '?action=updateItemsStatus', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ itemIds: itemIds, status: 'In Use' })
+    });
     
     closeCheckoutModal();
     showToast('✅ Items checked out! DC dispatched.', 'success');
+    loadData(); // Reload inventory to reflect status change
     viewDCDetail(currentCheckoutDC);
 }
 
@@ -1789,11 +1794,20 @@ async function confirmCheckin() {
     // Update DC status to Closed
     await closeDC(currentCheckinDC);
     
-    // TODO: Update inventory items availability via Apps Script
-    // Mark checked items as Available again
+    // Update checked items status back to "Available"
+    const checkedItemIds = checkinItems.filter(i => i.checked).map(item => item.itemId);
+    if (checkedItemIds.length > 0) {
+        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=updateItemsStatus', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ itemIds: checkedItemIds, status: 'Available' })
+        });
+    }
     
     closeCheckinModal();
     showToast('✅ Items checked in! DC closed.', 'success');
+    loadData(); // Reload inventory to reflect status change
 }
 
 // ==================== END CHECK OUT / CHECK IN ====================
