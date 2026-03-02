@@ -901,16 +901,21 @@ function removeSelectedItem(itemId) {
 async function createDC(e) {
     e.preventDefault();
     
-    if (selectedDCItems.length === 0) {
+    const form = document.getElementById('createDCForm');
+    const isEditing = form.dataset.editingDC;
+    
+    // For new DC, require items. For edit, items are optional (keep existing)
+    if (!isEditing && selectedDCItems.length === 0) {
         showToast('Please select at least one item!', 'error');
         return;
     }
     
-    const dcNumber = generateDCNumber();
+    const dcNumber = isEditing ? form.dataset.editingDC : generateDCNumber();
     const today = new Date().toISOString().split('T')[0];
     
-    const dcData = {
+    const dcPayload = {
         dcNumber: dcNumber,
+        rowIndex: form.dataset.rowIndex || null,
         eventName: document.getElementById('dcEventName').value,
         activity: document.getElementById('dcActivity').value,
         eventDate: document.getElementById('dcEventDate').value,
@@ -937,21 +942,28 @@ async function createDC(e) {
     };
     
     try {
-        showToast('Creating Delivery Channel...', 'success');
+        const action = isEditing ? 'updateDC' : 'createDC';
+        showToast(isEditing ? 'Updating DC...' : 'Creating Delivery Channel...', 'success');
         
-        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=createDC', {
+        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=' + action, {
             method: 'POST',
             mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(dcData)
+            body: JSON.stringify(dcPayload)
         });
         
-        showToast(`✅ ${dcNumber} created successfully!`, 'success');
+        showToast(`✅ ${dcNumber} ${isEditing ? 'updated' : 'created'} successfully!`, 'success');
         
-        // Reset form
-        document.getElementById('createDCForm').reset();
+        // Reset form and edit mode
+        form.reset();
+        delete form.dataset.editingDC;
+        delete form.dataset.rowIndex;
         selectedDCItems = [];
         updateSelectedItemsList();
+        
+        // Reset button text
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.textContent = '📦 Create DC';
         
         // Reload and switch view
         setTimeout(() => {
@@ -960,8 +972,8 @@ async function createDC(e) {
         }, 1500);
         
     } catch (error) {
-        console.error('Error creating DC:', error);
-        showToast('Failed to create DC', 'error');
+        console.error('Error with DC:', error);
+        showToast('Failed to process DC', 'error');
     }
 }
 
