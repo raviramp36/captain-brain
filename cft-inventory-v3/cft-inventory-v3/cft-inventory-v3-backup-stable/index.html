@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CFT Inventory System v3 | Craftech360</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="logo-icon">📦</span>
+                <span class="logo-text">CFT Inventory</span>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active" data-view="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-view="inventory">
+                    <span class="nav-icon">📋</span>
+                    <span>All Items</span>
+                </a>
+                <a href="#" class="nav-item" data-view="add">
+                    <span class="nav-icon">➕</span>
+                    <span>Add Item</span>
+                </a>
+                <a href="#" class="nav-item" data-view="categories">
+                    <span class="nav-icon">🏷️</span>
+                    <span>Categories</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="sync-btn" onclick="loadData()">
+                    <span class="sync-icon">🔄</span>
+                    <span>Sync Data</span>
+                </button>
+                <div class="last-sync">Last sync: <span id="lastSync">Never</span></div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <h1 id="pageTitle">Dashboard</h1>
+                    <p class="header-subtitle">Craftech360 Inventory Management</p>
+                </div>
+                <div class="header-right">
+                    <div class="search-box">
+                        <input type="text" id="globalSearch" placeholder="Search items..." onkeyup="filterItems()">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard View -->
+            <section id="dashboardView" class="view active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📦</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="totalItems">0</span>
+                            <span class="stat-label">Total Items</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="availableItems">0</span>
+                            <span class="stat-label">Available</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔧</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="inUseItems">0</span>
+                            <span class="stat-label">In Use</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">💰</div>
+                        <div class="stat-info">
+                            <span class="stat-value" id="totalValue">₹0</span>
+                            <span class="stat-label">Total Value</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card category-breakdown">
+                        <h3>Category Breakdown</h3>
+                        <div id="categoryChart" class="category-bars"></div>
+                    </div>
+                    <div class="card status-overview">
+                        <h3>Status Overview</h3>
+                        <div id="statusChart" class="status-donut"></div>
+                    </div>
+                    <div class="card recent-items">
+                        <h3>Recently Added</h3>
+                        <div id="recentList" class="recent-list"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Inventory View -->
+            <section id="inventoryView" class="view">
+                <div class="toolbar">
+                    <div class="filter-group">
+                        <select id="categoryFilter" onchange="filterItems()">
+                            <option value="">All Categories</option>
+                            <option value="IT Assets">IT Assets</option>
+                            <option value="Electronic Components">Electronic Components</option>
+                            <option value="Event Equipment">Event Equipment</option>
+                            <option value="Mechanical Division">Mechanical Division</option>
+                            <option value="Office Assets">Office Assets</option>
+                            <option value="Dead Stock">Dead Stock</option>
+                        </select>
+                        <select id="statusFilter" onchange="filterItems()">
+                            <option value="">All Status</option>
+                            <option value="Available">Available</option>
+                            <option value="In Use">In Use</option>
+                            <option value="Checked Out">Checked Out</option>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Dead Stock">Dead Stock</option>
+                        </select>
+                    </div>
+                    <button class="export-btn" onclick="exportData()">📥 Export CSV</button>
+                </div>
+                <div class="table-container">
+                    <table class="inventory-table">
+                        <thead>
+                            <tr>
+                                <th>Item ID</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Qty</th>
+                                <th>Status</th>
+                                <th>Location</th>
+                                <th>Value</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventoryTableBody">
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Add Item View -->
+            <section id="addView" class="view">
+                <div class="card form-card">
+                    <h3>Add New Item</h3>
+                    <form id="addItemForm" onsubmit="addItem(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Item Name *</label>
+                                <input type="text" id="itemName" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Category *</label>
+                                <select id="itemCategory" required onchange="updateItemId(); toggleRentalFields()">
+                                    <option value="">Select Category</option>
+                                    <option value="IT Assets">IT Assets</option>
+                                    <option value="Electronic Components">Electronic Components</option>
+                                    <option value="Event Equipment">Event Equipment</option>
+                                    <option value="Mechanical Division">Mechanical Division</option>
+                                    <option value="Office Assets">Office Assets</option>
+                                    <option value="Dead Stock">Dead Stock</option>
+                                    <option value="Rented Equipment">🔄 Rented Equipment</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Sub-Category</label>
+                                <select id="itemSubCategory">
+                                    <option value="">Select Category First</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Quantity *</label>
+                                <input type="number" id="itemQuantity" min="1" value="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select id="itemStatus">
+                                    <option value="Available">Available</option>
+                                    <option value="In Use">In Use</option>
+                                    <option value="Checked Out">Checked Out</option>
+                                    <option value="Maintenance">Maintenance</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Location</label>
+                                <input type="text" id="itemLocation" placeholder="e.g., Warehouse A">
+                            </div>
+                            <div class="form-group">
+                                <label>Value (₹)</label>
+                                <input type="number" id="itemValue" min="0" value="0">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>Notes</label>
+                                <textarea id="itemNotes" rows="3" placeholder="Optional remarks..."></textarea>
+                            </div>
+                            
+                            <!-- Rental-specific fields (hidden by default) -->
+                            <div id="rentalFields" class="rental-fields" style="display: none; grid-column: span 2;">
+                                <h4 style="margin: 20px 0 15px; color: var(--primary-light);">🔄 Rental Details</h4>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Return Date *</label>
+                                        <input type="date" id="itemReturnDate">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Event/Project</label>
+                                        <input type="text" id="itemEventProject" placeholder="e.g., Tech Summit 2026">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Vendor Name *</label>
+                                        <input type="text" id="itemVendorName" placeholder="Company/Person name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Vendor Contact</label>
+                                        <input type="text" id="itemVendorContact" placeholder="Phone/Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Rental Cost (₹)</label>
+                                        <input type="number" id="itemRentalCost" min="0" value="0">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Deposit (₹)</label>
+                                        <input type="number" id="itemDeposit" min="0" value="0">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">Add Item</button>
+                            <button type="reset" class="btn-secondary">Clear</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Categories View -->
+            <section id="categoriesView" class="view">
+                <div class="categories-grid" id="categoriesGrid">
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Item</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="editItemForm" onsubmit="saveEdit(event)">
+                <input type="hidden" id="editRowIndex">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Item ID</label>
+                        <input type="text" id="editItemId" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Item Name *</label>
+                        <input type="text" id="editItemName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select id="editItemCategory" required onchange="updateEditSubCategory(); toggleEditRentalFields()">
+                            <option value="IT Assets">IT Assets</option>
+                            <option value="Electronic Components">Electronic Components</option>
+                            <option value="Event Equipment">Event Equipment</option>
+                            <option value="Mechanical Division">Mechanical Division</option>
+                            <option value="Office Assets">Office Assets</option>
+                            <option value="Dead Stock">Dead Stock</option>
+                            <option value="Rented Equipment">🔄 Rented Equipment</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Sub-Category</label>
+                        <select id="editItemSubCategory">
+                            <option value="">Select Sub-Category</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity *</label>
+                        <input type="number" id="editItemQuantity" min="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="editItemStatus">
+                            <option value="Available">Available</option>
+                            <option value="In Use">In Use</option>
+                            <option value="Checked Out">Checked Out</option>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Dead Stock">Dead Stock</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" id="editItemLocation">
+                    </div>
+                    <div class="form-group">
+                        <label>Value (₹)</label>
+                        <input type="number" id="editItemValue" min="0">
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Notes</label>
+                        <textarea id="editItemNotes" rows="3"></textarea>
+                    </div>
+                    
+                    <!-- Rental-specific fields (hidden by default) -->
+                    <div id="editRentalFields" class="rental-fields" style="display: none; grid-column: span 2;">
+                        <h4 style="margin: 20px 0 15px; color: var(--primary-light);">🔄 Rental Details</h4>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Return Date</label>
+                                <input type="date" id="editItemReturnDate">
+                            </div>
+                            <div class="form-group">
+                                <label>Event/Project</label>
+                                <input type="text" id="editItemEventProject">
+                            </div>
+                            <div class="form-group">
+                                <label>Vendor Name</label>
+                                <input type="text" id="editItemVendorName">
+                            </div>
+                            <div class="form-group">
+                                <label>Vendor Contact</label>
+                                <input type="text" id="editItemVendorContact">
+                            </div>
+                            <div class="form-group">
+                                <label>Rental Cost (₹)</label>
+                                <input type="number" id="editItemRentalCost" min="0">
+                            </div>
+                            <div class="form-group">
+                                <label>Deposit (₹)</label>
+                                <input type="number" id="editItemDeposit" min="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                    <button type="button" class="btn-danger" onclick="deleteItem()">Delete Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

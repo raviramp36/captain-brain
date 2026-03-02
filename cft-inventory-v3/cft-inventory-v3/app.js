@@ -1009,9 +1009,13 @@ function viewDCDetail(dcNumber) {
             <div class="dc-detail-actions">
                 ${checkOutBtn}
                 ${checkInBtn}
+                <button class="btn-edit" onclick="editDC('${dcNumber}')">✏️ Edit</button>
+                <button class="btn-delete" onclick="deleteDC('${dcNumber}')">🗑️ Delete</button>
                 <button class="btn-pdf-download" onclick="downloadPDF('${dcNumber}')">
                     <span>📄</span> Download PDF
                 </button>
+                <button class="btn-edit-dc" onclick="editDC('${dcNumber}')">✏️ Edit</button>
+                <button class="btn-delete-dc" onclick="deleteDC('${dcNumber}')">🗑️ Delete</button>
                 <button class="btn-back" onclick="switchView('deliveryChannels')">← Back</button>
             </div>
         </div>
@@ -1137,6 +1141,76 @@ function viewDCDetail(dcNumber) {
 }
 
 // Load DC Items
+// Edit DC - Open form with existing data
+function editDC(dcNumber) {
+    const dc = dcData.find(d => d.dcNumber === dcNumber);
+    if (!dc) return;
+    
+    // Switch to create DC view and populate form
+    switchView('createDC');
+    
+    // Populate form fields
+    document.getElementById('dcEventName').value = dc.eventName || '';
+    document.getElementById('dcActivity').value = dc.activity || '';
+    document.getElementById('dcEventDate').value = dc.eventDate || '';
+    document.getElementById('dcEventLocation').value = dc.eventLocation || '';
+    document.getElementById('dcClientName').value = dc.clientName || '';
+    document.getElementById('dcClientPOC').value = dc.clientPOC || '';
+    document.getElementById('dcClientPhone').value = dc.clientPhone || '';
+    document.getElementById('dcSitePOC').value = dc.sitePOC || '';
+    document.getElementById('dcSitePhone').value = dc.sitePhone || '';
+    document.getElementById('dcCarrierName').value = dc.carrierName || '';
+    document.getElementById('dcCarrierPhone').value = dc.carrierPhone || '';
+    document.getElementById('dcVehicleNumber').value = dc.vehicleNumber || '';
+    document.getElementById('dcDispatchDate').value = dc.dispatchDate || '';
+    document.getElementById('dcExpectedReturn').value = dc.expectedReturn || '';
+    document.getElementById('dcNotes').value = dc.notes || '';
+    document.getElementById('dcFromAddress').value = dc.fromAddress || '';
+    document.getElementById('dcToAddress').value = dc.toAddress || '';
+    
+    // Store the DC number for update
+    document.getElementById('createDCForm').dataset.editingDC = dcNumber;
+    document.getElementById('createDCForm').dataset.rowIndex = dc.rowIndex;
+    
+    // Change button text
+    const submitBtn = document.querySelector('#createDCForm button[type="submit"]');
+    if (submitBtn) submitBtn.textContent = '💾 Update DC';
+    
+    showToast('Edit mode - Make changes and click Update', 'success');
+}
+
+// Delete DC
+async function deleteDC(dcNumber) {
+    const dc = dcData.find(d => d.dcNumber === dcNumber);
+    if (!dc) return;
+    
+    if (!confirm(`Delete ${dcNumber} - "${dc.eventName}"?\n\nThis will also remove all items linked to this DC.`)) {
+        return;
+    }
+    
+    try {
+        showToast('Deleting DC...', 'success');
+        
+        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=deleteDC', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ dcNumber: dcNumber, rowIndex: dc.rowIndex })
+        });
+        
+        showToast('✅ DC deleted!', 'success');
+        
+        setTimeout(() => {
+            loadDCData();
+            switchView('deliveryChannels');
+        }, 1500);
+        
+    } catch (error) {
+        console.error('Error deleting DC:', error);
+        showToast('Failed to delete DC', 'error');
+    }
+}
+
 async function loadDCItems(dcNumber) {
     try {
         const response = await fetch('/.netlify/functions/get-dc-items?dc=' + dcNumber + '&_=' + Date.now());
@@ -3300,3 +3374,73 @@ switchView = function(viewName) {
 };
 
 // ==================== END PRODUCT BUILDS ====================
+
+// Edit DC
+function editDC(dcNumber) {
+    const dc = dcData.find(d => d.dcNumber === dcNumber);
+    if (!dc) return;
+    
+    // Pre-fill the create DC form with existing data
+    document.getElementById('dcEventName').value = dc.eventName || '';
+    document.getElementById('dcActivity').value = dc.activity || '';
+    document.getElementById('dcEventDate').value = dc.eventDate || '';
+    document.getElementById('dcEventLocation').value = dc.eventLocation || '';
+    document.getElementById('dcClientName').value = dc.clientName || '';
+    document.getElementById('dcClientPOC').value = dc.clientPOC || '';
+    document.getElementById('dcClientPhone').value = dc.clientPhone || '';
+    document.getElementById('dcSitePOC').value = dc.sitePOC || '';
+    document.getElementById('dcSitePhone').value = dc.sitePhone || '';
+    document.getElementById('dcCarrierName').value = dc.carrierName || '';
+    document.getElementById('dcCarrierPhone').value = dc.carrierPhone || '';
+    document.getElementById('dcVehicleNumber').value = dc.vehicleNumber || '';
+    document.getElementById('dcDispatchDate').value = dc.dispatchDate || '';
+    document.getElementById('dcExpectedReturn').value = dc.expectedReturn || '';
+    document.getElementById('dcFromAddress').value = dc.fromAddress || '';
+    document.getElementById('dcToAddress').value = dc.toAddress || '';
+    document.getElementById('dcNotes').value = dc.notes || '';
+    
+    // Store the DC number for update
+    window.editingDCNumber = dcNumber;
+    window.editingDCRowIndex = dc.rowIndex;
+    
+    // Change button text
+    const submitBtn = document.querySelector('#createDCForm button[type="submit"]');
+    if (submitBtn) {
+        submitBtn.innerHTML = '💾 Update DC';
+    }
+    
+    switchView('createDC');
+    showToast('Editing ' + dcNumber, 'success');
+}
+
+// Delete DC
+async function deleteDC(dcNumber) {
+    if (!confirm(`Are you sure you want to delete ${dcNumber}?\n\nThis will also remove all associated items.`)) {
+        return;
+    }
+    
+    const dc = dcData.find(d => d.dcNumber === dcNumber);
+    if (!dc) return;
+    
+    try {
+        showToast('Deleting DC...', 'success');
+        
+        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=deleteDC', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ dcNumber: dcNumber, rowIndex: dc.rowIndex })
+        });
+        
+        showToast(`✅ ${dcNumber} deleted!`, 'success');
+        
+        setTimeout(() => {
+            loadDCData();
+            switchView('deliveryChannels');
+        }, 1500);
+        
+    } catch (error) {
+        console.error('Error deleting DC:', error);
+        showToast('Failed to delete DC', 'error');
+    }
+}

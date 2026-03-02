@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization | Craftech360 Mission Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{'body':['IBM Plex Sans','sans-serif'],'heading':['Sora','sans-serif']}}}}</script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="font-body bg-slate-50 text-slate-900 min-h-screen">
+    <div id="auth-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl flex items-center justify-center mx-auto mb-4"><span class="text-white text-2xl font-bold">C</span></div>
+                <h1 class="font-heading text-2xl font-semibold">Mission Control</h1>
+                <p class="text-slate-500 mt-2">Craftech360 Operations Platform</p>
+            </div>
+            <form id="auth-form" class="space-y-4">
+                <input type="password" id="auth-code" class="input" placeholder="Enter access code">
+                <button type="submit" class="w-full btn btn-primary py-3">Sign In</button>
+                <p id="auth-error" class="text-red-500 text-sm text-center hidden">Invalid access code</p>
+            </form>
+        </div>
+    </div>
+
+    <div id="app" class="hidden flex h-screen">
+        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col">
+            <div class="p-4 border-b border-slate-200">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 bg-gradient-to-br from-slate-800 to-slate-900 rounded-lg flex items-center justify-center"><span class="text-white font-bold">C</span></div>
+                    <div><div class="font-heading font-semibold text-slate-900">Craftech360</div><div class="text-[10px] uppercase tracking-wider text-slate-500 font-medium">Mission Control</div></div>
+                </div>
+            </div>
+            <nav class="flex-1 px-3 py-4 space-y-6 overflow-y-auto">
+                <div><p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Overview</p>
+                    <a href="index.html" class="nav-item"><i data-lucide="bar-chart-3" class="w-4 h-4"></i>Dashboard</a>
+                    <a href="activity.html" class="nav-item"><i data-lucide="activity" class="w-4 h-4"></i>Activity Feed</a>
+                </div>
+                <div><p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Work</p>
+                    <a href="departments.html" class="nav-item"><i data-lucide="folder" class="w-4 h-4"></i>Departments</a>
+                    <a href="tasks.html" class="nav-item"><i data-lucide="layout-grid" class="w-4 h-4"></i>Tasks</a>
+                    <a href="procurement.html" class="nav-item"><i data-lucide="shopping-cart" class="w-4 h-4"></i>Procurement</a>
+                    
+                    <a href="tags.html" class="nav-item"><i data-lucide="tags" class="w-4 h-4"></i>Tags</a>
+                    <a href="approvals.html" class="nav-item"><i data-lucide="check-circle-2" class="w-4 h-4"></i>Approvals</a>
+                </div>
+                <div><p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Resources</p>
+                    <a href="products.html" class="nav-item"><i data-lucide="box" class="w-4 h-4"></i>Products</a>
+                </div>
+                <div><p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Administration</p>
+                    <a href="organization.html" class="nav-item active"><i data-lucide="building-2" class="w-4 h-4"></i>Organization</a>
+                    <a href="agents.html" class="nav-item"><i data-lucide="bot" class="w-4 h-4"></i>Agents</a>
+                    <a href="integrations.html" class="nav-item"><i data-lucide="network" class="w-4 h-4"></i>Integrations</a>
+                </div>
+            </nav>
+            <div class="p-4 border-t border-slate-200"><div class="flex items-center gap-2 text-xs text-slate-500"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>All systems operational</div></div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto">
+            <div class="bg-white border-b border-slate-200 px-8 py-6">
+                <h1 class="font-heading text-2xl font-semibold text-slate-900">Organization</h1>
+                <p class="text-sm text-slate-500 mt-1">Team structure and directory</p>
+            </div>
+
+            <div class="p-8">
+                <!-- Stats -->
+                <div class="grid grid-cols-4 gap-4 mb-8">
+                    <div class="kpi-card"><div class="text-3xl font-bold text-amber-600">4</div><div class="text-sm text-slate-500">Founders</div></div>
+                    <div class="kpi-card"><div class="text-3xl font-bold text-blue-600">30</div><div class="text-sm text-slate-500">Team Members</div></div>
+                    <div class="kpi-card"><div class="text-3xl font-bold text-purple-600">6</div><div class="text-sm text-slate-500">Departments</div></div>
+                    <div class="kpi-card"><div class="text-3xl font-bold text-emerald-600">4</div><div class="text-sm text-slate-500">AI Agents</div></div>
+                </div>
+
+                <!-- Founders -->
+                <div class="chart-card mb-6">
+                    <h3 class="font-heading text-lg font-semibold mb-4">👔 Leadership</h3>
+                    <div class="grid grid-cols-4 gap-4">
+                        <div class="text-center p-4 bg-amber-50 rounded-xl border border-amber-100">
+                            <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center mx-auto mb-2 text-amber-700 font-bold">R</div>
+                            <div class="font-medium">RaviKumar</div>
+                            <div class="text-xs text-slate-500">Founder & CEO</div>
+                        </div>
+                        <div class="text-center p-4 bg-amber-50 rounded-xl border border-amber-100">
+                            <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center mx-auto mb-2 text-amber-700 font-bold">SP</div>
+                            <div class="font-medium">Shrishail Pattar</div>
+                            <div class="text-xs text-slate-500">Co-Founder & MD</div>
+                        </div>
+                        <div class="text-center p-4 bg-amber-50 rounded-xl border border-amber-100">
+                            <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center mx-auto mb-2 text-amber-700 font-bold">AS</div>
+                            <div class="font-medium">Abilash S</div>
+                            <div class="text-xs text-slate-500">Co-Founder & CTO</div>
+                        </div>
+                        <div class="text-center p-4 bg-amber-50 rounded-xl border border-amber-100">
+                            <div class="w-12 h-12 bg-amber-200 rounded-full flex items-center justify-center mx-auto mb-2 text-amber-700 font-bold">PZ</div>
+                            <div class="font-medium">Pradeep Zille</div>
+                            <div class="text-xs text-slate-500">Co-Founder & CBO</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Departments -->
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="chart-card">
+                        <h3 class="font-heading font-semibold mb-3 flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-blue-500"></span>Software (6)</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-blue-50 rounded-lg text-sm">Chetan</span>
+                            <span class="px-3 py-1 bg-blue-50 rounded-lg text-sm">Harsh</span>
+                            <span class="px-3 py-1 bg-blue-50 rounded-lg text-sm">Kotresh</span>
+                            <span class="px-3 py-1 bg-blue-50 rounded-lg text-sm">Karthikeya</span>
+                            <span class="px-3 py-1 bg-blue-50 rounded-lg text-sm">Rahul</span>
+                            <span class="px-3 py-1 bg-blue-50 rounded-lg text-sm">Yamuna</span>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3 class="font-heading font-semibold mb-3 flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-yellow-500"></span>Embedded (3)</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-yellow-50 rounded-lg text-sm">Naveen</span>
+                            <span class="px-3 py-1 bg-yellow-50 rounded-lg text-sm">Shashank</span>
+                            <span class="px-3 py-1 bg-yellow-50 rounded-lg text-sm">Pratik</span>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3 class="font-heading font-semibold mb-3 flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-orange-500"></span>Creative (6)</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-orange-50 rounded-lg text-sm">Akash (Video)</span>
+                            <span class="px-3 py-1 bg-orange-50 rounded-lg text-sm">Divyashree (Graphics)</span>
+                            <span class="px-3 py-1 bg-orange-50 rounded-lg text-sm">Manjunath (3D)</span>
+                            <span class="px-3 py-1 bg-orange-50 rounded-lg text-sm">Nikhitha (SMM)</span>
+                            <span class="px-3 py-1 bg-orange-50 rounded-lg text-sm">Siva (UI/UX)</span>
+                            <span class="px-3 py-1 bg-orange-50 rounded-lg text-sm">Abhijith (UI/UX)</span>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3 class="font-heading font-semibold mb-3 flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-purple-500"></span>Business Dev (5)</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-purple-50 rounded-lg text-sm font-medium">Snehal (Lead)</span>
+                            <span class="px-3 py-1 bg-purple-50 rounded-lg text-sm">Avijit</span>
+                            <span class="px-3 py-1 bg-purple-50 rounded-lg text-sm">Nishkal</span>
+                            <span class="px-3 py-1 bg-purple-50 rounded-lg text-sm">Akshay</span>
+                            <span class="px-3 py-1 bg-purple-50 rounded-lg text-sm">Amruta</span>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3 class="font-heading font-semibold mb-3 flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-green-500"></span>Operations (4)</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-green-50 rounded-lg text-sm font-medium">Shivraj (Lead)</span>
+                            <span class="px-3 py-1 bg-green-50 rounded-lg text-sm">Shivukumara</span>
+                            <span class="px-3 py-1 bg-green-50 rounded-lg text-sm">Thippeswamy</span>
+                            <span class="px-3 py-1 bg-green-50 rounded-lg text-sm">Varuna</span>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3 class="font-heading font-semibold mb-3 flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-pink-500"></span>HR & Admin (2)</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-pink-50 rounded-lg text-sm">Suman N (HR)</span>
+                            <span class="px-3 py-1 bg-pink-50 rounded-lg text-sm">Suma NC (Accounts)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="js/app.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

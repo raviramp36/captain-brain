@@ -369,6 +369,24 @@ body {
     cursor: pointer;
 }
 
+.filter-group input {
+    padding: 10px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.filter-group input::placeholder {
+    color: var(--text-muted);
+}
+
+.filter-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
 .export-btn {
     padding: 10px 16px;
     background: var(--bg-card);
@@ -2458,4 +2476,68 @@ body {
     .build-selected-items {
         max-height: 250px;
     }
+}
+
+/* DC Edit and Delete Buttons */
+.btn-edit {
+    padding: 10px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--primary);
+    border-radius: var(--radius-sm);
+    color: var(--primary);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-edit:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-delete {
+    padding: 10px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--danger);
+    border-radius: var(--radius-sm);
+    color: var(--danger);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-delete:hover {
+    background: var(--danger);
+    color: white;
+}
+
+/* DC Edit/Delete Buttons */
+.btn-edit-dc {
+    padding: 10px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--warning);
+    border-radius: var(--radius-sm);
+    color: var(--warning);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-edit-dc:hover {
+    background: rgba(245, 158, 11, 0.1);
+}
+
+.btn-delete-dc {
+    padding: 10px 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--danger);
+    border-radius: var(--radius-sm);
+    color: var(--danger);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-delete-dc:hover {
+    background: rgba(239, 68, 68, 0.1);
 }

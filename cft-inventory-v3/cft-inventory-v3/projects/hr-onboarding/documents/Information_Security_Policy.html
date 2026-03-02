@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Security Policy - Craftech360</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fff;
+            padding: 0.75in 1in;
+            max-width: 8.5in;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 3px double #2c5282;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .company-name {
+            font-size: 24pt;
+            font-weight: bold;
+            color: #2c5282;
+            letter-spacing: 2px;
+        }
+        
+        .document-title {
+            font-size: 16pt;
+            font-weight: bold;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            font-size: 10pt;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #2c5282;
+            border-bottom: 1px solid #2c5282;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .subsection {
+            margin-bottom: 15px;
+            margin-left: 15px;
+        }
+        
+        .subsection-title {
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+        
+        p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 10px;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        .highlight-box {
+            background: #f7fafc;
+            border-left: 4px solid #2c5282;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .warning-box {
+            background: #fff5f5;
+            border-left: 4px solid #c53030;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .critical-box {
+            background: #fffaf0;
+            border-left: 4px solid #dd6b20;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .icon-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f7fafc;
+            border-radius: 5px;
+        }
+        
+        .icon {
+            font-size: 24pt;
+            line-height: 1;
+        }
+        
+        .icon-content {
+            flex: 1;
+        }
+        
+        .rule-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 10pt;
+        }
+        
+        .rule-table th {
+            background: #2c5282;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .rule-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            vertical-align: top;
+        }
+        
+        .rule-table tr:nth-child(even) {
+            background: #f7fafc;
+        }
+        
+        .allowed {
+            color: #276749;
+            font-weight: bold;
+        }
+        
+        .prohibited {
+            color: #c53030;
+            font-weight: bold;
+        }
+        
+        .blank-line {
+            border-bottom: 1px solid #333;
+            display: inline-block;
+            min-width: 200px;
+            margin: 0 5px;
+        }
+        
+        .signature-section {
+            margin-top: 40px;
+            page-break-inside: avoid;
+        }
+        
+        .signature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .signature-block {
+            border-top: 1px solid #333;
+            padding-top: 10px;
+        }
+        
+        .signature-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .checklist li {
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+        }
+        
+        .page-break {
+            page-break-before: always;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="company-name">CRAFTECH360</div>
+        <div class="document-title">Information Security Policy</div>
+        <div class="subtitle">Rules for Handling Company Data, Devices, and Systems</div>
+        <div class="subtitle">Effective Date: _____________ | Version 1.0</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">1. Purpose & Scope</div>
+        <p>This Information Security Policy establishes rules and procedures to protect <strong>Craftech360 Private Limited</strong> ("Company") information assets, including data, systems, and devices, from unauthorized access, disclosure, modification, or destruction.</p>
+        
+        <div class="highlight-box">
+            <strong>This Policy Applies To:</strong>
+            <ul>
+                <li>All employees, contractors, interns, and temporary staff</li>
+                <li>All Company-owned devices, systems, and networks</li>
+                <li>Personal devices used for Company work (BYOD)</li>
+                <li>All data created, stored, or transmitted in the course of Company business</li>
+                <li>Third-party systems and cloud services used for Company purposes</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">2. Data Classification</div>
+        <p>All Company information is classified into the following categories:</p>
+        
+        <table class="rule-table">
+            <thead>
+                <tr>
+                    <th>Classification</th>
+                    <th>Description</th>
+                    <th>Examples</th>
+                    <th>Handling</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong style="color: #c53030;">CONFIDENTIAL</strong></td>
+                    <td>Highly sensitive; unauthorized disclosure could cause significant harm</td>
+                    <td>Financial data, salaries, client contracts, source code, trade secrets</td>
+                    <td>Encrypted storage; need-to-know access only; no sharing externally</td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #dd6b20;">INTERNAL</strong></td>
+                    <td>For internal use; not intended for public disclosure</td>
+                    <td>Internal communications, project plans, vendor lists, employee contacts</td>
+                    <td>Access limited to employees; do not share externally without approval</td>
+                </tr>
+                <tr>
+                    <td><strong style="color: #276749;">PUBLIC</strong></td>
+                    <td>Approved for public distribution</td>
+                    <td>Marketing materials, website content, press releases</td>
+                    <td>Can be shared freely; must be accurate and up-to-date</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p><strong>When in doubt, treat information as INTERNAL.</strong></p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">3. Password & Authentication</div>
+        
+        <div class="icon-section">
+            <div class="icon">🔐</div>
+            <div class="icon-content">
+                <div class="subsection-title">Password Requirements</div>
+                <ul>
+                    <li>Minimum <strong>12 characters</strong> for all accounts</li>
+                    <li>Mix of uppercase, lowercase, numbers, and special characters</li>
+                    <li>No dictionary words, names, or easily guessable information</li>
+                    <li>Change passwords every <strong>90 days</strong></li>
+                    <li>Never reuse passwords across different systems</li>
+                    <li>Use a password manager (Company-approved: Bitwarden)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="warning-box">
+            <strong>🚫 Never:</strong>
+            <ul>
+                <li>Share your password with anyone, including IT staff or managers</li>
+                <li>Write passwords on sticky notes or store them in plain text</li>
+                <li>Use the same password for work and personal accounts</li>
+                <li>Send passwords via email or chat</li>
+            </ul>
+        </div>
+        
+        <div class="subsection">
+            <div class="subsection-title">Multi-Factor Authentication (MFA)</div>
+            <p>MFA is <strong>mandatory</strong> for:</p>
+            <ul>
+                <li>All email accounts (Google Workspace)</li>
+                <li>Cloud storage and collaboration tools</li>
+                <li>Remote access / VPN</li>
+                <li>Administrative access to any system</li>
+                <li>Financial and HR systems</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">4. Device Security</div>
+        
+        <div class="subsection">
+            <div class="subsection-title">4.1 Company-Owned Devices</div>
+            <ul>
+                <li>All laptops must have <strong>full-disk encryption</strong> enabled</li>
+                <li>Screen lock must activate after <strong>5 minutes</strong> of inactivity</li>
+                <li>Antivirus software must be installed and kept updated</li>
+                <li>Operating system and applications must be updated within 7 days of security patches</li>
+                <li>Do not disable security features or install unauthorized software</li>
+                <li>Report lost or stolen devices to IT <strong>immediately</strong> (within 1 hour)</li>
+            </ul>
+        </div>
+        
+        <div class="subsection">
+            <div class="subsection-title">4.2 Mobile Devices (Phones/Tablets)</div>
+            <ul>
+                <li>Enable device PIN/biometric lock</li>
+                <li>Enable remote wipe capability</li>
+                <li>Do not jailbreak or root devices used for work</li>
+                <li>Only install apps from official app stores</li>
+                <li>Enable automatic updates</li>
+            </ul>
+        </div>
+        
+        <div class="subsection">
+            <div class="subsection-title">4.3 Personal Devices (BYOD)</div>
+            <p>If using personal devices for Company work:</p>
+            <ul>
+                <li>Must meet same security standards as Company devices</li>
+                <li>Company may remotely wipe Company data if device is lost/stolen</li>
+                <li>Do not store Confidential data on personal devices without encryption</li>
+                <li>Separate work and personal accounts where possible</li>
+                <li>Notify IT before using personal device for work</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <div class="section-title">5. Data Handling & Storage</div>
+        
+        <table class="rule-table">
+            <thead>
+                <tr>
+                    <th>Activity</th>
+                    <th class="allowed">✓ Allowed</th>
+                    <th class="prohibited">✗ Prohibited</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Cloud Storage</strong></td>
+                    <td>Company Google Drive, approved cloud services</td>
+                    <td>Personal Dropbox, WeTransfer, unapproved services</td>
+                </tr>
+                <tr>
+                    <td><strong>File Sharing</strong></td>
+                    <td>Google Drive sharing (with proper permissions), Company email</td>
+                    <td>Public file sharing links, personal email for work files</td>
+                </tr>
+                <tr>
+                    <td><strong>USB Drives</strong></td>
+                    <td>Encrypted drives for approved purposes only</td>
+                    <td>Personal/unknown USB drives; unencrypted transfer of Confidential data</td>
+                </tr>
+                <tr>
+                    <td><strong>Printing</strong></td>
+                    <td>Secure printing for necessary documents</td>
+                    <td>Leaving Confidential printouts unattended</td>
+                </tr>
+                <tr>
+                    <td><strong>Disposal</strong></td>
+                    <td>Secure deletion, shredding physical documents</td>
+                    <td>Throwing documents in regular trash, simple file deletion</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="critical-box">
+            <strong>⚠️ Client Data:</strong> Client project files, creative assets, and proprietary content are <strong>CONFIDENTIAL</strong>. Never share with unauthorized parties, post publicly, or include in portfolios without written client consent.
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">6. Email & Communication Security</div>
+        <ul>
+            <li>Use Company email for all work communication</li>
+            <li>Verify sender before clicking links or opening attachments</li>
+            <li>Do not forward work emails to personal accounts</li>
+            <li>Encrypt emails containing Confidential information</li>
+            <li>Be cautious of phishing attempts — report suspicious emails to IT</li>
+            <li>Do not send Confidential data to external recipients without encryption or secure file sharing</li>
+        </ul>
+        
+        <div class="highlight-box">
+            <strong>Phishing Red Flags:</strong>
+            <ul>
+                <li>Urgent requests for passwords or financial information</li>
+                <li>Unexpected attachments or links</li>
+                <li>Spelling errors or unusual sender addresses</li>
+                <li>Requests that bypass normal procedures</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">7. Network & Internet Security</div>
+        
+        <div class="subsection">
+            <div class="subsection-title">7.1 Office Network</div>
+            <ul>
+                <li>Connect only Company-approved devices to the network</li>
+                <li>Do not share WiFi credentials with visitors without authorization</li>
+                <li>Do not attempt to bypass network security controls</li>
+            </ul>
+        </div>
+        
+        <div class="subsection">
+            <div class="subsection-title">7.2 Remote Work & Public WiFi</div>
+            <ul>
+                <li>Use VPN when connecting to Company systems remotely</li>
+                <li><strong>Never</strong> access Confidential data on public WiFi without VPN</li>
+                <li>Ensure home WiFi uses WPA2/WPA3 encryption with strong password</li>
+                <li>Do not work on sensitive matters in public spaces where screens are visible</li>
+            </ul>
+        </div>
+        
+        <div class="subsection">
+            <div class="subsection-title">7.3 Acceptable Use</div>
+            <p>Company internet may be used for:</p>
+            <ul>
+                <li>Work-related activities</li>
+                <li>Limited personal use that does not interfere with work</li>
+            </ul>
+            <p><strong>Prohibited:</strong> Accessing illegal content, downloading pirated software/media, streaming that impacts bandwidth, gambling, or any activity that violates Company policies.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">8. Software & Access Management</div>
+        <ul>
+            <li>Only use Company-licensed software</li>
+            <li>Do not install unauthorized software or browser extensions</li>
+            <li>Request software through IT; do not download from unofficial sources</li>
+            <li>Access is granted on a need-to-know basis</li>
+            <li>Report changes in job role that affect access needs</li>
+            <li>Do not share login credentials or access tokens</li>
+            <li>Log out of systems when not in use; especially shared devices</li>
+        </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <div class="section-title">9. Physical Security</div>
+        <ul>
+            <li>Lock workstation when leaving desk (Win+L / Cmd+Ctrl+Q)</li>
+            <li>Do not leave devices unattended in public places</li>
+            <li>Secure laptops with cable lock when in office (if provided)</li>
+            <li>Do not allow tailgating — challenge unknown individuals</li>
+            <li>Store Confidential documents in locked cabinets</li>
+            <li>Clear desk of sensitive materials at end of day</li>
+            <li>Report suspicious persons or activities to security</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section-title">10. Incident Reporting</div>
+        <p>Report security incidents <strong>immediately</strong> to IT and HR. Examples include:</p>
+        <ul>
+            <li>Lost or stolen device</li>
+            <li>Suspected unauthorized access to systems</li>
+            <li>Accidental data disclosure</li>
+            <li>Suspicious emails or phishing attempts</li>
+            <li>Malware or virus infection</li>
+            <li>Physical security breaches</li>
+        </ul>
+        
+        <div class="warning-box">
+            <strong>Contact Information:</strong><br>
+            IT Support: [IT Contact to be added]<br>
+            HR: hr@craftech360.com | +91 87920 14630<br>
+            Management: accounts@craftech360.com<br><br>
+            <strong>For lost/stolen devices:</strong> Report within 1 hour, 24/7
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">11. Consequences of Violation</div>
+        <p>Violation of this Policy may result in:</p>
+        <ul>
+            <li>Disciplinary action up to and including termination</li>
+            <li>Civil or criminal liability for data breaches</li>
+            <li>Personal liability for damages caused by negligence</li>
+            <li>Reporting to law enforcement where applicable</li>
+        </ul>
+        <p>Severity of consequences will be determined based on the nature of the violation, intent, and impact.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">12. Policy Review</div>
+        <p>This Policy will be reviewed annually and updated as needed. Employees will be notified of material changes and may be required to re-acknowledge the updated Policy.</p>
+    </div>
+
+    <div class="signature-section">
+        <div class="section-title">Employee Acknowledgment</div>
+        <p>I, <span class="blank-line"></span>, acknowledge that I have received, read, and understood the Craftech360 Information Security Policy. I agree to comply with all rules and procedures outlined herein.</p>
+        
+        <p>I understand that:</p>
+        <ul>
+            <li>I am responsible for the security of Company information and assets in my possession</li>
+            <li>I must report security incidents immediately</li>
+            <li>Violation may result in disciplinary action and/or legal consequences</li>
+            <li>I will complete security awareness training as required</li>
+        </ul>
+        
+        <div class="signature-grid">
+            <div>
+                <div class="signature-block">
+                    <div class="signature-label">Employee Signature</div>
+                </div>
+                <p>Name: <span class="blank-line"></span></p>
+                <p>Employee ID: <span class="blank-line"></span></p>
+                <p>Department: <span class="blank-line"></span></p>
+                <p>Date: <span class="blank-line"></span></p>
+            </div>
+            <div>
+                <div class="signature-block">
+                    <div class="signature-label">HR / IT Representative</div>
+                </div>
+                <p>Name: <span class="blank-line"></span></p>
+                <p>Title: <span class="blank-line"></span></p>
+                <p>Date: <span class="blank-line"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; text-align: center; font-size: 9pt; color: #666; border-top: 1px solid #ddd; padding-top: 20px;">
+        <strong>CRAFTECH360 PRIVATE LIMITED</strong><br>
+        Registered Office: Bangalore, Karnataka, India<br>
+        This document is confidential and intended for internal use only.
+    </div>
+</body>
+</html>
