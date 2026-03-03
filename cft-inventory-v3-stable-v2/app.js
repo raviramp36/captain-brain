@@ -1398,29 +1398,42 @@ async function downloadPDF(dcNumber) {
     
     showToast('Generating PDF...', 'success');
     
-    // Fetch items for this DC
-    let itemsHtml = '<tr><td colspan="5" style="text-align:center;padding:20px;color:#666;">No items</td></tr>';
+    // Fetch items for this DC and inventory data for descriptions
+    let itemsHtml = '<tr><td colspan="7" style="text-align:center;padding:20px;color:#666;">No items</td></tr>';
     let totalItems = 0;
     try {
+        // Fetch DC items
         const response = await fetch('/.netlify/functions/get-dc-items?dc=' + dcNumber + '&_=' + Date.now());
         const csvText = await response.text();
         const data = parseCSV(csvText);
         const items = data.slice(1).filter(row => row[0] === dcNumber);
         
+        // Fetch inventory to get item notes/descriptions
+        const invResponse = await fetch('/.netlify/functions/get-inventory?_=' + Date.now());
+        const invCsv = await invResponse.text();
+        const invData = parseCSV(invCsv);
+        const inventoryMap = {};
+        invData.slice(1).forEach(row => {
+            if (row[0]) inventoryMap[row[0]] = { notes: row[9] || '', category: row[2] || '' };
+        });
+        
         if (items.length > 0) {
             totalItems = items.reduce((sum, item) => sum + (parseInt(item[4]) || 0), 0);
-            // Columns: Item SKU | Name | Description | Qty | Out | In | Remarks
-            itemsHtml = items.map((item, idx) => `
+            // Columns: Item SKU | Name | Description (notes) | Qty | Out | In | Remarks
+            itemsHtml = items.map((item, idx) => {
+                const invItem = inventoryMap[item[1]] || {};
+                const description = invItem.notes || item[3] || '-';
+                return `
                 <tr>
                     <td>${item[1]}</td>
                     <td>${item[2]}</td>
-                    <td>${item[3] || '-'}</td>
+                    <td style="font-size:9px;">${description}</td>
                     <td style="text-align:center;">${item[4]}</td>
                     <td style="text-align:center;"><div class="checkbox"></div></td>
                     <td style="text-align:center;"><div class="checkbox"></div></td>
-                    <td></td>
+                    <td style="min-height:40px;"></td>
                 </tr>
-            `).join('');
+            `}).join('');
         }
     } catch (e) {
         console.error('Error fetching items for PDF:', e);
@@ -1548,13 +1561,13 @@ async function downloadPDF(dcNumber) {
                 <table class="items-table">
                     <thead>
                         <tr>
-                            <th style="width:80px;">Item SKU</th>
-                            <th style="width:150px;">Name</th>
-                            <th>Description</th>
-                            <th style="width:50px;text-align:center;">Qty</th>
-                            <th style="width:50px;text-align:center;">Out</th>
-                            <th style="width:50px;text-align:center;">In</th>
-                            <th style="width:80px;">Remarks</th>
+                            <th style="width:65px;">Item SKU</th>
+                            <th style="width:120px;">Name</th>
+                            <th style="width:180px;">Description</th>
+                            <th style="width:35px;text-align:center;">Qty</th>
+                            <th style="width:35px;text-align:center;">Out</th>
+                            <th style="width:35px;text-align:center;">In</th>
+                            <th style="width:130px;">Remarks</th>
                         </tr>
                     </thead>
                     <tbody>
