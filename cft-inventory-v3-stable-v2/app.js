@@ -1152,7 +1152,7 @@ function viewDCDetail(dcNumber) {
 
 // Load DC Items
 // Edit DC - Open form with existing data
-function editDC(dcNumber) {
+async function editDC(dcNumber) {
     const dc = dcData.find(d => d.dcNumber === dcNumber);
     if (!dc) return;
     
@@ -1186,7 +1186,28 @@ function editDC(dcNumber) {
     const submitBtn = document.querySelector('#createDCForm button[type="submit"]');
     if (submitBtn) submitBtn.textContent = '💾 Update DC';
     
-    showToast('Edit mode - Make changes and click Update', 'success');
+    // Load existing DC items
+    try {
+        const response = await fetch('/.netlify/functions/get-dc-items?dc=' + dcNumber + '&_=' + Date.now());
+        const csvText = await response.text();
+        const data = parseCSV(csvText);
+        const existingItems = data.slice(1).filter(row => row[0] === dcNumber);
+        
+        // Clear and populate selectedDCItems with existing items
+        selectedDCItems = existingItems.map(item => ({
+            itemId: item[1],
+            name: item[2],
+            category: item[3],
+            qty: parseInt(item[4]) || 1,
+            maxQty: 999 // Allow flexible qty in edit mode
+        }));
+        
+        updateSelectedItemsList();
+        showToast(`Edit mode - ${selectedDCItems.length} items loaded`, 'success');
+    } catch (e) {
+        console.error('Error loading DC items:', e);
+        showToast('Edit mode - Could not load existing items', 'warning');
+    }
 }
 
 // Delete DC
@@ -3400,44 +3421,6 @@ switchView = function(viewName) {
 };
 
 // ==================== END PRODUCT BUILDS ====================
-
-// Edit DC
-function editDC(dcNumber) {
-    const dc = dcData.find(d => d.dcNumber === dcNumber);
-    if (!dc) return;
-    
-    // Pre-fill the create DC form with existing data
-    document.getElementById('dcEventName').value = dc.eventName || '';
-    document.getElementById('dcActivity').value = dc.activity || '';
-    document.getElementById('dcEventDate').value = dc.eventDate || '';
-    document.getElementById('dcEventLocation').value = dc.eventLocation || '';
-    document.getElementById('dcClientName').value = dc.clientName || '';
-    document.getElementById('dcClientPOC').value = dc.clientPOC || '';
-    document.getElementById('dcClientPhone').value = dc.clientPhone || '';
-    document.getElementById('dcSitePOC').value = dc.sitePOC || '';
-    document.getElementById('dcSitePhone').value = dc.sitePhone || '';
-    document.getElementById('dcCarrierName').value = dc.carrierName || '';
-    document.getElementById('dcCarrierPhone').value = dc.carrierPhone || '';
-    document.getElementById('dcVehicleNumber').value = dc.vehicleNumber || '';
-    document.getElementById('dcDispatchDate').value = dc.dispatchDate || '';
-    document.getElementById('dcExpectedReturn').value = dc.expectedReturn || '';
-    document.getElementById('dcFromAddress').value = dc.fromAddress || '';
-    document.getElementById('dcToAddress').value = dc.toAddress || '';
-    document.getElementById('dcNotes').value = dc.notes || '';
-    
-    // Store the DC number for update
-    window.editingDCNumber = dcNumber;
-    window.editingDCRowIndex = dc.rowIndex;
-    
-    // Change button text
-    const submitBtn = document.querySelector('#createDCForm button[type="submit"]');
-    if (submitBtn) {
-        submitBtn.innerHTML = '💾 Update DC';
-    }
-    
-    switchView('createDC');
-    showToast('Editing ' + dcNumber, 'success');
-}
 
 // Delete DC
 async function deleteDC(dcNumber) {
