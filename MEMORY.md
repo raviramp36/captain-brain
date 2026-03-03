@@ -153,6 +153,15 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 - **Scope:** Recruitment, attendance, onboarding, performance, training, exit, SOPs, meetings
 - **Full playbook:** `memory/hr-agent-role.md`
 
+### HR Policies (Updated Feb 28, 2026)
+- **Office Hours:** 10:30 AM start with 30-minute grace period
+- **Late Check-in:** After grace → warnings → salary impact
+- **Leave Approval:** Team leads are final approvers (not self-granted)
+- **Leave Types:** Casual (advance notice), Sick (docs may be required), Earned (accrued)
+- **Replacement Leave:** Event executors earn for Sundays/holidays worked
+- **Reimbursements:** Biweekly processing, imprest amounts capped per person
+- **Full MoM:** `memory/2026-02-28-policy-meeting-mom.md`
+
 ## Investors
 
 | Name | Role | Notes |
@@ -257,6 +266,30 @@ Reference: `memory/hiring-priority-companies.md`
 - **"Save it"** → Upload shared file to this folder
 - **"Get [filename]"** → Retrieve and send back
 
+## ⚠️ IP Protection — ZERO TOLERANCE (March 2026)
+
+**Situation:** CONFIRMED information leakage to competitors
+- Designs, motor specs, vendor info, pricing leaked
+- Competition building same products faster & cheaper
+
+**Policy:**
+- ❌ NO sharing company info with ex-employees at competitors
+- ❌ NO discussing projects/tech with friends at other companies
+- ✅ Personal friendships fine — professional info sharing = legal action
+
+**Consequences:** Legal action will be taken. This affects everyone's jobs.
+
+---
+
+## Inventory System v2
+
+- **Apps Script URL:** `https://script.google.com/macros/s/AKfycbwATOFgb9Of7IA9guf_qJFWcpXhC_FxFeXPdQtoRlhIs5gjEhmjXKk1q3L-tvvT9ByC/exec`
+- **GitHub:** raviramp36/captain-brain (smpattar1/CFT-Inventory-V3 needs PAT setup)
+- **Features:** DC checkout/check-in, status tracking (In Use/Available), DC close
+- **Pending (Pattar):** `updateItemsStatus`, `closeDC`, `updateDC`, `deleteDC` handlers
+
+---
+
 ## Lessons Learned
 
 - **Sessions are separate:** Cross-session memory requires manual consolidation to MEMORY.md
@@ -267,3 +300,18 @@ Reference: `memory/hiring-priority-companies.md`
 ---
 
 *Review and update periodically. Daily files are raw notes; this is curated wisdom.*
+
+## Recent Meeting Notes
+
+### Company All-Hands (March 2, 2026)
+**Full Summary:** `memory/2026-03-02-company-meeting-summary.md`
+
+**Key Takeaways:**
+1. **AI Adoption** — Push entire org to use AI strategically, not just as Google
+2. **Ownership Culture** — Take responsibility, don't wait for instructions
+3. **IP Protection** — ZERO TOLERANCE for leaking info to competitors (legal action)
+4. **IPL Opportunity** — Jai/Star Dimension connection can get us into IPL stadiums
+5. **Idea Box** — ₹2,000-₹10,000 rewards for process improvement ideas
+6. **HR Policies** — Revamp coming, need to respond to HR messages
+
+**Action:** Ravi sending email summary, expects reply from everyone
