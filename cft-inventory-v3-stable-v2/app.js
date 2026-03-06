@@ -1856,7 +1856,7 @@ const originalSwitchView = switchView;
 switchView = function(viewName) {
     // Handle DC-specific views
     if (viewName === 'deliveryChannels') {
-        await loadDCData(); await new Promise(r => setTimeout(r, 1000));
+        loadDCData();
     } else if (viewName === 'createDC') {
         selectedDCItems = [];
         updateSelectedItemsList();
