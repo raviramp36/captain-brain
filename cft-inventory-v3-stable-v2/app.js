@@ -3141,21 +3141,24 @@ function generateBuildId() {
 async function createBuild(e) {
     e.preventDefault();
     
+    const form = document.getElementById('createBuildForm');
+    const isEditing = form.dataset.editingBuild;
+    
     if (selectedBuildItems.length === 0) {
         showToast('Please select at least one component!', 'error');
         return;
     }
     
-    const buildId = generateBuildId();
+    const buildId = isEditing ? form.dataset.editingBuild : generateBuildId();
     const today = new Date().toISOString().split('T')[0];
     
     // Calculate total component value
     const totalComponentValue = selectedBuildItems.reduce((sum, item) => sum + (item.value * item.qty), 0);
     const estValue = parseInt(document.getElementById('buildEstValue').value) || totalComponentValue;
     
-    const buildData = {
-        action: 'createBuild',
+    const buildPayload = {
         buildId: buildId,
+        rowIndex: form.dataset.rowIndex || null,
         productName: document.getElementById('buildProductName').value,
         description: document.getElementById('buildDescription').value,
         targetCategory: document.getElementById('buildTargetCategory').value,
@@ -3170,21 +3173,28 @@ async function createBuild(e) {
     };
     
     try {
-        showToast('Creating build...', 'success');
+        const action = isEditing ? 'updateBuild' : 'createBuild';
+        showToast(isEditing ? 'Updating build...' : 'Creating build...', 'success');
         
-        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=createBuild', {
+        await fetch(CONFIG.APPS_SCRIPT_URL + '?action=' + action, {
             method: 'POST',
             mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(buildData)
+            body: JSON.stringify(buildPayload)
         });
         
-        showToast(`✅ Build ${buildId} created!`, 'success');
+        showToast(`✅ Build ${buildId} ${isEditing ? 'updated' : 'created'}!`, 'success');
         
-        // Reset form
-        document.getElementById('createBuildForm').reset();
+        // Reset form and edit mode
+        form.reset();
+        delete form.dataset.editingBuild;
+        delete form.dataset.rowIndex;
         selectedBuildItems = [];
         updateSelectedBuildItems();
+        
+        // Reset button text
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.textContent = '🔨 Create Build';
         
         // Reload data and switch view
         setTimeout(async () => {
@@ -3194,8 +3204,8 @@ async function createBuild(e) {
         }, 1500);
         
     } catch (error) {
-        console.error('Error creating build:', error);
-        showToast('Failed to create build', 'error');
+        console.error('Error with build:', error);
+        showToast('Failed to process build', 'error');
     }
 }
 
@@ -3213,6 +3223,7 @@ async function viewBuildDetail(buildId) {
     let actionButtons = '';
     if (build.status === 'In Progress') {
         actionButtons = `
+            <button class="btn-edit-build" onclick="editBuild('${buildId}')">✏️ Edit Build</button>
             <button class="btn-complete-build" onclick="completeBuild('${buildId}')">✅ Complete Build</button>
             <button class="btn-cancel-build" onclick="cancelBuild('${buildId}')">Cancel Build</button>
         `;
