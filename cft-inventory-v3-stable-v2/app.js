@@ -623,7 +623,7 @@ function showToast(message, type = 'success') {
     toast.textContent = message;
     toast.className = 'toast show ' + type;
     
-    setTimeout(() => {
+    setTimeout(async () => {
         toast.classList.remove('show');
     }, 3000);
 }
@@ -966,8 +966,8 @@ async function createDC(e) {
         if (submitBtn) submitBtn.textContent = '📦 Create DC';
         
         // Reload and switch view
-        setTimeout(() => {
-            loadDCData();
+        setTimeout(async () => {
+            await loadDCData(); await new Promise(r => setTimeout(r, 1000));
             switchView('deliveryChannels');
         }, 1500);
         
@@ -1231,8 +1231,8 @@ async function deleteDC(dcNumber) {
         
         showToast('✅ DC deleted!', 'success');
         
-        setTimeout(() => {
-            loadDCData();
+        setTimeout(async () => {
+            await loadDCData(); await new Promise(r => setTimeout(r, 1000));
             switchView('deliveryChannels');
         }, 1500);
         
@@ -1306,7 +1306,7 @@ async function approveDC(dcNumber) {
         });
         
         showToast('✅ DC Approved!', 'success');
-        setTimeout(() => { loadDCData(); viewDCDetail(dcNumber); }, 1500);
+        setTimeout(async () => { await loadDCData(); await new Promise(r => setTimeout(r, 1000)); viewDCDetail(dcNumber); }, 1500);
     } catch (error) {
         showToast('Error approving DC', 'error');
     }
@@ -1323,7 +1323,7 @@ async function dispatchDC(dcNumber) {
         });
         
         showToast('🚚 DC Dispatched!', 'success');
-        setTimeout(() => { loadDCData(); viewDCDetail(dcNumber); }, 1500);
+        setTimeout(async () => { await loadDCData(); await new Promise(r => setTimeout(r, 1000)); viewDCDetail(dcNumber); }, 1500);
     } catch (error) {
         showToast('Error dispatching DC', 'error');
     }
@@ -1339,7 +1339,7 @@ async function updateDCStatus(dcNumber, newStatus) {
         });
         
         showToast(`Status updated to ${newStatus}`, 'success');
-        setTimeout(() => { loadDCData(); viewDCDetail(dcNumber); }, 1500);
+        setTimeout(async () => { await loadDCData(); await new Promise(r => setTimeout(r, 1000)); viewDCDetail(dcNumber); }, 1500);
     } catch (error) {
         showToast('Error updating status', 'error');
     }
@@ -1356,7 +1356,7 @@ async function closeDC(dcNumber) {
         });
         
         showToast('✅ DC Closed!', 'success');
-        setTimeout(() => { loadDCData(); viewDCDetail(dcNumber); }, 1500);
+        setTimeout(async () => { await loadDCData(); await new Promise(r => setTimeout(r, 1000)); viewDCDetail(dcNumber); }, 1500);
     } catch (error) {
         showToast('Error closing DC', 'error');
     }
@@ -1856,7 +1856,7 @@ const originalSwitchView = switchView;
 switchView = function(viewName) {
     // Handle DC-specific views
     if (viewName === 'deliveryChannels') {
-        loadDCData();
+        await loadDCData(); await new Promise(r => setTimeout(r, 1000));
     } else if (viewName === 'createDC') {
         selectedDCItems = [];
         updateSelectedItemsList();
@@ -1893,7 +1893,7 @@ switchView = function(viewName) {
 
 // Load DC data on init
 document.addEventListener('DOMContentLoaded', () => {
-    loadDCData();
+    await loadDCData(); await new Promise(r => setTimeout(r, 1000));
 });
 
 // ==================== PURCHASE REQUESTS ====================
@@ -2763,7 +2763,7 @@ async function createCheckout(e) {
         showToast('✅ Checkout created!', 'success');
         document.getElementById('checkoutForm').reset();
         
-        setTimeout(() => {
+        setTimeout(async () => {
             loadDailyLogData();
             switchView('dailyLog');
         }, 1500);
@@ -3187,7 +3187,7 @@ async function createBuild(e) {
         updateSelectedBuildItems();
         
         // Reload data and switch view
-        setTimeout(() => {
+        setTimeout(async () => {
             loadBuildsData();
             loadData(); // Reload inventory to reflect qty changes
             switchView('builds');
@@ -3361,7 +3361,7 @@ async function completeBuild(buildId) {
         
         showToast('✅ Build completed! New item created.', 'success');
         
-        setTimeout(() => {
+        setTimeout(async () => {
             loadBuildsData();
             loadData(); // Reload inventory to show new item
             viewBuildDetail(buildId);
@@ -3394,7 +3394,7 @@ async function cancelBuild(buildId) {
         
         showToast('Build cancelled. Components restored.', 'success');
         
-        setTimeout(() => {
+        setTimeout(async () => {
             loadBuildsData();
             loadData(); // Reload inventory
             switchView('builds');
@@ -3456,8 +3456,8 @@ async function deleteDC(dcNumber) {
         
         showToast(`✅ ${dcNumber} deleted!`, 'success');
         
-        setTimeout(() => {
-            loadDCData();
+        setTimeout(async () => {
+            await loadDCData(); await new Promise(r => setTimeout(r, 1000));
             switchView('deliveryChannels');
         }, 1500);
         
