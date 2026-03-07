@@ -5,7 +5,7 @@ const CONFIG = {
     // Using Netlify function to proxy CSV (avoids CORS issues)
     CSV_URL: '/.netlify/functions/get-inventory',
     // Google Apps Script for write operations (deployed from the spreadsheet)
-    APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbw3WfvL4jXJ-u4UYUz4vpUV71pJURTiZRtOIzkv6ZqZMUTb8JLiLGNMQnLPsWVR-pv0/exec'
+    APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbxGpuUe8AkkQCrO9zB4uolgX2smc_Ih66k8VXrlWdB3794D5YuYckhaAoTq6TcozOHT/exec'
 };
 
 const CATEGORY_PREFIXES = {
@@ -3078,11 +3078,11 @@ function toggleBuildItem(itemId) {
     } else {
         selectedBuildItems.push({
             itemId: item.itemId,
-            name: item.name,
-            category: item.category,
+            name: item[1] || item.name || 'Unknown',
+            category: item[2] || item.category || '',
             qty: qty,
-            maxQty: item.quantity,
-            value: item.value
+            maxQty: item[4] || item.quantity || 0,
+            value: item[5] || item.value || 0
         });
     }
     

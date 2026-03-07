@@ -1,0 +1,334 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.2.26",
+    "lastTouchedAt": "2026-03-06T06:54:32.482Z"
+  },
+  "env": {
+    "vars": {
+      "BRAVE_API_KEY": "BSAg3p-GTmSh5l2Oqj-N6Y_B3MKBLQS"
+    },
+    "OPENROUTER_API_KEY": "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"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-06T06:54:32.440Z",
+    "lastRunVersion": "2026.2.26",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:main_cft": {
+        "provider": "anthropic",
+        "mode": "token"
+      },
+      "moonshot:default": {
+        "provider": "moonshot",
+        "mode": "api_key"
+      },
+      "openrouter:default": {
+        "provider": "openrouter",
+        "mode": "api_key"
+      }
+    }
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "moonshot": {
+        "baseUrl": "https://api.moonshot.ai/v1",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "kimi-k2.5",
+            "name": "Kimi K2.5",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 256000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "openrouter/moonshotai/kimi-k2-thinking"
+      },
+      "models": {
+        "anthropic/claude-opus-4-6": {
+          "alias": "opus"
+        },
+        "anthropic/claude-opus-4-5": {},
+        "moonshot/kimi-k2.5": {
+          "alias": "Kimi"
+        },
+        "google/gemini-flash-lite-latest": {},
+        "openrouter/auto": {
+          "alias": "OpenRouter"
+        },
+        "openrouter/google/gemini-2.5-flash": {},
+        "openrouter/moonshotai/kimi-k2-thinking": {}
+      },
+      "workspace": "/root/.openclaw/workspace",
+      "memorySearch": {
+        "enabled": true,
+        "sources": [
+          "memory",
+          "sessions"
+        ]
+      },
+      "contextPruning": {
+        "mode": "cache-ttl",
+        "keepLastAssistants": 5,
+        "softTrimRatio": 0.75,
+        "hardClearRatio": 0.9
+      },
+      "maxConcurrent": 4,
+      "subagents": {
+        "maxConcurrent": 8
+      }
+    },
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "workspace": "/root/.openclaw/workspace",
+        "groupChat": {
+          "mentionPatterns": [
+            "@captain",
+            "@Captain",
+            "[Captain]"
+          ]
+        }
+      },
+      {
+        "id": "blaze",
+        "name": "Blaze",
+        "workspace": "/root/.openclaw/agents/blaze",
+        "agentDir": "/root/.openclaw/agents/blaze/agent",
+        "model": {
+          "primary": "openrouter/moonshotai/kimi-k2.5"
+        },
+        "identity": {
+          "name": "Blaze"
+        },
+        "groupChat": {
+          "mentionPatterns": [
+            "@blaze",
+            "@Blaze",
+            "[Blaze]"
+          ]
+        }
+      },
+      {
+        "id": "forge",
+        "name": "Forge",
+        "workspace": "/root/.openclaw/agents/forge",
+        "agentDir": "/root/.openclaw/agents/forge/agent",
+        "model": {
+          "primary": "openrouter/moonshotai/kimi-k2.5"
+        },
+        "identity": {
+          "name": "Forge"
+        },
+        "groupChat": {
+          "mentionPatterns": [
+            "@forge",
+            "@Forge",
+            "[Forge]"
+          ]
+        }
+      },
+      {
+        "id": "atlas",
+        "name": "Atlas",
+        "workspace": "/root/.openclaw/agents/atlas",
+        "agentDir": "/root/.openclaw/agents/atlas/agent",
+        "model": {
+          "primary": "openrouter/moonshotai/kimi-k2.5"
+        },
+        "identity": {
+          "name": "Atlas"
+        },
+        "groupChat": {
+          "mentionPatterns": [
+            "@atlas",
+            "@Atlas",
+            "[Atlas]"
+          ]
+        }
+      }
+    ]
+  },
+  "tools": {
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "brave"
+      }
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "forge",
+      "match": {
+        "channel": "whatsapp",
+        "peer": {
+          "kind": "group",
+          "id": "120363424411197947@g.us"
+        }
+      }
+    },
+    {
+      "agentId": "blaze",
+      "match": {
+        "channel": "whatsapp",
+        "peer": {
+          "kind": "group",
+          "id": "120363407953037967@g.us"
+        }
+      }
+    },
+    {
+      "agentId": "blaze",
+      "match": {
+        "channel": "whatsapp",
+        "peer": {
+          "kind": "group",
+          "id": "120363046366830200@g.us"
+        }
+      }
+    },
+    {
+      "agentId": "blaze",
+      "match": {
+        "channel": "whatsapp",
+        "peer": {
+          "kind": "group",
+          "id": "120363164822179245@g.us"
+        }
+      }
+    },
+    {
+      "agentId": "atlas",
+      "match": {
+        "channel": "whatsapp",
+        "peer": {
+          "kind": "group",
+          "id": "120363424751211648@g.us"
+        }
+      }
+    },
+    {
+      "agentId": "atlas",
+      "match": {
+        "channel": "whatsapp",
+        "peer": {
+          "kind": "group",
+          "id": "120363416523350865@g.us"
+        }
+      }
+    }
+  ],
+  "messages": {
+    "ackReactionScope": "group-mentions"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "channels": {
+    "whatsapp": {
+      "enabled": true,
+      "dmPolicy": "allowlist",
+      "allowFrom": [
+        "+917338042505",
+        "+919739741411",
+        "+919945699770",
+        "+918792014630",
+        "+919739076766",
+        "+918310896240"
+      ],
+      "groupAllowFrom": [
+        "*"
+      ],
+      "groupPolicy": "open",
+      "historyLimit": 25,
+      "dmHistoryLimit": 50,
+      "groups": {
+        "120363158199981434@g.us": {
+          "requireMention": true
+        },
+        "120363046599554642@g.us": {
+          "requireMention": true
+        },
+        "120363164822179245@g.us": {
+          "requireMention": true
+        },
+        "120363423885769364@g.us": {
+          "requireMention": true
+        },
+        "120363046366830200@g.us": {
+          "requireMention": true
+        },
+        "120363045578664749@g.us": {
+          "requireMention": true
+        },
+        "120363404418835924@g.us": {
+          "requireMention": true
+        },
+        "120363407953037967@g.us": {
+          "requireMention": true
+        },
+        "120363424411197947@g.us": {
+          "requireMention": true
+        },
+        "120363424751211648@g.us": {
+          "requireMention": true
+        },
+        "120363416523350865@g.us": {
+          "requireMention": true
+        },
+        "120363420798198522@g.us": {
+          "requireMention": true
+        }
+      },
+      "debounceMs": 0,
+      "mediaMaxMb": 50
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "loopback",
+    "auth": {
+      "mode": "token",
+      "token": "b8383ca6c9397ab3b489ead00c494d04b9438f92f9989162"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    }
+  },
+  "plugins": {
+    "entries": {
+      "whatsapp": {
+        "enabled": true
+      }
+    }
+  }
+}
