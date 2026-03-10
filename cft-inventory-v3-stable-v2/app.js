@@ -112,8 +112,12 @@ let filteredData = [];
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 App initialized');
     setupNavigation();
     loadData();
+    
+    // Reload data every 30 seconds for testing
+    // setInterval(loadData, 30000);
 });
 
 // Navigation
@@ -149,99 +153,122 @@ function switchView(viewName) {
     document.getElementById('pageTitle').textContent = titles[viewName] || 'Dashboard';
 }
 
-// Parse CSV string into array of arrays
+// Parse CSV string into array of arrays - SIMPLIFIED VERSION
 function parseCSV(csv) {
-    const lines = [];
-    let currentLine = [];
-    let currentField = '';
-    let inQuotes = false;
+    const lines = csv.trim().split('\n');
+    const result = [];
     
-    for (let i = 0; i < csv.length; i++) {
-        const char = csv[i];
-        const nextChar = csv[i + 1];
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) continue;
         
-        if (inQuotes) {
-            if (char === '"' && nextChar === '"') {
-                currentField += '"';
-                i++; // Skip next quote
-            } else if (char === '"') {
-                inQuotes = false;
+        // Handle quoted fields properly
+        const row = [];
+        let currentField = '';
+        let inQuotes = false;
+        
+        for (let j = 0; j < line.length; j++) {
+            const char = line[j];
+            
+            if (char === '"') {
+                inQuotes = !inQuotes;
+            } else if (char === ',' && !inQuotes) {
+                row.push(currentField.trim());
+                currentField = '';
             } else {
                 currentField += char;
             }
-        } else {
-            if (char === '"') {
-                inQuotes = true;
-            } else if (char === ',') {
-                currentLine.push(currentField);
-                currentField = '';
-            } else if (char === '\n' || (char === '\r' && nextChar === '\n')) {
-                currentLine.push(currentField);
-                lines.push(currentLine);
-                currentLine = [];
-                currentField = '';
-                if (char === '\r') i++; // Skip \n after \r
-            } else if (char !== '\r') {
-                currentField += char;
-            }
         }
+        row.push(currentField.trim()); // Last field
+        result.push(row);
     }
     
-    // Handle last field/line
-    if (currentField || currentLine.length > 0) {
-        currentLine.push(currentField);
-        lines.push(currentLine);
-    }
-    
-    return lines;
+    console.log('📊 parseCSV: Parsed', result.length, 'rows, first row has', result[0]?.length, 'columns');
+    return result;
 }
 
 // Load Data from Google Sheets (via CSV export)
 async function loadData() {
+    console.log('🔄 Loading data from:', CONFIG.CSV_URL);
+    
     try {
         // Add cache-busting parameter
         const cacheBuster = Date.now();
         const response = await fetch(CONFIG.CSV_URL + '?_=' + cacheBuster, {
             cache: 'no-store'
         });
-        const csvText = await response.text();
-        const data = parseCSV(csvText);
         
-        if (data && data.length > 1) {
-            // Skip header row
-            inventoryData = data.slice(1).filter(row => row[0]).map((row, index) => ({
-                rowIndex: index + 2, // +2 because of 0-index and header
-                itemId: row[0] || '',
-                name: row[1] || '',
-                category: row[2] || '',
-                subCategory: row[3] || '',
-                quantity: parseInt(row[4]) || 0,
-                status: row[5] || 'Available',
-                location: row[6] || '',
-                value: parseInt(row[7]) || 0,
-                addedDate: row[8] || '',
-                notes: row[9] || '',
-                // Rental fields (columns K-P)
-                returnDate: row[10] || '',
-                eventProject: row[11] || '',
-                vendorName: row[12] || '',
-                vendorContact: row[13] || '',
-                rentalCost: parseInt(row[14]) || 0,
-                deposit: parseInt(row[15]) || 0
-            }));
-            
-            filteredData = [...inventoryData];
-            
-            updateDashboard();
-            updateInventoryTable();
-            updateCategoriesView();
-            
-            document.getElementById('lastSync').textContent = new Date().toLocaleTimeString();
-            showToast('Data synced successfully!', 'success');
+        if (!response.ok) {
+            throw new Error('HTTP error! status: ' + response.status);
         }
+        
+        const csvText = await response.text();
+        console.log('📥 Received', csvText.length, 'bytes of CSV data');
+        
+        if (!csvText || csvText.length < 50) {
+            throw new Error('Empty or invalid CSV response');
+        }
+        
+        const data = parseCSV(csvText);
+        console.log('📊 Parsed', data.length, 'total rows');
+        
+        if (!data || data.length < 2) {
+            throw new Error('No data rows found (only ' + (data?.length || 0) + ' rows)');
+        }
+        
+        // Skip header row and map to objects
+        const items = [];
+        for (let i = 1; i < data.length; i++) {
+            const row = data[i];
+            if (row && row[0] && row[0].trim()) {  // Must have Item ID
+                items.push({
+                    rowIndex: i + 1,
+                    itemId: row[0] || '',
+                    name: row[1] || '',
+                    category: row[2] || '',
+                    subCategory: row[3] || '',
+                    quantity: parseInt(row[4]) || 0,
+                    status: row[5] || 'Available',
+                    location: row[6] || '',
+                    value: parseInt(row[7]) || 0,
+                    addedDate: row[8] || '',
+                    notes: row[9] || '',
+                    returnDate: row[10] || '',
+                    eventProject: row[11] || '',
+                    vendorName: row[12] || '',
+                    vendorContact: row[13] || '',
+                    rentalCost: parseInt(row[14]) || 0,
+                    deposit: parseInt(row[15]) || 0
+                });
+            }
+        }
+        
+        console.log('✅ Mapped', items.length, 'valid inventory items');
+        
+        if (items.length === 0) {
+            throw new Error('No valid items found after parsing');
+        }
+        
+        // Update global state
+        inventoryData = items;
+        filteredData = [...inventoryData];
+        
+        // Update UI
+        updateDashboard();
+        updateInventoryTable();
+        updateCategoriesView();
+        
+        // Update sync time
+        const lastSyncEl = document.getElementById('lastSync');
+        if (lastSyncEl) {
+            lastSyncEl.textContent = new Date().toLocaleTimeString();
+        }
+        
+        showToast('Data synced! ' + inventoryData.length + ' items loaded.', 'success');
+        
     } catch (error) {
-        console.error('Error loading data:', error);
-        showToast('Failed to load data. Check console.', 'error');
+        console.error('❌ Error loading data:', error.message);
+        showToast('Failed to load: ' + error.message, 'error');
     }
 }
 
@@ -1892,8 +1919,8 @@ switchView = function(viewName) {
 };
 
 // Load DC data on init
-document.addEventListener('DOMContentLoaded', () => {
-    await loadDCData(); await new Promise(r => setTimeout(r, 1000));
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadDCData();
 });
 
 // ==================== PURCHASE REQUESTS ====================

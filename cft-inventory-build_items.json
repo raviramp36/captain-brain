@@ -1,0 +1,50 @@
+[
+  {
+    "Build ID": "BLD-002",
+    "Item ID": "EC-057",
+    "Item Name": "8-Channel Relay Modules (5V)",
+    "Category": "Electronics",
+    "Qty Used": 1,
+    "Date Added": 46087
+  },
+  {
+    "Build ID": "BLD-002",
+    "Item ID": "EC-040",
+    "Item Name": "ESP32 Sensor Board PCBs (Bare)",
+    "Category": "Electronics",
+    "Qty Used": 1,
+    "Date Added": 46087
+  },
+  {
+    "Build ID": "BLD-002",
+    "Item ID": "EC-026",
+    "Item Name": "ESP32 DevKit Development Boards",
+    "Category": "Electronics",
+    "Qty Used": 1,
+    "Date Added": 46087
+  },
+  {
+    "Build ID": "BLD-002",
+    "Item ID": "EC-128",
+    "Item Name": "IR Proximity Sensors (E18-style)",
+    "Category": "Electronics",
+    "Qty Used": 7,
+    "Date Added": 46087
+  },
+  {
+    "Build ID": "BLD-003",
+    "Item ID": "EV-010",
+    "Item Name": "Laser Pointer (Red)",
+    "Category": "Electronics",
+    "Qty Used": 1,
+    "Date Added": 46087
+  },
+  {
+    "Build ID": "BLD-003",
+    "Item ID": "EC-017",
+    "Item Name": "Arduino Due Microcontrollers",
+    "Category": "Electronics",
+    "Qty Used": 1,
+    "Date Added": 46087
+  }
+]

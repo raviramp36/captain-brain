@@ -1,0 +1,36 @@
+[
+  {
+    "Build ID": "BLD-001",
+    "Product Name": "Test BATAK Unit",
+    "Description": "Testing build feature",
+    "Target Category": "Event Equipment",
+    "Status": "Cancelled",
+    "Created By": "Pattar",
+    "Created Date": 46080,
+    "Est Value": 15000,
+    "Component Count": 0
+  },
+  {
+    "Build ID": "BLD-002",
+    "Product Name": "Kidztopia Piano",
+    "Description": "We have developed a piano project which consists of seven IR sensors, a controller, and lasers. Whenever I wave a hand, the respective tone will be audible.",
+    "Target Category": "Electronics",
+    "Status": "In Progress",
+    "Created By": "Shashank ",
+    "Created Date": 10000,
+    "Completed Date": 3,
+    "Est Value": 10000,
+    "Component Count": 4
+  },
+  {
+    "Build ID": "BLD-003",
+    "Product Name": "test product",
+    "Description": 11,
+    "Target Category": "Event Equipment",
+    "Status": "In Progress",
+    "Created By": "Shashank ",
+    "Created Date": 46087,
+    "Est Value": 13000,
+    "Component Count": 2
+  }
+]

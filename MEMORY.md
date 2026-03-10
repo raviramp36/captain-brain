@@ -124,6 +124,7 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 | My Squad (Ravi's Personal) | 120363423885769364@g.us | Smart (super active, full access) |
 | BD X Accounts (payment followup) | 120363045578664749@g.us | Smart (payment recovery) |
 | CFT founders group (Investors) | 120363420798198522@g.us | Mention-only (Hari, Ajay - NO Cheeko/MetaShot/financials!) |
+| Testing-Agent | 120363408008152307@g.us | Smart (all messages) |
 
 ### Department Agent Groups
 | Group | JID | Agent | Mode |
@@ -296,6 +297,8 @@ Reference: `memory/hiring-priority-companies.md`
 - **Sidekick model works:** Department leads own decisions; Captain supports with research/ideas
 - **Keep files in sync:** When new data comes in (like Suman's employee list), immediately update MEMORY.md and related analysis files — don't just save to a new file and forget to consolidate
 - **Branding:** Company name is **Craftech360** (capital C only, not CrafTech360)
+- **Agent API Keys:** Each agent has its OWN `auth-profiles.json` in `/root/.openclaw/agents/[agent]/agent/`. When OpenRouter keys expire/change, must update ALL agent auth files (main, forge, blaze, atlas) - not just main config. Use sync pattern across all agents.
+- **Auto-Onboarding:** Script `/root/.openclaw/workspace/scripts/add-new-group.sh` enables automatic WhatsApp group setup. Send `add group: [Name] - [Purpose]` in new group → auto-detection → config update → gateway restart.
 
 ---
 
@@ -315,3 +318,4 @@ Reference: `memory/hiring-priority-companies.md`
 6. **HR Policies** — Revamp coming, need to respond to HR messages
 
 **Action:** Ravi sending email summary, expects reply from everyone
+Context: Testing auto-onboarding and group configuration

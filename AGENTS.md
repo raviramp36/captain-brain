@@ -210,3 +210,27 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
+
+---
+
+## 🤖 Auto-Add New WhatsApp Groups (Captain)
+
+When added to a new WhatsApp group, here's the automated workflow:
+
+**Process:**
+1. Human adds Captain to group + provides name/context in a message
+2. Captain detects the JID from message metadata
+3. Runs: `/root/.openclaw/workspace/scripts/add-new-group.sh "<JID>" "<Name>" "<Context>"`
+4. Script updates `openclaw.json` (sets `requireMention: false`) + `MEMORY.md`
+5. Gateway restarts automatically to activate
+
+**Usage from Captain (when given group info):**
+```bash
+# Example:
+/root/.openclaw/workspace/scripts/add-new-group.sh \
+  "120363123456789@g.us" \
+  "Marketing Team" \
+  "BD discussions, campaigns, client pitches"
+```
+
+**No manual config editing required** — fully automated.
