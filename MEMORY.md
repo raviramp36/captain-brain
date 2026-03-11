@@ -125,6 +125,7 @@ Wizcraft, Phase 1, Kestone, BrandAid, Acme, CAB Experiences, Beep, Shobiz
 | BD X Accounts (payment followup) | 120363045578664749@g.us | Smart (payment recovery) |
 | CFT founders group (Investors) | 120363420798198522@g.us | Mention-only (Hari, Ajay - NO Cheeko/MetaShot/financials!) |
 | Testing-Agent | 120363408008152307@g.us | Smart (all messages) |
+| AI Workflow Handle | 120363425451527883@g.us | Smart (all messages) |
 
 ### Department Agent Groups
 | Group | JID | Agent | Mode |
@@ -319,3 +320,4 @@ Reference: `memory/hiring-priority-companies.md`
 
 **Action:** Ravi sending email summary, expects reply from everyone
 Context: Testing auto-onboarding and group configuration
+Context: Fixing agent bugs and workflow issues

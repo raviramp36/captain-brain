@@ -59,7 +59,7 @@ Active HR support for CrafTech360 from Feb 5-11, 2026. Major activities included
 **eTimeOffice (Bio-Park D01) connected:**
 - Dashboard: https://www.etimeoffice.com
 - API Base: https://api.etimeoffice.com/api/
-- Credentials: CRAFTECH360 / Craftech@360
+- Credentials: CRAFTECH360 / [REDACTED]
 - Google Sheet created: https://docs.google.com/spreadsheets/d/1CU51KFI7v2hxMo7urYhhoYqNa_WByuZIMkjr3Qjupgg/edit
 - Successfully logged in and retrieved employee list (20 employees)
 - API documentation pending from eTimeOffice support

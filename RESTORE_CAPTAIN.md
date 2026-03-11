@@ -43,7 +43,7 @@ export GOG_ACCOUNT=accounts@craftech360.com
 ```
 
 ### Notion (Read-Only)
-- Token: `ntn_h83600787745Xh34HaAJhATiy0ywr9hXEJREROAz3wZcMe`
+- Token: [REDACTED]
 - API Version: 2022-06-28
 
 ### eTimeOffice

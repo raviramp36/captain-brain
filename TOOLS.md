@@ -21,13 +21,13 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
   - Inventory Manager: 1RmPnNRh3tCO7TQ-Nv1mauNxltf7O6re5
 
 ### Notion (Read-Only)
-- Integration Token: `ntn_h83600787745Xh34HaAJhATiy0ywr9hXEJREROAz3wZcMe`
+- Integration Token: [REDACTED - stored in auth-profiles.json]
 - API Version: 2022-06-28
 - Mode: READ-ONLY reconnaissance — no changes without Ravi's approval
 
 ### Netlify (Deployments)
 - Account: Ravi's Gmail
-- Token: nfp_NFhSoquZvyMTYrAQdpJT4ctfB9PrUzAA5b6d
+- Token: [REDACTED - stored in auth-profiles.json]
 - Sites: craftech360-hr.netlify.app (HR Dashboard)
 
 ### eTimeOffice (Attendance System)
@@ -36,7 +36,7 @@ Skills define _how_ tools work. This file is for _your_ specifics — the stuff 
 - API Base: https://api.etimeoffice.com/api/
 - Corporate ID: CRAFTECH360
 - Username: CRAFTECH360
-- Password: Craftech@360
+- Password: [REDACTED]
 
 ### Mac Mini (Singe's)
 - Tailscale: singes-mac-mini (100.102.96.57)
