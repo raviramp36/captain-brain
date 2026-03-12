@@ -1,0 +1,75 @@
+                                                    Gayatri Kodolkar
+                                    9766345418 | gayatrikodolkar@gmail.com | LinkedIn | GitHub
+Education
+Ashokrao Mane Group of Institutions
+B.Tech in Computer Science and Engineering                                                                          2022 – 2026
+      Relevant Coursework: Data Structures and Algorithms, Object-Oriented Programming, Database Management
+       Systems, Operating Systems, Computer Networks, Artificial Intelligence, Cloud Computing, Machine Learning
+Experience
+
+Java Developer Intern | Wordlane Tech                                                                      Sep.2025 – Feb.2026
+Java, Spring Boot, REST APIs, SQL, Git, GitHub
+    Contributed to backend development and REST API integration using Java and Spring Boot.
+    Assisted with SQL-based data operations, debugging, and API testing.
+    Collaborated in an Agile team environment and used Git/GitHub for version control.
+
+Flutter Application Developer Intern | Alphinity Softtech                                             Mar.2025 – Aug.2025
+Flutter, Dart, Rest APIs, Firebase
+    Developed cross-platform Flutter applications using Dart with reusable and responsive UI components
+    Integrated REST APIs and Firebase for authentication and real-time data handling.
+    Assisted with debugging, performance optimization, and feature enhancements in a collaborative team environment.
+
+Projects
+CivicEase | Flutter, Dart, Firebase (Auth, Firestore, Storage), REST APIs, Google Maps API                                    Link
+      Developed a cross-platform Flutter application to report, track, and manage civic issues with real-time updates.
+      Integrated Firebase Authentication for secure login, role-based access, and live data synchronization.
+      Implemented image upload (Firebase Storage) and location tagging (Google Maps API) for accurate issue reporting.
+      Designed a responsive Material UI and followed clean architecture with reusable widgets for scalability.
+
+Vulps Fashion Store | React, Java (Spring Boot – API Integration), SQL (Exposure), HTML, CSS, JavaScript                      Link
+      Developed a React-based e-commerce web application focusing on UI and responsiveness.
+      Implemented product listings, categories, and admin panel UI using React.
+      Integrated frontend with Spring Boot backend APIs, including payment workflows.
+      Collaborated with backend teammates and gained exposure to SQL-based data handling.
+
+Voice-Based Coding Assistant | Flutter, Dart, REST APIs,Speech to Text, Text to Speech Firebase / Backend Services           Link
+      Built a Flutter mobile application implementing a voice-driven coding assistant using Speech-to-Text (STT) and Text-to-
+       Speech (TTS) for real-time code explanations in native languages.
+      Developed responsive, performance-optimized UI with Flutter widgets, following accessibility and mobile UI/UX best
+       practices.
+      Applied modular and scalable architecture, integrating REST APIs to ensure efficient voice processing and reliable content
+       delivery.
+
+Amazon Clone | Flutter, Dart, Firebase Authentication, Material Design                                                       Link
+      Developed an e-commerce mobile application using Flutter and Dart with a focus on clean UI and user experience.
+      Implemented Firebase Authentication for secure user sign-up and login.
+      Built core features including product listing, categories, and cart management.
+      Designed responsive layouts using ListView, GridView, and PageView, following Material Design principles.
+Technical Skills
+Languages and Coursework : Java, C++, Dart, DSA, OOPS, CN, DBMS, OS
+Web Technology : Flutter, Android(Java), React.js, HTML, CSS, JavaScript
+State Management : GetX, Provider
+Backend & APIs : Spring Boot, Node.js, RESTful APIs
+Databases : MySQL, MongoDB
+Tools / Platforms : Git, GitHub, Docker, Firebase
+
+Coding Profiles
+
+LeetCode: Solved 100+ problems focusing on algorithms and data structures [Link]
+CodeChef: 2 Stars Rating [Link]
+Codeforces: Newbie [Link]
+
+Certification
+
+Placement Preparation Programme | IIT Mumbai Symposium
+PHP & MySQL Training, Spoken Tutorial (IIT Bombay)
+Android Developer (Virtual Intern) – Google for Developers, India Edu Program
+Networking Basics – Cisco Networking Academy
+
+Core Strengths
+
+Proficient in Java, Spring Boot, and full-stack development with hands-on project experience.
+Strong problem-solving skills with 100+ DSA problems solved on competitive platforms.
+Adaptable to new technologies and frameworks, with a focus on clean and scalable code.
+Effective team collaborator with strong communication and development skills.
+

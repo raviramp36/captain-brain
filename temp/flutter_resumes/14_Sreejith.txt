@@ -1,0 +1,139 @@
+                                              Sreejith kc
+                                                 Flutter Developer
+    Malappuram, Kerala | kcsreejith17120@gmail.com | +91 9072249314 | https://www.linkedin.com/in/sreejith-kc/ |
+                                          https://github.com/Sreejith-k-c
+
+Summary
+Flutter Developer with 2 years of hands-on experience in designing, developing, and maintaining cross-platform
+mobile applications for Android and iOS. Proficient in Dart, Flutter UI development, state management, and
+REST API integration. Experienced in building scalable, user-friendly applications with clean architecture and
+optimized performance. Adept at collaborating with cross-functional teams to deliver high-quality mobile
+solutions within deadlines.
+
+Technical Skills
+  Languages: Dart, Java
+  Frameworks & SDKs: Flutter, Android SDK
+  State Management: Provider, GetX, Bloc, Riverpod
+  UI & Design: Material Design, Cupertino, Responsive Layouts, Custom Animations
+  Backend & APIs: REST APIs, JSON, Firebase (Authentication, Firestore, Cloud Messaging), Google Maps API
+  (Markers, Polylines, Live Location Tracking)
+  Tools & Platforms: Git, Android Studio, VS Code, Postman
+  Testing & Debugging: Flutter Test, Widget Testing, Integration Testing
+  Architecture & Best Practices: Clean Architecture, MVC, MVVM, App Performance Optimization
+  Design & Animation Tools: Figma, 2D Animation, Procreate, Blender
+
+Experience
+  Mobile Application Developer                                                                      May. 2025 - Present
+  Beta Numeric                                                                                               Kochi, Kerala
+     • Developing and maintaining Flutter-based mobile applications for client and internal projects
+
+     • Designed responsive and user-friendly interfaces using Material Design and custom UI components
+
+     • Integrated REST APIs and managed application state using modern state management solutions
+
+     • Collaborated closely with backend and design teams to implement new features and enhancements
+
+     • Actively involved in bug fixing, performance optimization, and code quality improvements
+
+     • Built and published Flutter applications to the Google Play Store, handling app signing, build generation (AAB),
+
+       versioning, and Play Console submissions
+     • Managed Play Store release processes, including internal testing, closed testing, and production rollout
+
+
+  Junior Software Engineer (Mobile App Developer)                                                Apr. 2024 – Apr. 2025
+  Nordic Puffin Technologies                                                                               Kochi, Kerala
+     • Contributed to the end-to-end development of the company’s in-house Flutter mobile application, from feature
+
+       design to production release
+     • Built and maintained scalable, production-ready Flutter applications with clean architecture and reusable
+
+       components
+     • Implemented advanced features using Google Maps API, including markers, polylines, and real-time location
+
+       tracking
+     • Developed responsive and intuitive UIs using Material Design and custom animations
+
+     • Applied state management patterns to ensure maintainable and testable codebases
+
+     • Integrated and optimized REST APIs, handling error states and improving application performance
+
+     • Actively participated in code reviews, bug fixing, and performance optimization for production releases
+
+     • Collaborated closely with product managers, designers, and backend engineers to deliver features aligned with
+
+       business goals
+  Flutter Intern                                                                                 Dec. 2023 – Apr. 2024
+  Luminar Technolab                                                                                     Kochi, Kerala
+    • Developed cross-platform mobile applications using Flutter and Dart, focusing on responsive UI and clean code
+
+      practicess
+    • Implemented Material Design components and reusable widgets to improve UI consistency
+    • Integrated REST APIs and handled JSON data parsing for dynamic content
+    • Worked with state management solutions such as Provider and GetX
+
+    • Collaborated with mentors and team members to debug issues and enhance app performance
+
+
+
+Projects
+ ODD User
+   • Published on Google Play Store
+
+   • Developed a Flutter mobile application that allows users to rent drivers and book trips
+
+   • Integrated REST APIs for booking, trip management, and real-time data handling
+
+   • Implemented Google Maps API for map display, markers, routes, and live location tracking
+
+   • Implemented local notifications for trip and booking status updates
+
+   • Enabled additional services such as cab booking and car wash requests through in-app calling functionality
+
+
+ On-Demand Drivers App
+   • Developed a Flutter-based driver application to manage assigned trips and driver workflows
+
+   • Implemented trip management features including assigned, upcoming, completed, and canceled trip history
+
+   • Integrated REST APIs for fetching trip data and real-time status updates
+
+   • Integrated Google Maps API for route display, markers, and trip-related location tracking
+
+
+ Zervician
+    • Developed a Flutter-based service management application for automotive and industrial equipment maintenance
+
+    • Enabled service workflows for installations, routine maintenance, breakdown assistance, and equipment relocation
+
+    • Integrated REST APIs to manage service requests, scheduling, and service history
+
+    • Integrated Google Maps API for service location tracking and navigation support
+
+
+ Wellnex – Fitness App
+   • Developed a Flutter-based fitness and wellness application to track physical activity and health metrics
+
+   • Implemented features for workout selection, diet planning, and water intake tracking based on user fitness levels
+
+   • Designed a user-friendly interface enabling users to choose personalized workout and diet plans
+
+   • Integrated Hive as a local database for efficient data storage and offline data persistence
+
+
+ EV Companion
+   • Developed a Flutter-based application to assist electric vehicle users with station discovery and booking
+
+   • Utilized Provider for efficient state management and real-time UI updates
+
+   • Focused on smooth navigation and responsive layouts to enhance user experience
+
+
+
+Education
+ Mahatma Gandhi University
+ Bachelor of Computer Application with Artificial Intelligence and Machine Learning                              2020-2023
+
+Certifications
+ Flutter Development Certification - Luminar Technolab
+

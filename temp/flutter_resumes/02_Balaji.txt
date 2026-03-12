@@ -1,0 +1,92 @@
+                                           BALAJI M
+           Senior Flutter Developer | 3.5 Years Experience | Cross-Platform & IoT Specialist
+           📞 7338804286 | ✉ balajiofficial2001@gmail.com | LinkedIn Profile | Chennai, Tamil Nadu
+
+PROFESSIONAL SUMMARY
+Results-driven Senior Flutter Developer with 3.5+ years of experience delivering 6 production apps across
+Android, iOS, and Web — including IoT-integrated POS systems and high-traffic marketplace platforms. Expert in
+Clean Architecture, BLoC/GetX, Firebase, and REST API design. Known for cutting UI render times, architecting
+scalable state management, and shipping stable builds on time. Leverages AI tools (ChatGPT, GitHub Copilot,
+Claude) to accelerate development cycles by 40%+.
+
+CORE SKILLS
+
+Mobile                Flutter, Dart — Android, iOS, Web (Production deployed)
+Architecture          Clean Architecture, MVVM, BLoC, GetX, Provider
+Backend               REST APIs, JSON, Dio, HTTP, Firebase (Auth, Firestore, FCM, Storage)
+IoT                   Bluetooth Thermal Printer Integration (ESC/POS)
+DevOps                Git, GitHub, CI/CD (GitHub Actions), Play Store, App Store
+Testing               Unit Testing, Widget Testing, Integration Testing
+AI Tools              ChatGPT, GitHub Copilot, Claude AI — used daily for faster dev & debugging
+Languages             Dart (Expert), Java (Familiar), Python (Familiar)
+
+WORK EXPERIENCE
+
+Senior Flutter Developer | CI Global Technologies                                      Jul 2023 – Present
+  ▸ Architected and shipped 4 cross-platform Flutter apps (Android/iOS/Web) serving business clients in
+    automotive, F&B, and sports sectors.
+  ▸ Reduced widget rebuild cycles by ~45% through targeted BLoC refactoring — resulting in measurably
+    smoother UI transitions.
+  ▸ Built a Bluetooth thermal printer SDK integration used in 2 POS products, handling ESC/POS command
+    generation entirely in Dart.
+  ▸ Designed a centralized REST API layer with structured error handling, retry logic, and response parsing —
+    reducing API-related bugs by 60%.
+  ▸ Implemented pagination and lazy loading for product listing screens handling 10,000+ records with zero
+    performance degradation.
+  ▸ Integrated Firebase Auth, Firestore, Cloud Messaging, and Storage across multiple apps — achieving
+    99.9% push delivery reliability.
+  ▸ Delivered production builds via CI/CD pipelines (GitHub Actions), reducing manual release effort by 70%.
+  ▸ Actively uses AI tools (Copilot, ChatGPT) to accelerate feature delivery by 35–40% compared to traditional
+    development.
+
+Flutter Developer | MD Quality Apps and Solutions                                  Oct 2022 – May 2023
+  ▸ Built 2 cross-platform business applications integrated with REST APIs for real-time data sync.
+  ▸ Refactored legacy UI components improving app responsiveness — reduced average screen load time by
+    30%.
+  ▸ Collaborated with backend teams to define API contracts, resulting in zero data mismatch issues post-
+    launch.
+  ▸ Maintained modular architecture enabling seamless addition of new features without breaking existing
+    workflows.
+KEY PROJECTS
+
+Dealer Management System (DMS) — Flutter · BLoC · REST APIs · Firebase · Clean Architecture
+  ▸ End-to-end vehicle dealer platform covering sales, order tracking, employee management, and test drive
+    scheduling.
+  ▸ Applied Clean Architecture strictly — 3 separate layers (Data, Domain, Presentation) enabling independent
+    testing of business logic.
+  ▸ Optimized large list rendering with custom ListView builders — achieved 60fps scrolling on 500+ record
+    datasets.
+Rupos — POS Billing Application — Flutter · REST APIs · Bluetooth IoT · ESC/POS
+  ▸ Built full POS billing system with Bluetooth thermal printer support — first IoT-integrated Flutter app at the
+    company.
+  ▸ Real-time inventory sync via REST APIs — stock levels update within 2 seconds of any transaction.
+  ▸ Optimized checkout flow reducing average transaction completion time from 8s to under 3s.
+
+Farm7Days — Livestock & Crop Marketplace — Flutter · REST APIs · Firebase · Android/iOS/Web
+  ▸ Developed marketplace platform deployed across all 3 platforms (Android, iOS, Web) from a single
+    codebase.
+  ▸ Implemented structured pagination for product listings — supports 10,000+ products with smooth infinite
+    scroll.
+MeatProtein — POS & Livestock Sales App — Flutter · Dart · REST API · Bluetooth IoT
+  ▸ POS app for livestock/crop/tree sales with Bluetooth printer for billing receipts.
+  ▸ Real-time product availability via API — zero stale data incidents post-launch.
+
+SportsCentral — Team Management & Live Tracking — Flutter · Dart · REST API
+  ▸ Live match tracking with real-time data refresh — optimized state updates to eliminate UI flicker during live
+    score updates.
+  ▸ Dynamic API-driven content with intelligent caching — reduced redundant API calls by 50%.
+
+TNSTC — Government Learning App — Flutter · Dart · REST API
+  ▸ Built government-sector learning app with API-based course management, content purchases, and user
+    progress tracking.
+
+EDUCATION
+
+Bachelor of Science in Computer Science                                                                2022
+Sindhi College of Arts and Science, Chennai
+
+WHY HIRE ME
+
+     ✅ 6 Production Apps              ✅ IoT + Mobile (Rare Combo)          ✅ AI-Augmented Developer
+          Shipped
+

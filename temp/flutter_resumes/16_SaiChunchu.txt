@@ -1,0 +1,46 @@
+                                          SAI CHUNCHU
+         +91 9951916597 • saichunchu2@gmail.com • linkedin.com/in/sai-chunchu • github.com/saichunchu
+EDUCATION
+Bachelor of Technology (B.Tech.)                                                                              2021-2025
+9.0 CGPA
+Jawaharlal Nehru Technological University Hyderabad
+TECHNICAL SKILLS
+Programming Languages: Java, Dart, Kotlin, Python, JavaScript
+Frameworks & Libraries: Flutter, Android SDK, Retrofit, React, Jetpack Compose, Firebase, Riverpod, GetX , BLoC
+Backend & Real-Time Tools: Node.js, Express.js, RESTful APIs, Socket.io
+AI/ML & Data Analysis: Google ML Kit, Scikit-Learn, Pandas, NumPy, Matplotlib
+Databases: SQL, PostgreSQL, SQLite
+Agile & Tools: Git/Github, Firebase Auth, Firebase Cloud, Android Studio, Unit Testing, Agile(Scrum)
+EXPERIENCE
+Software Engineer, Kolkata: Tata Consultancy Services (TCS)                              December 2025-present
+  • Working as a Backend Engineer on ServiceNow platform, developing and customizing server-side business logic
+    using enterprise-grade workflows.
+  • Optimized Business Rules,Script Includes, Flow Designer workflows, and APIs to support operations.
+Flutter Developer Intern, Bangalore: Kredily                                                     July 2025 - November 2025
+   • Developed a Face Recognition Attendance System (FRS) using Google ML Kit + ONNX models for real-time
+     face detection and verification, with both online and offline support for high reliability.
+   • Improved detection accuracy and processing speed by 25% through optimized ONNX model tuning and backend
+     performance enhancements.
+   • Built a biometric attendance sync system to connect MSSQL and MS Access databases with Kredily’s cloud
+     platform, automating attendance updates for all employees.
+   • Developed a Python + Flet desktop application that retrieves and parses biometric logs, extracts accurate
+     timestamp records, and syncs them with Kredily servers using secure REST APIs.
+Technical Coordinator, Connaissance: JNTUH UCESTH                                              Mar 2024 – May 2025
+   • Spearheaded a 20-member team to organize robotics & AI-driven events with 500+ participants.
+   • Designed and built robots for competitions (combat, maze-solving, racing) using IoT and control systems.
+Vangala Motoconcepts, Hyderabad: Project Intern                                              Apr 2023 – June 2023
+  • Built an IoT-enabled weed-removing robot, integrating ML models to classify weeds vs. crops with 85% accuracy.
+  • Achieved a 20% improvement in efficiency through iterative model tuning and mechanical redesign.
+PROJECTS
+Real-Time Multiplayer Tic-Tac-Toe (Flutter, Node.js, Express.js, Socket.io, Provider)
+  • Built a real-time scalable microservice backend with Node.js + Socket.io for concurrent sessions
+  • Improved synchronization speed by 40%, enabling smooth gameplay across devices.
+Personal Finance & Expense Tracker (FinTech) – (Flutter/Dart, SQLite, Python)
+   • Built a secure personal finance app simulating digital banking features like transaction logging, budgeting, and
+     financial insights using dynamci charts with optimized SQLite for fast, reliable performance.
+News Flash (Flutter/Dart,Firebase,REST API)
+  • Built a secure, cloud-synced news app with Firebase Authentication (Google Sign-In) and REST APIs.
+  • Integrated REST APIs to fetch dynamic news content, ensuring seamless data sync and in-app reading .
+ACHIEVEMENTS
+   • Solved 350+ coding problems on coding platforms Leetcode, GeeksForGeeks
+

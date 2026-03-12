@@ -1,0 +1,100 @@
+Thutta Kiran Kumar
+Flutter Developer
+Hyderabad, India.
+thuttakirankumar@gmail.com
+Phone: +91-9866787593
+https://github.com/thuttakirankumar
+
+Professional Summary:
+Flutter Developer with 4+ years of experience in building cross-platform mobile applications.
+Proficient in Dart, Flutter SDK, BLoC, and Riverpod. Skilled in integrating RESTful APIs,
+Firebase, and third-party services. Having knowledge in app deployment, performance
+optimization, and CI/CD pipelines. Strong background in Agile, TDD, and clean architecture,
+with a focus on delivering scalable, high-quality apps.
+
+Technical Skills:
+
+    Technologies &            Flutter, Firebase, Restful API, Node JS
+    Framework
+
+    Languages Known           Dart, JavaScript, HTML, CSS
+
+    Architecture              Clean Architecture, MVVM
+
+    State Management          Bloc and Riverpod
+
+    Databases                 Realm Database, MongoDB, SQFLite, Hive
+
+    Other                     Agile Methodologies, Test-Driven Development (TDD),
+                              Github Copilot, Microsoft Copilot
+
+    Tools & Platforms         Android Studio, Visual Studio Code, Git, Jira, Swagger
+
+Certification:
+
+•     Infosys Certified Flutter Developer.
+•     Infosys Certified Generative AI Professional – Intermediate
+
+Educational Qualification:
+
+•     Bachelor of Engineering - Mechanical Engineering.
+Professional Experience
+
+
+
+  Company Name        Infosys Limited – Technology Analyst (May 2021 – Present)
+
+  Roles &                     •    Developed and maintained 2+ cross-platform mobile
+  Responsibilities                 applications using Flutter.
+                              •    Collaborated with UI/UX and backend teams to deliver
+                                   seamless user experiences.
+                              •    Integrated REST APIs and Mongo DB, ensuring smooth
+                                   data handling.
+                              •    Performed debugging, unit, and integration testing to
+                                   ensure app stability.
+                              •    Mentored junior developers and conducted peer code
+                                   reviews.
+
+
+
+
+Project Details
+
+
+
+ Project Title       Infield Assessment (IFA)
+
+ Role                Flutter Developer
+
+ Technologies        Flutter, Dart, REST APIs, Bloc State Management
+
+ Description         A learning app to submit assessments and manage approvals.
+
+ Responsibilities                Ensured cross-platform compatibility for mobile as well as
+                                  web
+                                 Designed UI components and integrated RESTful APIs
+                                 Collaborated with product and engineering teams
+                                 Unit & Widget testing
+  Project Title            BlueMM
+
+  Role                     Flutter Developer
+
+  Technologies             Flutter, Dart, REST APIs, Bloc State Management, Mongo DB
+
+  Description              Inventory Management Information System (MIS)
+
+  Responsibilities                Cross-platform mobile app development using Flutter
+                                   and Dart
+                                  Implemented reusable UI components and API
+                                   integrations
+                                  Engaged in the full software development lifecycle
+                                  Unit & Widget testing
+
+
+
+
+Declaration
+ I hereby declare that the above written particulars are true to the best of my knowledge
+and belief.
+                                                                     Thutta Kiran Kumar
+

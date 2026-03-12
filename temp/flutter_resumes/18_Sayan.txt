@@ -1,0 +1,66 @@
+                                       Sayan Mondal
+     § SayanMondal | ï SayanMondal | # 91mondal.sayan@gmail.com | H +91 8617048942
+
+Summary
+Flutter and Dart Software Engineer with 4 years of experience in building scalable, production-grade mo-
+bile applications using MVVM, GetX, Bloc,and Provider. Delivered production-ready apps including
+the Care Health Insurance app (1M+ downloads). Demonstrated career progression with increased own-
+ership across architecture decisions, critical feature development, and production stability using Firebase
+services such as Authentication, Firestore, and Crashlytics.
+
+Technical Skills
+Mobile Development Frameworks and Architecture: Flutter, GetX, BLoC, Provider, Riverpod,
+MVVM Architecture, Clean Architecture, Responsive UI Design, Reusable UI Components, Android
+Development, iOS Development
+
+Cloud Services and DevOps: Firebase (Authentication, Firestore, FCM, Crashlytics), GitHub Actions
+(CI/CD), Google Cloud Fundamentals, Jenkins, Fastlane, RESTful APIs, OAuth
+
+Programming Languages and Tools: Dart, Kotlin, Java, Git, Dio, Hive, Gradle
+
+Testing and Quality Assurance: JUnit, Mockito, Flutter Widget Testing, Static Analysis, Unit Test-
+ing, Integration Testing, Test-Driven Development (TDD)
+
+Work Experience
+Software Engineer                                                                    June 2022 – Present
+Mantra Labs
+Care Health - Customer App (1M+ Downloads)                                               [Play Store Link]
+• Developed a reusable UI component library in Flutter and Dart, leveraging GetX for state manage-
+  ment and MVVM architecture, accelerating development cycles by 30% for the Care Health Insurance
+  application.
+• Integrated Firebase Crashlytics and analyzed crash reports using Play Console ANR reports, Logcat
+  traces, and internal QA test reports with a 4-member team, fixing top crash causes and reducing the
+  overall crash rate by 18%.
+• Led a collaborative effort with backend and QA teams to investigate Firebase Crashlytics reports,
+  resolving findings to fix the top five crash causes and improve application stability.
+DCM Shriram E-Suvidha App (50K+ Downloads)                                               [Play Store Link]
+• Led the complete development of the E-Suvidha application using Flutter and Dart, covering modules
+  such as Login, Dashboard, Farmer Profile, AI Advisory, Orders, Payments, and Notifications.
+• Integrated Firebase Authentication, Firestore, and Cloud Messaging (FCM) into the e-Suvidha appli-
+  cation, enabling real-time data synchronization and push notification delivery to over 5,000+ farmers.
+• Optimized widget tree structure and applied const usage refactoring across the e-Suvidha application,
+  resulting in 35% smoother navigation and a 50% reduction in frame drops on low-end devices.
+• Delivered a high-performance, multilingual e-Suvidha mobile application aligned with Material Design
+  3 guidelines, resulting in a successful Play Store release.
+• Diagnosed and resolved the three biggest causes of crashes post-release by improving code logic, result-
+  ing in 20% fewer bug reports and higher customer satisfaction scores.
+DCM Shriram Suvidha Sathi App
+• Drove the development of a Flutter-based platform connecting farmers with service providers, onboard-
+  ing 500+ service providers.
+• Designed secure authentication, booking, and notification modules using Firebase and RESTful APIs;
+  applied BLoC-based state management to improve module testability by 30%.
+• Built and deployed a retry mechanism for API calls, ensuring data persistence and reducing service
+  booking failures by 60% in rural low-connectivity environments.
+• Established robust error handling, API retry logic, and offline-friendly workflows to ensure reliable
+  service booking in low-connectivity rural environments.
+
+Education
+May 2018 – May 2022      Bachelor of Technology in Electronics and Communication Engineer-
+                         ing
+                         Guru Nanak Institute of Technology
+
+Certifications
+• Flutter BLoC – From Zero to Hero (Complete Course)
+  Udemy — Comprehensive hands-on course covering BLoC architecture, state management patterns,
+  scalable Flutter app design, and real-world implementation strategies.
+

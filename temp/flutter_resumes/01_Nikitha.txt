@@ -1,0 +1,82 @@
+NIKITHA BHUMA                          PROFILE
+
+                                       Experienced Flutter app developer with 2.5+ years in
+Application Developer
+                                       software development, including specialized mobile
+                                       application development since 2024. Proven track record
+                                       in building diverse mobile applications including
+CONTACT                                networking platforms and enterprise healthcare solutions
+                                       with focus on user experience and performance
+   6363719913
+                                       optimization. Seeking to leverage Flutter expertise and
+   nikithabhuma.123@gmail.com          versatile technical background to create innovative mobile
+                                       solutions across various domains.
+   Bengaluru, India
+
+
+                                       WORK EXPERIENCE
+EDUCATION
+                                       FLUTTER APP DEVELOPER
+  Bachelor of Computer Applications    Levon Techno Solutions
+  (BCA) 2018-2021                      June 2024 - Present
+  Pre-University Course (PCMC) 2016-
+                                       Reliance GutAssure App– Healthcare platform for Sir
+  2018
+                                       H.N. Reliance Foundation Hospital supporting appointment
+                                       booking, medical reports, family profiles, and health
+TECHNICAL SKILLS                       education.
+                                          Delivered core modules including appointment
+                                          workflows, medical reports, invoice management, and
+   Mobile Development: Flutter,
+                                          medication reminders.
+   Dart, Android Development.             Built patient engagement features such as FAQs,
+   State Management: BLoC.                news updates, events, and educational content on
+   Backend Integration: REST APIs,        digestive health.
+   JSON Parsing                           Implemented secure OTP authentication, document
+   Tools & Platforms: Android             management, and compliance with healthcare data
+
+   Studio, Visual Studio Code, Git,       privacy standards.
+
+   GitHub (Code Merging, Branch
+                                       KC (Know Connections) - Contact Management &
+   Management, Pull Requests)
+                                       Networking Platform
+   Additional Skills: MVVM
+                                          Developed and deployed a professional networking
+   Architecture, Unit Testing,            application to the Google Play Store, featuring digital
+   Debugging, App Store                   business card sharing and meeting scheduling.
+   Deployment,                            Implemented robust BLoC state management and
+   Local Notifications, Enterprise        RESTful APIs for real-time data synchronization and
+   App Development                        scalable application architecture.
+                                          Designed responsive UI/UX components to ensure
+                                          compatibility across multiple device sizes.
+                                          Managed app deployment and version control using
+                                          Git/GitHub, including pull requests, code reviews, and
+                                          conflict resolution.
+SOFT SKILLS                           ASSOCIATE SOFTWARE ENGINEER
+                                      Capgemini Technology Services India Limited
+  Time Management                     April 2022 - June 2023
+  Communication
+                                      Enterprise Application Support – Managed incidents,
+  Creativity
+                                      database operations, and application stability for
+  Problem Solving
+                                      enterprise clients.
+  Quick leraning                         Managed database operations on Oracle DB and
+                                         MySQL including backup, restoration, and
+LANGUAGES                                performance optimization.
+  English: Professional Proficiency      Implemented application migration from HTTP to
+
+  Telugu: Native Proficiency             HTTPS ensuring enhanced security protocols.
+
+  Kannada: Professional Proficiency      Built infrastructure for frontend and backend servers
+                                         on UNIX & Linux systems using microservices
+                                         architecture.
+INTERESTS
+                                         Handled production and pre-production server
+  Traveling
+                                         environments with focus on stability and
+  Video Editing                          performance.
+                                         Created comprehensive documentation for incident,
+                                         change, and problem management processes.
+

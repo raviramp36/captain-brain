@@ -1,0 +1,91 @@
+                                              Aditi Singh
+                 Ó +91 7033900532        aditisinghvishen18@gmail.com     ¯ linkedin.com/in/aditi-singh
+Professional Summary
+Flutter Developer with 3.5 years of experience building scalable fintech applications at LT Finance, contributing to customer
+and dealer platforms used by 10M+ users. Skilled in Flutter, Clean Architecture, and BLoC state management to develop
+high-performance, maintainable mobile applications. Experienced in delivering complex modules including loan management,
+credit score integration, and marketplace features.
+
+Education
+PES University                                                                                                  2020 – 2022
+Master of Computer Application                                                                                    Bengaluru
+Patna Women’s College                                                                                           2017 – 2020
+Bachelor of Computer Application                                                                                      Patna
+
+Experience
+L & T Finance                                                                                          Aug 2022 – Present
+Software Engineer 1                                                                                             Bengaluru
+Farmtopup Loan System
+  • Designed and developed a mobile application enabling existing farm loan customers to seamlessly apply for a top-up loan
+    instead of reapplying from scratch.
+  • Integrated APIs for real-time loan eligibility checks and validation to streamline the approval process. Implemented
+    interactive UI with JavaScript , jQuery , and CSS , ensuring an intuitive and responsive experience.
+Bulk SMS Tool
+  • Engineered an automated bulk messaging system for customer communication using JavaScript ,jQuery and CSS,
+    replacing manual message dispatch.
+  • Integrated multi-channel messaging (SMS, WhatsApp, and Email) to enhance customer engagement.Optimized message
+    scheduling and delivery tracking, ensuring timely EMI reminders and promotional alerts.
+Planet 3.0 Customer-Facing Loan Application (10M+ Users)
+  • Contributed to the development and revamp of a large-scale customer-facing mobile application serving over 10 million
+    users.
+  • Migrated the existing “Planet” app to modern technology architecture and introduced new features to enhance user
+    experience and performance.
+  • Developed an interactive dashboard enabling users to:
+           i. View personalized loan offers
+           ii. Track availed loans
+           iii. Access utility services such as credit score monitoring and EMI calculator
+  • Built and maintained features using Flutter and Firebase to ensure scalability, real-time data handling, and smooth
+    performance.
+Credit Score Integration
+  • Enabled real-time credit score retrieval on the existing Planet app, allowing customers to check their score before
+    applying for a loan.Integrated CRIF and Equifax APIs, offering dual credit score options for customers.
+  • Built an advisory module that provides personalized recommendations for improving credit scores.
+Partner Planet – Dealer Trade Advance Application (1K+ Downloads)
+  • Led development of a customer-facing mobile application for farm dealers to manage Trade Advances.
+  • Designed and implemented the app using Clean Architecture with BLoC state management in Flutter for scalability and
+    maintainability.
+  • Developed majority of core modules including:
+           i. Trade Advance application (new existing customers)
+           ii. Enhancement Adhoc requests
+           iii. Withdrawal request processing
+           iv. Multi-owner management
+  • Ensured modular, testable, and structured codebase aligned with best architectural practices.
+  • Successfully launched the app with 1K+ downloads.
+  • Tech Stack: Flutter, BLoC, Clean Architecture
+Two-Wheeler Marketplace
+  • Contributed to the development of a two-wheeler marketplace application aimed at driving two-wheeler loan adoption.
+   • Implemented scalable architecture using Clean Architecture with BLoC state management in Flutter.
+   • Developed multiple feature-rich modules including:
+           i. Latest trending bikes showcase
+           ii. Bike comparison functionality
+           iii. Category-based browsing (Brand, Engine Capacity, Bike Type, Fuel Capacity, Mileage)
+   • Ensured modular, maintainable, and high-performance code structure for seamless user experience.
+Projects
+Onlearn e-Learning Platform                                                                                                2022
+ • An e-Learning platform for creating and publishing courses. Developed using React , Node.js and MongoDB. It is a
+   platform where we can enroll for a published course as a learner and get the certification after successful completion of the
+   assessment quiz.
+
+Delicious Bakery Shop Website                                                                                             2021
+ • A platform for online delivery of cakes for a shop. Developed using HTML , CSS , Bootstrap, PHP.
+
+Asset Maintenance System Desktop Application                                                                   2019
+ • Platform for managing the assets for Bihar State Power Holding Company Limited(BSPHCL). Developed using Java and
+    Oracle Database.
+
+Technical Skills
+  Mobile Development: Flutter, BLoC, Clean Architecture, Firebase
+  Languages: Dart, JavaScript, Java, Python, C, C++
+  Frontend: HTML, CSS, React.js, jQuery
+  Backend APIs: REST API Integration
+  Software & Tools: MySQL, Git, Jira
+
+
+Certifications
+  • Certificate for completing successfully Master Flutter Mobile Application Development
+  • Certificate for successfully completing Fullstack Javascript MERN course
+  • Certificate for Dream Team award for successful completion of FarmTopUp Loan at L & T Finance
+  • Certificate for Completion of Web Development Course at Patna Women’s College.
+  • Certificate for Completion of C Training with course material provided by the Talk To A Teacher project at IIT
+    Bombay.
+

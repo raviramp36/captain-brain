@@ -1,0 +1,47 @@
+                            Prashant Maharana
+                                 Gurugram, Haryana, India
+           prashant182002@gmail.com — +91 9582107263 — LinkedIn — GitHub
+
+Summary
+Mobile Engineer with 2+ years of experience shipping 10+ production mobile applications.
+Experienced in building white-label Flutter platforms, reusable SDKs, and scalable mobile
+architectures. Strong foundation in performance optimization and DSA (C++).
+
+Work Experience
+Application Developer Lead — Zealthix Technologies                       Jan 2025 – Present
+ • Delivered and maintained 5+ production healthcare apps used by hospitals and payers across
+   multiple enterprise clients.
+ • Architected a multi-tenant white-label Flutter platform supporting 4+ clients, reducing
+   onboarding time by ∼60%.
+ • Built a reusable Flutter SDK/module adopted across apps, cutting feature integration time
+   from weeks → days.
+ • Owned releases, architecture decisions, and CI/CD for 3+ engineers.
+Stack: Flutter, Dart, Kotlin, Firebase, REST APIs, CI/CD
+Application Developer — BigOh Notations                                     May 2024 – Nov 2024
+ • Engineered the end-to-end international flight booking system for Yatra.com, imple-
+   menting search, pricing, booking flows, and API integrations in production.
+ • Migrated Android modules Java → Kotlin, improving startup performance and reducing crashes.
+ • Built a real-time AI legal chatbot (DigiLawyer) using WebSockets + Realm DB with
+   offline caching.
+ • Implemented offline-first synchronization, reducing sync failures by ∼30%.
+ • Optimized hotel allocation engine, reducing high-load latency by ∼20%.
+Stack: Kotlin, Android Jetpack, Coroutines, WebSockets, Realm DB, SQLite
+
+Technical Skills
+Languages: Dart, Java, Kotlin, C++
+Mobile: Flutter, Android Native
+Architecture: Clean Architecture, MVVM, Modular SDK Design, Offline-first Systems
+Networking/DB: REST APIs, WebSockets, Firebase, Realm DB, SQLite, Room
+Tools: Git, CI/CD
+
+Achievements
+ • CodeChef 4⋆ — Max Rating: 1945
+ • Best Global Rank: 385 (CodeChef )
+ • CodeForces Specialist
+ • LeetCode Knight
+
+Education
+B.Tech (Computer Science), KIET Group of Institutions                              2020 – 2024
+
+                                              1
+

@@ -1,0 +1,93 @@
+​KAMIRA MOSES​
+​Flutter Developer | Mobile Applications Developer​
+📞
+​ Phone: +256(0)789608543 |        ✉️   Email: moses.african@gmail.com​
+​GitHub​:​​GitHub Profile​​| LinkedIn​:​​LinkedIn Profile​
+
+
+
+
+​SUMMARY​
+
+​Senior Mobile Applications Developer with 7+ years of experience in Android and 5+ years specializing​
+ ​in Flutter cross-platform architecture and scalable mobile systems. Proven track record of leading feature​
+  ​development, optimizing application performance, strengthening mobile security, and implementing​
+   ​CI/CD automation for production-grade apps deployed on Google Play and Apple App Store.​
+    ​Experienced in clean architecture design, secure API integrations, testing practices, and cross-functional​
+     ​collaboration within global Agile teams. Passionate about building resilient, high-performance mobile​
+      ​platforms that scale efficiently.​
+
+
+
+
+​WORK EXPERIENCE​
+
+​Mobile Applications Developer (Flutter/Dart)​​@ Etinx, Estonia | Apr 2021 – Feb 2026​
+
+    ​●​ ​Led delivery of 85%+ of core product features for the Ndovu mobile platform, contributing to​
+                 ​successful multi-platform deployment and sustained production stability across Android and iOS.​
+     ​●​ ​Architected and maintained two healthcare applications (Healthflow Patient & Clinician),​
+                  ​enabling secure real-time data synchronization and improving system responsiveness through​
+                   ​optimized API integration and local storage.​
+      ​●​ ​Directed development of the Datagon iOS enterprise tablet application, designing​
+                    ​platform-specific architecture to ensure stable performance in production tablet-only​
+                     ​environments.​
+       ​●​ ​Improved application stability by implementing structured error handling and proactive crash​
+                      ​monitoring using Sentry, reducing production crash incidents and increasing release confidence.​
+        ​●​ ​Strengthened mobile security by implementing encrypted local storage, secure token-based​
+                       ​authentication, and hardened API communication protocols.​
+         ​●​ ​Reduced release cycle time by implementing CI/CD pipelines using Fastlane, eliminating manual​
+                        ​deployment overhead and accelerating production releases.​
+          ​●​ ​Integrated advanced analytics tools (Mixpanel, Adjust) to enhance user behavior tracking and​
+                         ​support product-driven decision making.​
+           ​●​ ​Contributed to architectural decisions, conducted peer code reviews, and collaborated with​
+                          ​cross-functional teams across time zones in SCRUM environments.​
+            ​●​ ​Applied unit testing and structured debugging practices to improve code reliability and maintain​
+                           ​long-term maintainability.​
+​Software Engineer (Android)​​@ Mcash-Uganda​​| Nov 2019 – Nov 2021​
+
+    ​●​ ​Integrated mission-critical banking services (telecom top-ups, utility payments, NSSF​
+           ​contributions, government revenue collection) into the DFCU Agency Banking application,​
+            ​supporting secure digital financial transactions.​
+     ​●​ ​Improved transaction reliability and backend performance through optimized RESTful API​
+             ​communication and structured error handling mechanisms.​
+              ​Enhanced application security through secure authentication flows and improved API resilience.​
+      ​●​ ​Collaborated in Agile sprint cycles using JIRA, contributing to predictable feature delivery and​
+               ​iterative product improvements.​
+
+
+
+
+​Software Engineer (Android)​ ​@ Andela-Uganda​​| Dec 2018 – Oct 2019​
+
+    ​●​ ​Migrated legacy Java codebases to Kotlin, improving maintainability, reducing null-related​
+            ​crashes, and modernizing mobile architecture.​
+     ​●​ ​Resolved high-priority production defects, improving overall application stability and user​
+             ​experience.​
+      ​●​ ​Mentored junior developers and supported onboarding processes, strengthening team productivity​
+              ​and knowledge transfer.​
+       ​●​ ​Supported Agile delivery processes that include sprint planning, issue tracking, and structured​
+               ​code reviews.​
+
+
+
+
+​QUALIFICATIONS​
+
+​B.Sc. Software Engineering​​– Makerere University, Kampala, Uganda​
+
+
+
+
+​SKILLS​
+
+​Technical Skills​
+ ​Flutter (Dart), Android (Java, Kotlin), Jetpack Compose, Clean Architecture, MVVM, RESTful APIs,​
+  ​GraphQL, Firebase (Authentication, Firestore, Analytics), CI/CD (Fastlane), Git, GitHub, Secure Storage,​
+   ​Token-Based Authentication, Widget Testing, Integration Testing, Unit Testing, Debugging, Performance​
+    ​Optimization, Mobile SDK & Plugin Development.​
+
+​Agile & Collaboration:​​SCRUM, JIRA, ClickUp, Code Reviews,and Sprint Planning​
+
+​Languages:​​English (Professional), Lusoga (Native), Luganda​
+

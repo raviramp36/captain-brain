@@ -1,0 +1,122 @@
+Arunkumar M
+Flutter App Developer
+        Arunkumarpython40@gmail.com                                 +91-9500285873
+        Padavedu , TIruvannamalai                                   16-01-2003
+        Male                                                        Arunkumar M
+
+                                     PROFESSIONAL SUMMARY
+
+
+Flutter Full Stack Developer with 1.5+ years of experience in building and maintaining
+production-ready mobile applications. Currently working at Vealthx, contributing across the
+full application lifecycle including development, backend integration, testing, release, and
+post-production support. Experienced in Play Store and App Store publishing, Flutter
+(flutter_bloc), Node.js backend integration, Firebase push notifications, and production issue
+handling. Strong problem-solving mindset with a focus on scalable and reliable mobile
+solutions.
+
+                                      PROFESSIONAL EXPERIENCE
+
+
+ Flutter App Developer                                                    2025 Aug – Present
+ Vealthx (Fintech Application)                                            Bengaluru,karanataka
+
+
+    •    Solely handled end-to-end mobile app lifecycle, from app registration and configuration to
+         successful publishing on Play Store and App Store
+
+    •    Managed Play Console and App Store Connect, including certificates, provisioning profiles,
+         signing, compliance, and release submissions
+
+    •    Implemented state management using flutter_bloc for scalable and maintainable
+         architecture
+
+    •    Managed release testing, generated testing APK / IPA, and distributed builds to QC using App
+         Distribution
+ Mobile App Developer                                                    2024 Aug – 2025 Sep
+ DSM Soft Pvt Ltd ( Tracking Applications)                               Trichy , Tamil Nadu
+
+     •   Developed the Flutter SR Portal application from scratch, handling end-to-end frontend
+         development
+     •   Developed Communication processor between Server and Tracking Device using
+         Node.js Socket
+     •   Improved performance and reliability of real-time tracking features in FMS Lite App
+     •   Used Riverpod for efficient and maintainable state management in SR portal
+     •   Integrated REST APIs using the Dio package
+     •   Implemented vehicle trail route visualization
+
+
+
+
+                                                  Projects
+
+
+
+Vealthx App - App Link
+Flutter Fintech Application (iOS & Android)
+     •   Restructured the application using BLoC architecture, improving scalability,
+         maintainability, and state management
+     •   Handled end-to-end Play Store and App Store registration and publishing, including
+         certificates, signing, and release submissions
+     •   Actively developed and maintained both Android and iOS versions using Android
+         Studio and Xcode
+     •   Worked on core application modules, including:
+             • DigiLocker integration (full-stack : Flutter frontend + Node.js backend )    •
+             • Zoho subscription integration (full-stack: Flutter frontend + Node.js        •
+                 backend)
+
+
+
+
+SR Portal App - App Link
+Flutter Field Technician Application ( Android )
+     •   Developed the application from scratch, handling end-to-end frontend
+         development
+     •   Integrated REST APIs using the Dio package for reliable network communication
+     •   Used Riverpod for efficient and maintainable state management
+     •   Integrated Rive animations to enhance user experience and interaction
+
+     •   Implemented a complete attendance management system for field technicians
+FMS Lite App - App Link
+React Native Vehicle Tracking Application ( Android and IOS )
+       •    Supported and maintained a production-level vehicle tracking application
+
+       •    Implemented vehicle trail route visualization for tracking historical movement
+
+       •    Worked with real-time GPS data to improve tracking accuracy and reliability
+
+       •    Optimized performance for map rendering and continuous location updates
+
+
+
+                                             TECHNICAL SKILLS
+
+
+
+       Flutter & Dart                 React js                   Python                Git Control
+
+            Django                    Firebase                PostgreSQL                  Node JS
+
+
+
+                                        CERTIFICATION / TRAINING
+
+
+Python Full Stack Development
+
+Rajalakshmi Eduverse
+   •       Hands-on experience in Frontend and Backend Development
+
+   •       Strong expertise in Django Web Framework
+
+   •       Built secure and scalable web applications using real-world practices
+
+                                                  Education
+
+
+B.Com – Muthurangam Arts & Science College
+Completed till 6th semester | Discontinued due to job opportunity
+
+12th HSC – Government Higher Secondary School
+School Topper | District-level Quiz Winner
+

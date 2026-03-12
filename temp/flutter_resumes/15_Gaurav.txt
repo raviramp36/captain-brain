@@ -1,0 +1,144 @@
+                                      Gourav Borole
+                                        Flutter Developer
+                             +91 9981561575 · gborole11@gmail.com
+                                   Bangalore, Karnataka, India
+                     LinkedIn: https://www.linkedin.com/in/gaurav-borole-7b1619242/
+
+Professional Summary
+Dynamic Flutter Developer with 1.5+ years of experience building high-performance, cross-
+platform mobile applications for Android and iOS. Expertise in Flutter/Dart, state management
+(GetX, Provider, BLoC), REST API integration, Firebase services, and deploying scalable apps
+to Play Store and App Store. Proven track record in implementing complex features including
+deep linking, referral systems, push notifications, payment gateways, and real-time tracking.
+Strong collaborator with cross-functional teams, delivering user-centric solutions and driving
+operational excellence.
+
+Technical Skills
+Languages: Flutter, Dart, Python, HTML5, CSS3, JavaScript
+Frameworks/Libraries: GetX, Provider, BLoC, Hive, Firebase, Django, MVC, GoRouter
+Tools/Platforms: Git, GitHub, Figma, Postman, Android Studio, VS Code, Play Store, App
+Store, ADB
+Databases: PostgreSQL, Django ORM, SharedPreferences, Hive
+APIs & Integration: RESTful APIs, Firebase (FCM, Analytics, Crashlytics), Razorpay, Deep
+Linking, Push Notifications
+Soft Skills: Problem-Solving, Team Collaboration, Communication, Leadership, Attention to
+Detail, Adaptability
+
+Professional Experience
+Flutter Developer
+Transcloud Solutions · Super Tutor EdTech App Vadodara,
+                                              —         Gujarat
+November 2025 – Present
+   •   Developing and maintaining Super Tutor, a comprehensive EdTech mobile application
+       for students preparing for competitive exams (JEE, NEET, BITSAT) with 10,000+ active
+       users
+   •   Implemented complete referral system with deep linking, Play Store install referrer
+       tracking, and real-time UI notifications, increasing user acquisition by 25%
+   •   Built comprehensive notification system with Firebase Cloud Messaging (FCM)
+       supporting foreground, background, and terminated app states with custom action
+       routing
+   •   Integrated GoRouter for declarative navigation with deep link support (custom scheme,
+       HTTP/HTTPS) enabling seamless app navigation from external sources
+   •   Optimized app performance reducing crash rate by 40% through proper error handling,
+       Firebase Crashlytics integration, and comprehensive logging
+   •   Developed quiz module with timed tests, instant grading, detailed analytics, and
+       progress tracking improving student engagement by 35%
+   •   Implemented flashcard system with spaced repetition algorithm for effective learning and
+       memory retention
+   •   Built mock exam module with full-screen timer, question bookmarking, and
+       comprehensive result analysis with percentile calculation
+   •   Integrated payment gateway (Razorpay) for subscription management with trial period
+       handling and automatic renewal
+   •   Managed state using BLoC pattern ensuring clean architecture and separation of
+       concerns across 50+ screens
+   •   Collaborated with backend team to design and integrate RESTful APIs with proper error
+       handling and offline support
+   •   Conducted code reviews and mentored junior developers, improving code quality and
+       team productivity by 20%
+
+Flutter Developer
+Qicpic Innovations Pvt Ltd — Bangalore, Karnataka
+December 2024 – May 2025
+   •   Developed and maintained in-house Flutter applications for sales teams, enhancing
+       usability and boosting operational efficiency by 20%
+   •   Collaborated with project managers, backend developers, and UI/UX designers to
+       deliver features aligned with business objectives, reducing delivery timelines by 15%
+   •   Integrated REST APIs and Firebase (Analytics, Crashlytics, FCM) for real-time data
+       tracking and app stability, improving crash-free user sessions by 30%
+   •   Managed code versioning with GitHub and deployed Android apps to Play Store,
+       resolving critical bugs and optimizing performance based on user feedback
+   •   Documented APIs and workflows, streamlining onboarding for new developers and
+       reducing training time by 25%
+   •   Presented weekly feature demos to stakeholders, incorporating feedback to align with
+       business goals
+
+Flutter Developer
+Infocentroid Solutions Pvt Ltd — Indore, Madhya Pradesh
+January 2024 – June 2024
+   •   Built and maintained two e-commerce applications using React Native, improving user
+       engagement by 35% through intuitive UI/UX
+   •   Designed and implemented Django-based APIs for seamless backend integration,
+       reducing API response time by 40%
+   •   Developed an admin console and portfolio website using Flutter Web, enhancing client
+       accessibility and interaction
+   •   Managed backend services with Django and PuTTY, ensuring 99.9% uptime and
+       stability
+   •   Deployed apps to Play Store, addressing bugs and optimizing performance, resulting in
+       a 25% increase in user retention
+   •   Designed user-friendly database schemas with Django ORM, improving data retrieval
+       efficiency by 30%
+
+Key Projects
+Super Tutor - EdTech Learning Platform
+(Flutter, Android & iOS) · GitHub: https://github.com/admonash/super-tutor-app
+   •   Comprehensive exam preparation app for JEE, NEET, BITSAT with 10,000+ downloads
+       and 4.2+ star rating
+   •   Features: Chapter-wise study materials, timed quizzes, mock exams, flashcards,
+       progress analytics, subscription management
+   •   Implemented referral system with deep linking and Play Store install tracking achieving
+       25% increase in organic downloads
+   •   Integrated Firebase FCM for smart notifications with custom action routing (quiz
+       reminders, chapter updates, subscription alerts)
+   •   Tech Stack: Flutter, BLoC, GoRouter, Firebase, Razorpay, Play Install Referrer, App
+       Links
+
+Qicpic Zap - Sales Management App
+(Flutter, Android) · Play Store
+   •   Built in-house sales app from scratch to onboard merchants, manage products, and
+       track team activities
+   •   Implemented file uploads, Google Maps integration, camera functionality, and sales
+       analytics with bar graphs
+   •   Integrated Firebase Analytics, Crashlytics, and FCM improving merchant onboarding
+       efficiency by 40%
+   •   Tech Stack: Flutter, GetX, Freezed, Firebase, Google Maps API
+
+Global Health Opinion & GHORx - Telemedicine Platform
+(Flutter, Android & iOS) · App Store · Play Store
+   •   Developed telemedicine apps enabling patients to access second opinions and upload
+       medical records
+   •   Integrated biometric authentication, file uploads, voice recording, and payment gateways
+   •   Leveraged GetX and SharedPreferences achieving 98% crash-free sessions
+   •   Tech Stack: Flutter, GetX, REST APIs, Payment Gateway Integration
+
+Raitha Sahayak & Krishi Connect - AgriTech Platform
+(Flutter, Android & iOS) · Play Store
+   •   Developed agri-products platform with ML-based crop quality checking, increasing seller
+       trust by 25%
+   •   Integrated camera, geolocation, IoT for moisture tracking, and Razorpay payment
+       gateway
+   •   Built buyer-focused purchasing app with quality-based product selection improving user
+       satisfaction
+   •   Tech Stack: Flutter, GetX, ML Integration, IoT, Razorpay
+Education
+Post Graduate Diploma in Advanced Computing (PG-DAC)
+Centre for Development of Advanced Computing (CDAC) — 2023
+Percentage: 67%
+Bachelor of Technology (B.Tech)
+SAGE University, Indore — 2022
+CGPA: 7.8
+
+Certifications
+   •   Post Graduate Diploma in Advanced Computing (PG-DAC), CDAC, 2023
+   •   Flutter & Dart - Complete Development Bootcamp
+   •   Advanced Firebase for Flutter Developers
+

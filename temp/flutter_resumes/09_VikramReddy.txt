@@ -1,0 +1,107 @@
+                                                          VIKRAM REDDY
+                                                         Junior Mobile Developer
+                                                +91 7899337822        vikramreddy7343@gmail.com
+
+
+                                                                  Summary
+Results-oriented Mobile Developer with experience in Flutter and Android development, specializing in building scalable cross-platform
+applications for Android and iOS. Proficient in clean architecture, API integration, and performance optimization, with a strong focus on delivering
+intuitive and user-centric mobile experiences. Passionate about leveraging modern technologies to develop impactful applications and
+continuously enhance mobile development expertise.
+
+
+                                                                  Education
+KLE Technological University                                                                                                      Hubli, Karnataka
+Bachelor of Engineering in Electrical and Electronics                                                                          08/2018 - 05/2022
+
+
+                                                                      Skills
+Flutter Framework Dart Android SDK IOS Kotlin Java BLOC Provider Get x River Pod MVC MVVM CLEAN RESTful API Integration
+SQLite Object Box Shared preferences Firebase Integration (Auth, Firestore, etc.) UI/UX Git & Version Control Android Studio
+Visual Studio Code Xcode Google Maps SDK Push Notifications (FCM) Fastlane Github actions Play Store & App Store Deployment
+
+
+                                                                 Experience
+
+Promena LLP                                                                                                                                Banglore
+Intern                                                                                                                         07/2023 - 11/2023
+• Assisted in designing, developing, and maintaining cross-platform mobile applications using Flutter for both Android and iOS platforms.
+• Collaborated with senior developers to implement UI components and application features using Dart, ensuring responsive and seamless user
+  experiences.
+• Participated in Agile development processes, including daily stand-ups and sprint planning, contributing to timely delivery of features and bug
+  fixes.
+• Supported testing, debugging, and performance improvements to maintain application stability and reliability.
+• Researched and applied modern Flutter development practices and testing methodologies to enhance application quality and performance.
+
+Promena LLP                                                                                                                              Bangalore
+Junior Mobile Developer                                                                                                         11/2023 - Present
+• Developed and maintained cross-platform mobile applications using Flutter and Android, contributing to production apps published on the
+  Google Play Store and Apple App Store.
+• Collaborated on multiple feature modules, implementing new functionalities, resolving bugs, and improving application performance.
+• Designed and implemented responsive UI/UX interfaces, ensuring a consistent user experience across various Android and iOS devices.
+• Integrated RESTful APIs, third-party SDKs, and external libraries to extend application functionality and improve development efficiency.
+• Implemented push notifications and real-time updates to enhance user engagement and communication within applications.
+• Performed application testing, debugging, and performance optimization to ensure stable releases and a high-quality user experience.
+• Participated in the full mobile development lifecycle, including requirement analysis, development, testing, deployment, and maintenance.
+
+
+                                                                    Projects
+Healthetile - Health Monitoring App
+• Developed a Flutter-based health monitoring application integrated with BLE-enabled wearable devices to track and display users’ real-time
+  health metrics.
+• Implemented Bluetooth Low Energy (BLE) communication for reliable data synchronization between wearable health devices and the mobile
+  application.
+• Designed the application using CLEAN architecture, ensuring modular, scalable, and maintainable code with clear separation of concerns.
+• Implemented local data persistence using ObjectBox, enabling efficient storage, offline access, and secure handling of health data.
+• Integrated RESTful APIs using Dio for secure backend communication and synchronization of user health metrics and monitoring data.
+• Optimized real-time data processing and UI updates to deliver a smooth and responsive health tracking experience.
+
+
+
+
+www.enhancv.com                                                                                                   Powered by
+
+
+
+                                                                                                                                 ​
+                                                                   Projects
+
+Sense Original - NFC
+• Developed a Flutter-based mobile application enabling seamless NFC tag scanning and product authentication within the SenseOriginal
+  ecosystem.
+• Implemented NFC (Near Field Communication) integration to detect, read, and process NFC tags for secure and instant product verification.
+• Applied CLEAN architecture to maintain a scalable codebase with clear separation between presentation, domain, and data layers.
+• Integrated RESTful APIs using the Dio package to enable real-time communication with backend services for retrieving product verification
+  data.
+• Implemented local data caching using Hive to optimize performance and improve user experience during repeated scans.
+• Project showcased on Idea Buzz (ZEE TV), highlighting the solution for combating counterfeit products using NFC-based authentication.
+
+Infyni - Online Learning Platform [LMS]
+• Developed a Flutter-based online learning platform enabling users to access courses, tutorials, and interactive learning resources across
+  Android and iOS devices.
+• Implemented a real-time messaging module using websocket, providing instant chat functionality similar to modern messaging applications for
+  improved learner–instructor communication.
+• Managed application state using GetX within an MVC architecture, improving scalability, maintainability, and performance of the application.
+• Integrated multimedia learning support using YouTube and Appino Media Player, enabling smooth video streaming and content playback within
+  the app.
+• Implemented secure payment integration with In-App Purchase, Razorpay, and Stripe, and enabled real-time notifications using Firebase Cloud
+  Messaging (FCM) to keep users updated on classes and platform activities.
+
+Pettera - Social Media for Pets
+• Built a social media platform for pet enthusiasts using Flutter, featuring media uploads, pet services, and a vibrant pet community.
+• Implemented Provider for state management within an MVC architecture, ensuring a clear separation of concerns and streamlined
+  development.
+• Integrated backend APIs using the Dio package based on OpenAPI specifications, ensuring efficient and secure data exchange.
+• Enabled easy sign-in and location-based services through Google Sign-In and Google Maps integration.
+• Facilitated secure and user-friendly payments using Razorpay for various pet-related services.
+• Enhanced user engagement with Firebase Push Notifications,(FCM) delivering updates on pet services and community activities.
+
+
+
+
+www.enhancv.com                                                                                                  Powered by
+
+
+
+                                                                                                                               ​
+

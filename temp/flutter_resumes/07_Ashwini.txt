@@ -1,0 +1,70 @@
+                                    Ashwini Hombal
+         Hubli   |   ashwinihombal02@gmail.com     |   +91 8867329902      |   ashwini-hombal-93b7ba264
+
+
+Objective
+Passionate and results-driven Flutter Developer with 2+ years of experience in designing and developing
+high-performing, cross-platform mobile applications. Skilled in Dart programming, UI/UX optimization, and Agile
+methodologies to deliver scalable and user-centric solutions. Adept at implementing efficient development
+practices, managing CI/CD pipelines, and collaborating across teams to enhance product quality and user
+experience. Eager to contribute technical expertise and creative problem-solving to drive innovation in a dynamic
+organization.
+
+Skills
+   • Programming Languages: Dart, Kotlin, Java, C
+
+   • Mobile Application Development: Flutter (Dart), Cross-Platform Development (Android & iOS), Widget
+     Development, State Management, Responsive & Pixel-Perfect UI, Custom UI/UX, App Publishing
+   • UI/UX Design: UI/UX Design, Mobile Design, Prototyping, Wireframing, Graphics, Responsive and
+     Interactive Layouts
+   • Backend Integration & Databases: RESTful APIs, API Integration, WebSockets, Firebase, SQL, Hive,
+     PostgreSQL
+   • Testing & Debugging: Unit Testing, Widget Testing, Flutter Test Framework, Mocking (Mockito / Mocktail)
+
+   • Development Tools & Practices: Android Studio, Visual Studio Code, Git, GitHub, CI/CD, Jira, Agile/Scrum
+     Methodologies, Code Reviews
+   • Additional Skills: Push Notifications (Firebase Cloud Messaging), Background Services & Notification
+     Handling, Google Maps Integration, QR Code Generation, Offline-First Architecture, Background Data Sync,
+     Conflict Handling, WhatsApp Chatbot Development, Performance Optimization
+
+
+Experience
+Junior Software Engineer, Flying Wedge Defence and Aerospace                               Dec 2023 – Jan 2026
+Agri Drone Booking Application
+• Developed a cross-platform mobile application enabling farmers to schedule drone spraying services with
+  real-time status updates.
+• Integrated Firebase for authentication, data management, and push notifications to enhance user engagement
+  and retention.
+• Implemented a WhatsApp Chatbot to automate booking confirmations and provide real-time customer support.
+• Added multi-language support to improve accessibility for diverse regional users.
+• Applied responsive design principles to ensure smooth performance across various devices and screen sizes.
+• Contributed to Agile sprint planning and CI/CD automation, reducing release cycle time and improving
+  deployment efficiency.
+Survey Mapping Application
+• Built a Google Maps–integrated survey mapping application to define and visualize drone spraying zones with
+  accurate real-time area calculations.
+• Implemented advanced geolocation and obstacle detection features to enhance operational safety and precision.
+• Integrated a secure payment module with UPI support, enabling users to complete payments by scanning QR
+  codes directly within the application.
+• Handled UPI payment flow, transaction validation, and user feedback to ensure a smooth and reliable payment
+  experience.
+• Optimized performance across multiple screen sizes and orientations, improving user retention and satisfaction.
+• Participated in code reviews and performance profiling to ensure scalability, security, and code quality.
+
+Inventory Management Application
+• Developed a high-performance inventory management application using Flutter and Dart, improving tracking
+  efficiency and reducing manual errors.
+• Integrated QR code generation and printing features for streamlined item identification.
+• Implemented SQLite for offline data persistence and seamless data synchronization.
+• Collaborated with cross-functional teams to enhance application performance and usability.
+
+
+Education
+Jain College of Engineering and Technology, BE in Electronics and                                       2020 – 2023
+Communication
+KLE’s CIM Polytechnic Hubli, Diploma in Electronics and Communication                                   2017 – 2020
+
+Certifications and Training
+Software Testing - QSpiders
+C Programming - Victory Academy
+

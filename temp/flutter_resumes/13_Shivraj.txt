@@ -1,0 +1,134 @@
+                                            Shivraj J. Walke
+                       shivrajwalke29@gmail.com | +91 9145419581 | LinkedIn | GitHub
+
+
+
+
+Summary
+Passionate Flutter Developer with 3+ years of experience in building high-performance, cross-platform mobile
+applications. Proven ability to develop and maintain robust applications, integrate REST APIs, and implement
+state management solutions. Eager to leverage expertise in clean architecture, best practices, and
+collaborative development to deliver high-quality mobile solutions and contribute to impactful projects.
+
+
+
+
+Skills
+  **Mobile Development:** Flutter, Dart, iOS, Android
+  **State Management:** Provider, Riverpod, Bloc, GetX
+  **APIs & Integrations:** REST APIs, Firebase (Authentication, Firestore, Push Notifications)
+  **Cloud & Backend:** AWS (EC2, S3, Lambda), Firebase, Node.js, Docker, AWS Amplify, AWS Bedrock
+  **DevOps & Tools:** Git, GitHub Actions, CI/CD, Gradle, Xcode, Android Studio, Figma, MobSF
+  **AI/ML:** Google Gemini, AWS Bedrock
+  **Other:** Java
+
+
+
+
+Experience
+**Senior Software Developer** | Borm Bruckmeier Infotech, Pune, India | July 2022 – Present (3.5 years)
+  Led end-to-end development, release, and maintenance of 20+ digital health applications, impacting clinical
+  workflows for thousands of users.
+  Designed and implemented a CI/CD pipeline for mobile apps, automating testing and distribution to accelerate
+  releases and ensure high quality.
+  Architected and launched a Flutter web app with PWA support, admin dashboard, and scalable deployment using
+  AWS services.
+  Developed and maintained the Medimir cross-platform mobile app for Android and iOS, integrating deep linking, push
+  notifications, and modern UI/UX.
+  Served as app release manager and project lead for 25+ Medical Guidelines Point of Care (PoC) apps, customizing for
+  20+ medical societies and ensuring brand consistency and compliance.
+  Managed all aspects of app store releases (Google Play & App Store), including documentation, compliance, QA, and
+  stakeholder communication.
+  Collaborated with backend, QA, design teams, and medical experts to deliver secure, scalable, and user-friendly apps.
+  Leveraged Flutter, Dart, AWS, Firebase, REST APIs, GitHub Actions, MobSF, Figma, Google Play Console, and App
+  Store Connect.
+
+
+                                                                                                                Page 1 of 3
+  Drove continuous improvement by analyzing user feedback, prioritizing bug fixes, and rolling out new features.
+
+
+Arzneimittel Pocket Plus (Android & iOS)
+  Led end-to-end development, release, and maintenance of a CE-certified Clinical Decision Support (CDS) mobile
+  application with 2.5M+ downloads.
+  Implemented advanced full-text, indexed, and filtered keyword search for rapid access to drug and therapy
+  information.
+  Developed core features including Favorites, Sticky Notes, Medicine Chest, History tracking, and Cloud Backup.
+  Managed App Store & Google Play releases, compliance documentation, QA cycles, and stakeholder coordination.
+
+
+Medimir CDSS (Android & iOS)
+  Architected and developed a cross-platform clinical decision support system mobile app with guideline-based
+  decision support.
+  Implemented medical calculators, clinical scores, and evidence-based tools to support precise treatment decisions.
+  Designed and maintained a secure, bilingual (EN/DE) patient database and automated patient documentation
+  workflows.
+  Integrated subscription management, secure authentication, and backend synchronization.
+
+
+EAU Guidelines (Web, Android & iOS)
+  Led development and maintenance of cross-platform apps for the European Association of Urology (EAU) guidelines
+  platform.
+  Built interactive guideline navigation, calculators, scores, and clinical decision-support tools.
+  Implemented membership-based access, including 30-day trials and EAU member authentication.
+  Enabled offline access and fast content navigation for point-of-care usage.
+  Deployed scalable infrastructure using AWS EC2, S3, CDN, and Firebase services.
+
+
+
+
+Projects
+
+Home Interior Design Visualizer (Flutter + AWS Bedrock)
+A cross-platform AI-powered mobile application that visualizes redesigned rooms using generative image
+models (Stable Diffusion XL). Leverages AWS Bedrock, Amplify authentication, Lambda, and S3 for a
+serverless backend and high-resolution output.
+  Tech: Flutter, Dart, AWS Bedrock, AWS Amplify, AWS Lambda, Amazon S3
+
+E Buddy (Flutter + Firebase)
+Platform connecting entrepreneurs, suppliers, and investors with chat, realtime updates, search, and
+analytics.
+  Tech: Flutter, Firebase
+• GitHub
+
+FCM Notification Server
+Topic/device-based push notification system with a web dashboard, containerized for fast deployment.
+
+                                                                                                              Page 2 of 3
+  Tech: Node.js, Firebase, Docker
+
+AI Resume Builder
+AI-powered web app to generate tailored resumes with live editing, dynamic PDF export, and secure profiles.
+  Tech: Flutter, Firebase, Gemini AI, Google Cloud, AWS Lambda
+• Live
+
+
+
+
+Education
+**Bachelor of Engineering, Information Technology** | Savitribai Phule Pune University | 2019 – 2023
+
+
+
+
+Certifications
+  Build Native Mobile Apps with Flutter — Udacity
+  AWS Educate Introduction to Cloud 101 — Amazon Web Services (AWS)
+  AWS Lambda Foundations — Amazon Web Services (AWS)
+  Getting Started with DevOps on AWS — Amazon Web Services (AWS)
+
+
+
+
+Achievements
+  Enhanced the clinical workflow for thousands of medical professionals through impactful digital health application
+  development.
+  Implemented a CI/CD pipeline that significantly reduced release cycles and improved application quality.
+  Successfully managed the release lifecycle for over 25 mobile applications, ensuring timely delivery and compliance
+  with App Store and Google Play Store guidelines.
+
+
+
+
+                                                                                                             Page 3 of 3
+

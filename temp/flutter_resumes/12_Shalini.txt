@@ -1,0 +1,76 @@
+                                                                                                            📞 +919555646907
+Shalini Saroj                                                                                               📞 salusrj@gmail.com
+
+
+EXPERIENCE & INTERNSHIP                                                                                     SKILLS
+Northcorp Software Pvt Ltd— Senior Flutter developer link                                                   OS (Linux, Windows, macOS)
+Nov 2024- Current*                                                                                          Android (Native, Kotlin, MVC, MVVM, build gradle,
+I developed a cross-platform E-commerce mobile application for Android and iOS using Flutter and Dart,      Retrofit, Jetpack Compose, Hilt, Room)
+focused on women’s fashion with categories like innerwear, ready-to-wear sarees, and jewelry, along with    Flutter (dart, bloc, provider,https, integration &
+multiple subcategories for smooth browsing. The app includes secure online payments through Razorpay,       unit test, Google Map api, TDD, OpenAPI,
+a Virtual Almirah (digital wardrobe) where users can upload outfit images, and an AI-powered outfit         WebSocket, WebRTC, etc.)
+recommendation system that automatically generates looks according to the occasion. It also features
+                                                                                                            Version Control (Git, GitHub)
+virtual try-on and an AI assistant that chats with users and provides voice-based recommendations,
+enhancing the overall user experience across both platforms.                                                Architecture (MVC, MVVM)
+Tech & Editor (Working on): VS Code, Android Studio, Flutter, Kotlin, XML, Flutter WebRTC, WebSocket,       Testing (Integration and unit)
+Firebase Notification, Flutter Bloc, GitHub Action, Integration test, Unit test.                            Others: RestApi, SQLite, Jira, Figma, Firebase,
+                                                                                                            Firebase Push Notification, Data Structures, and
+The Byte IQ, Lucknow— Flutter developer (Android & IOS) link
+                                                                                                            Algorithm.
+Sept 2022 - Oct 2024
+A product-based company has both B2C and B2B products. Working on a gaming app (11 Khiladi ) as
+Dream11& UpNeda govt Project for Android and IOS, to know more about byte IQ, visit the link, and for the
+                                                                                                            ACHIEVEMENTS
+application, visit UpNeda.                                                                                  Runner, Hacktech-National level
+                                                                                                            hackathon organized by REC Banda, awarded 2nd
+Contributions: I automated integration and unit testing using GitHub Actions and implemented Bloc state     prize. Made a resource sharing app under the
+management across the existing codebase. I enhanced the application with polished UI/UX and animations,
+                                                                                                            Smart Campus Theme
+integrated Firebase push notifications, Socket IO, Google Maps, payment gateway, SQLite-based global
+search, third-party APIs, and Google authentication. Additionally, I developed core functional modules,     Runner, Pixel 2.0- Debugging, coding competition
+including contest creation/joining, player and match data handling, scoring, winnings, and payout           in college.
+processes.
+Tech & Editor(Worked on): VS Code, Android Studio, Flutter, Kotlin, XML, Firebase Notification, Google      Winner, Ideathon- Hackathon
+Map Integration, Live Location Tracking, Figma, etc.                                                        organized by REC Azamgarh
+
+GoodTech Mind Solutions, Kolkata Remote. — Flutter developer Internship
+                                                                                                            LANGUAGES
+March 2021 -Aug 2022
+                                                                                                            Dart, Kotlin, Python, C, Java Basic, HTML, CSS
+Worked on some modules like - Improved UI/UX, Google Maps, Places APIs, Firebase Services(Auth,
+Firestore, FCM, Cloud Storage), Connected with Backend API, Convert Image file to PDF file, Read Excel
+                                                                                                            POSITION OF RESPONSIBILITY
+sheet data, Fetching current location weather, Next seven-day Weather Forecasting.
+                                                                                                            Operation Head, Entrepreneurship
+                                                                                                            Development Cell, REC Azamgarh-
+EDUCATION                                                                                                   2020-2022
+Rajkiya Engineering College, Azamgarh— B.Tech AKTU                                                          Managed all events and related
+                                                                                                            paperwork to entrepreneurship
+JULY 2018 - May 2022
+                                                                                                            through the cell. Enhance and induce
+CGPA: 7.8, Information Technology (IT) link
+                                                                                                            the ecosystem of entrepreneurship,
+Modern I C SRN, Bhadohi(U.P).— XII UP Board                                                                 innovation in college.
+MAR 2016-APR 2017
+Percentage: 84.6%, Mathematics, Physics, Chemistry link
+                                                                                                            COURSES UNDERTAKEN
+                                                                                                            Core Courses- Data Structures, Design and
+PROJECTS                                                                                                    Analysis of Algorithms, Database Management
+Prahari— An IoT-Based Crop Monitoring Application                                        May 2022           System, Operating Systems, Theory of
+Flutter Framework for Android app, Firebase Push notification, Weather Forecastin g, Government schemes     Computation, Compiler Design, Engineering, and
+for farmers, Raspberry Pi, sensors, humidity and temperature sensor, Geolocator library, Rest APIs, etc.    Discrete Mathematics
+
+NewsXS — Unbiased real-time news app                                                            Oct 2020    Self-Taught Courses- Blockchain
+
+Developed a Native Android App using Kotlin language on Android Studio IDE that fetches news articles,
+                                                                                                            Technology (NASSCOM), Android
+newspapers, books over the web, utilized API from newsapi.org, App Store Optimisation, Dark Mode,           Development Essential Training
+Asynchronous Tasks -Multithreading, Work Offline, Web View, Picture in Picture view                         (LinkedIn), Applied Machine Learning (LinkedIn),
+                                                                                                            Artificial Intelligence(CS50, Harvard), AWS
+ReCart— Product delivery service for college                                                     Dec 2019
+                                                                                                            Machine Learning (Coursera ).
+Worked with three colleagues, developed an Android app for Vendors, a Delivery app, Intent-based UPI
+Payments, OTP Authentication, Firebase Firestore, and Cloud Storage, and published on the Google Play
+Store
+

@@ -1,0 +1,68 @@
+                                      VARSHA S
+ varshvarsha262@gmail.com | 8792587271 | Linkedin | Github | Portfolio
+
+Career Objective
+  Detail-oriented BCA graduate (CGPA 9.02) skilled in manual & automation testing (TestRail,
+  Jira, Selenium , Postman), Python/SQL validation, seeking Software Test Engineer role to
+  ensure high-quality software releases..
+
+
+Technical Skills
+●​ Testing Tools: TestRail, Jira, Postman (API), Selenium (Python), Playwright, AI/ML Testing
+   basics (model accuracy validation, data augmentation)
+●​ Languages: Python, Java, SQL, HTML, CSS
+●​ Testing Types: Manual, Functional, Regression, UI/UX, API, Automation, AI/ML Model
+   Testing
+●​ Databases: MySQL, SQLite
+●​ Version Control: Git, GitHub
+
+
+Projects
+●​ ApplyGen AI Agent | n8n | LLMs | Web Scraping — Built real-time AI agent for LinkedIn
+   job scanning, skill-matching, recruiter email extraction, personalized cover letters & targeted
+   applications (<60s/role); achieved up to 3× higher relevance vs. manual methods.
+●​ Mobile App Testing | TestRail | Jira | Manual Testing — Executed 50+
+   functional/regression tests, logged 30+ defects, validated backend with SQL; achieved 95%
+   defect resolution rate via developer collaboration.
+●​ Web Application QA | Selenium | Postman | API Testing — Automated e-commerce
+   workflows with Selenium & validated APIs with Postman; improved API reliability by 20%.
+●​ Banking Application Testing | Test Planning | Jira — Created test plans, cases & RTM;
+   identified 25+ critical defects; boosted defect tracking efficiency by 15% with optimized Jira &
+   regression cycles.
+●​ Encryption Tool | Python | AES | Tkinter — Developed secure GUI encryption app; reduced
+   manual encryption time by 40%.
+●​ Pneumonia Detection | CNN | Deep Learning — Trained CNN model for X-ray classification;
+   achieved 87% accuracy with data augmentation for better robustness.
+●​ Exploratory QA & Automation Validation Project— Manual exploratory testing on
+   OrangeHRM SaaS (logical flows, edge cases, usability) + low-latency automation of 5+
+   e-commerce scenarios on SauceDemo using Playwright/Selenium framework.
+Education
+●​ Bachelor of Computer Applications (BCA)
+   Maharani Cluster University, Bengaluru — Aug 2022 – July 2025
+   CGPA: 9.02
+●​ Pre-University (CEBA)
+   RJS PU College, Bengaluru — 2020 – 2022
+   Percentage: 83.5%
+
+
+Certifications
+●​ AI Python Course | Dell (Hope Foundation NGO, Bengaluru) — Nov 2024 – Jan 2025
+●​ Life Skill Training | Unnati Skill Centre — Feb 2024 – Mar 2024
+●​ Vision Health Ambassador Recognition | Sight Connect — Awareness Initiative
+
+
+Soft Skills
+●​ Attention to Detail & Analytical Thinking
+●​ Problem Solving & Critical Thinking
+●​ Effective Communication & Team Collaboration
+●​ Adaptability & Quick Learner
+●​ Time Management
+
+
+Languages
+English (Professional) | Kannada (Native) | Telugu (Native) | Hindi (Basic)
+
+
+Hobbies
+Reading | Art & Craft | Yoga & Meditation | Travel
+

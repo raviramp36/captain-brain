@@ -1,0 +1,49 @@
+                            HARSAROOP SINGH SARAO
+             hsaroop10@gmail.com ⋄ github.com/harsaroop-dev ⋄ linkedin.com/in/harsaroop-singh/
+
+EDUCATION
+B.Tech. Computer Science, Bennett University                                                2022-2026 (On Going)
+CGPA: 8.12/10.0
+
+PROJECTS
+CareerForge AI                                                                                           (GitHub)
+Next.js, FastAPI, Supabase (pgvector), Groq (Llama 3.3), HuggingFace
+  • Optimized LLM context retrieval by architecting a RAG pipeline using FastAPI and pgvector to perform se-
+    mantic searches across targeted resume segments
+  • Built a high-performance data engine using LangChain and PyPDF to transform unstructured documents into
+    384-dimensional vectors for automated gap analysis
+  • Reduced API token consumption by 40% through an asynchronous lazy-loading strategy and a secondary rea-
+    soning layer powered by Llama 3.3 (70B)
+  • Designed a Next.js Bento-style dashboard with real-time SVG visualizations and centralized state management
+AI-Math Tutor                                                                                            (GitHub)
+React, Node.js, Manim (Python), MongoDB, FFmpeg
+  • Architected an LLM-powered engine that translates natural language queries into executable Manim (Python)
+    code for automated math visualizations
+  • Improved code generation accuracy by implementing a few-shot prompting strategy to ensure consistent peda-
+    gogical output and syntax formatting
+  • Automated error reduction by building a pre-execution validation layer that programmatically checks AI-
+    generated Python syntax to mitigate hallucinations
+  • Streamlined media synthesis by designing an asynchronous multi-modal pipeline to synchronize text generation,
+    video rendering, and audio synthesis
+Real-Time Collaborative Whiteboard                                                                       (GitHub)
+Dart, Flutter, Supabase, PostgreSQL, Riverpod
+  • Implemented a low-latency collaborative environment using Flutter and Supabase, enabling simultaneous multi-
+    user canvas interactions
+  • Secured user data by designing a PostgreSQL schema with Row-Level Security (RLS) policies to enforce granular
+    authentication and access control
+  • Developed a key-based invitation system to manage private session access, improving session privacy and user
+    management
+Mobile Fitness Engine (Gym App)                                                                          (GitHub)
+Dart, Flutter, Firebase, Riverpod
+  • Optimized application availability by building a local data caching system, ensuring 100% offline functionality
+    for fitness tracking
+  • Refactored state management logic to adhere to the Single Responsibility Principle, reducing technical debt and
+    improving codebase scalability
+
+TECHNICAL SKILLS
+Programming         C, C++, Java, Python, SQL, HTML, JavaScript, Dart
+AI & Data           RAG, LLM Orchestration (Llama 3.3), Vector Databases (pgvector), Embeddings
+Frontend            React, Next.js, Flutter, Tailwind CSS, Riverpod, Redux, Manim
+Backend             Node.js, Express, FastAPI, MongoDB, PostgreSQL, Firebase, Supabase
+Tools               Git, GitHub, Linux, Docker, FFmpeg, Vercel, Postman
+

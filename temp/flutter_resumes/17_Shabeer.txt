@@ -1,0 +1,165 @@
+SHABEER M
+SENIOR FLUTTER DEVELOPER
+Address:     Kochi,Kerala
+Mobile:      +91 7293698832
+Email:       shabeer.m9999@gmail.com
+linkedIn:    www.linkedin.com/in/shabeer-m09/
+SUMMARY
+Senior Flutter Developer with 4+ years of experience designing, developing, and deploying scalable
+cross-platform mobile applications for iOS and Android. Strong expertise in Clean Architecture, Domain-
+Driven Design (DDD), BLoC, and modular app architecture with a focus on maintainability and
+performance. Experienced in implementing Test-Driven Development (TDD) and writing robust unit,
+widget, and integration tests to ensure high code quality and long-term scalability. Proficient in full
+application lifecycle management — from requirement analysis and system design to production
+deployment and post-release optimization. Hands-on experience with Firebase ecosystem, REST &
+GraphQL APIs, CI/CD pipelines, subscription-based payment systems, and performance optimization.
+Proven ability to lead mobile projects, collaborate with cross-functional teams, mentor junior developers,
+and deliver high-performance applications with strong user engagement and production stability.
+
+WORK EXPERIENCE
+Senior Software Engineer, Lektik                                                  Nov 2023 - Jan 2026
+Responsibilities:
+   Led development of scalable cross-platform Flutter applications for iOS , Android and Web.
+   Designed and implemented Clean Architecture using DDD and BLoC to ensure modular and
+   maintainable codebase.
+   Managed complete application lifecycle from requirement analysis and technical design to
+   production deployment and post-release support.
+   Led and mentored a team of Flutter developers, conducting regular code reviews and enforcing
+   coding standards.
+   Ensured code quality through structured review processes, TDD practices, and automated
+   testing strategies.
+   Implemented native platform integrations using Swift (iOS) and Kotlin (Android) for platform-
+   specific features and performance-critical modules.
+   Integrated payment systems including in-app purchases, subscriptions, Google Pay, and Apple
+   Pay.
+   Designed and maintained CI/CD pipelines for stable and automated deployments.
+Key Achievements:
+   Successfully led multiple production releases with high stability and minimal post-release issues.
+   Improved application architecture scalability by restructuring legacy modules into modular
+   domain-driven layers.
+   Implemented advanced logging and monitoring strategies reducing crash occurrences in
+   production.
+   Built scalable networking layers using REST and GraphQL with proper error handling and
+   interceptor mechanisms.
+   Coordinated cross-functional collaboration between backend, QA, and product teams to ensure
+   timely feature delivery.
+
+
+Flutter Developer, Alternativ Tech Lab Pvt Ltd                                    July 2022 - Oct 2023
+Responsibilities:
+   Developed and maintained production-level Flutter applications for iOS and Android platforms.
+   Translated Figma designs into responsive, pixel-perfect UI components.
+   Integrated GraphQL APIs with proper error handling and state management.
+   Implemented structured state management using BLoC and modular architecture.
+   Integrated Firebase services including Analytics and Push Notifications (FCM).
+   Collaborated closely with backend, QA, and product teams in Agile Scrum environment.
+   Participated in sprint planning, code reviews, and technical discussions.
+Key Achievements:
+   Improved app performance and scalability by restructuring state management and API layers.
+   Reduced API response handling latency through optimized GraphQL queries and caching
+   strategies.
+   Increased code reliability by implementing unit and widget testing practices.
+   Contributed to successful production releases with minimal post-deployment issues.
+
+Junior Mobile Application Developer, Fero.Ai                                  Jan 2022 - Jun 2022
+Responsibilities:
+   Developed multiple cross-platform Flutter applications from feature development to deployment.
+   Implemented state management using GetX for modular and maintainable code.
+   Integrated REST APIs and handled JSON serialization/deserialization.
+   Participated in sprint planning, daily stand-ups, and peer code reviews.
+   Collaborated with UI/UX designers and backend developers to implement new features.
+Key Achievements:
+   Delivered feature modules within deadlines while maintaining clean and reusable code structure.
+   Improved application responsiveness by optimizing UI rendering and API handling.
+   Contributed to codebase improvements through refactoring and performance tuning.
+
+Flutter Intern, Brototype                                                     Jun 2021 - Dec 2021
+Responsibilities:
+   Built Flutter applications as part of structured training and live project assignments.
+   Developed reusable UI components and implemented REST API integrations.
+   Learned and applied Flutter architecture principles and state management fundamentals.
+   Practiced debugging, testing, and version control using Git.
+Key Achievements:
+   Built strong foundation in Dart and Flutter framework.
+   Gained practical experience in mobile application architecture and deployment workflows.
+   Developed understanding of clean coding practices and collaborative development.
+
+EDUCATION
+Bachelor of Computer Science                                                      Jun 2018 - Mar 2018
+University of Calicut
+2018 – 2021
+   Coursework completed (Degree pending)
+
+TECHNICAL SKILLS
+   Cross-Platform Development: Flutter (Mobile & Web), Dart, iOS & Android App Development,
+   Responsive UI Development
+   Architecture & State Management: Clean Architecture, Domain-Driven Design (DDD), BLoC,
+   Provider, GetX, MVC, MVVM, Dependency Injection
+   Backend & API Integration: REST APIs, GraphQL, JSON Serialization, Error Handling, Interceptors
+   Advanced Mobile Engineering: Background Services, Geofencing (Foreground & Background
+   Tracking), Real-Time Location Monitoring, Timers & Isolates, Push Notifications (FCM)
+   AI & LLM Integration: LLM API Integration, AI Chat Systems, Prompt Engineering, Real-Time AI
+   Response Handling
+   Native & Platform Integration: Swift (iOS), Kotlin (Android), Platform Channels, Native SDK
+   Firebase & Cloud: Firebase Authentication, Analytics, Remote Config, Performance Monitoring
+   Payments & Monetization: In-App Purchases, Subscriptions, Google Pay, Apple Pay, Razorpay
+   Testing & Quality: Test-Driven Development , Unit Testing, Widget Testing, Integration Testing
+   DevOps & Deployment: Git, CI/CD Pipelines, App Store & Play Store Deployment, Agile/Scrum
+PROJECTS
+
+Sequence – Enterprise Work & Workforce Management Application
+  Role: Senior Flutter Developer
+  Tech Stack: Flutter (Mobile & Web), Clean Architecture, BLoC, REST APIs, Firebase, Native
+  Integration (Swift & Kotlin), Local Database
+  Developed an enterprise-grade work and task management application enabling structured
+  workflow execution and team collaboration.
+  Designed step-based task sequencing system with dependency handling and priority-based
+  execution.
+  Implemented role-based authentication and multi-level access control for administrators,
+  managers, and employees.
+  Built real-time task tracking system with status updates, comments, and notification triggers.
+  Developed analytics dashboard to monitor productivity, task completion rates, and workforce
+  performance.
+  Background Geofencing & Workforce Tracking Module
+  Implemented foreground and background geofencing for employee location monitoring.
+  Designed periodic interval-based location tracking with radius-based movement detection logic.
+  Integrated native background services using Swift (iOS) and Kotlin (Android) for reliable
+  execution when app is minimized or closed.
+  Implemented stationary detection alerts and maintained location history logs.
+  Optimized battery consumption and handled platform-specific permission & lifecycle constraints.
+  Ensured secure data transmission for real-time tracking updates.
+  Architecture & Scalability
+  Structured the application using modular Clean Architecture and BLoC for maintainability and
+  scalability.
+  Implemented offline-first capability with local database synchronization.
+  Managed CI/CD pipeline and production deployment with high application stability.
+
+
+LeapRoad – AI-Powered Learning Platform
+  Role: Senior Flutter Developer
+  Tech Stack: Flutter, BLoC, DDD, REST APIs, Firebase, LLM API Integration
+  Developed AI-driven personalized learning platform with structured learning paths and
+  collaboration features.
+  Integrated LLM-based chat system for real-time AI-assisted responses.
+  Implemented prompt-based AI request handling and response parsing.
+  Designed modular architecture using Clean Architecture and DDD principles.
+  Integrated push notifications, analytics tracking, and performance monitoring.
+  Managed full production lifecycle including release and optimization.
+  Sprinkle – Online Betting Platform
+  Role: Lead Flutter Developer
+  Tech Stack: Flutter, BLoC, REST APIs, Firebase Auth, In-App Subscriptions
+  Led development of real-time betting platform with live odds, player statistics, and dynamic
+  updates.
+  Integrated subscription-based monetization using App Store & Play Store billing systems.
+  Designed scalable networking layer with structured error handling.
+  Managed production release and post-deployment monitoring.
+
+
+Glamour Book – E-Commerce Application
+  Role: Flutter Developer
+  Tech Stack: Flutter, BLoC, DDD, Razorpay, REST APIs
+  Developed full-featured e-commerce mobile application with cart, wishlist, and order
+  management features.
+  Integrated secure payment gateway (Razorpay).
+  Optimized checkout flow and API response handling for smooth user experience.
+

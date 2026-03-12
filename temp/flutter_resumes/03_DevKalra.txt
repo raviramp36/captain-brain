@@ -1,0 +1,88 @@
+                                                  DEV KALRA
+                                                    Hyderabad, Telangana
+                                             +91 9034906032      Kalradev50@gmail.com
+
+
+
+
+Overview
+Mobile Engineer specializing in Flutter/Dart with experience developing secure, reliable, and multi-platform mobile
+applications across Android, iOS, Web, and Desktop. Strong focus on Clean Architecture, quality-driven development,
+and long-term maintainability.
+
+Education
+Maharishi Markandeshwar University                                                                   Aug 2019 – July 2023
+B. Tech in Computer Science                                                                                        CGPA– 8.89
+Swami Vivekanand Public School                                                                     March 2018 – April 2019
+Senior Secondary                                                                                              Percentage – 74
+
+Technical Skills
+
+  Languages: Dart, SQL, Python
+  Frameworks: Flutter SDK
+  Tools: Android Studio, VS Code, GitHub
+  Backend & Tools: Rest API’s, WebSocket’s
+  Cloud Technologies: Firebase, AWS, GCP
+  Architecture: Clean Architecture, MVVM, Provider, Riverpod, BLoC (Basic)
+
+
+Experience
+
+HLP Innovation – SDE (Flutter Developer)                                                                June 2025 – Present
+Hyderabad, INDIA
+
+      Leading end-to-end development of cross-platform applications using Flutter for enterprise and healthcare-adjacent
+       platforms.
+      Implementing Clean Architecture and modular design to ensure maintainability, testability, and high-quality code.
+      Handling API integration, debugging, performance improvements, and deployment workflows.
+      Managing Git branching, code reviews, and development standards across the team.
+
+Virtuoso NetSoft - SDE (Flutter Developer)                                                             January 2025 – June 2025
+Chandigarh, INDIA
+
+      Developed real-time features using WebSocket’s, improving responsiveness and communication efficiency.
+      Built reusable UI components and screens consistent with Figma designs and accessibility guidelines.
+      Optimized API performance and improved data-handling reliability in collaboration with backend engineers.
+Etraffic Webexpert - SDE (Intern)                                                                  April 2024 – December 2024
+Yamuna Nagar, INDIA
+
+           Built multi-platform Flutter UI components for Android and iOS applications.
+           Supported product testing, documentation, bug fixing, and cross-team communication
+
+Certificates
+
+        •    The Complete Flutter Development Bootcamp with Dart by – Dr. Angela Yu (2023)
+        •    Introduction to Cybersecurity by Cisco Networking Academy – (2024)
+        •    The Salesforce Platform Basics – Trailhead (Salesforce) – (2024)
+
+
+Projects
+
+
+ HLP App – Live Project (Medical Healthcare Platform)
+ Mobile Engineer | Flutter, Dart
+
+       Developed a multi-platform medical healthcare application enabling users to book doctor appointments, manage
+        consultations, and access healthcare services seamlessly across Web, Desktop, and Mobile.
+       Integrated secure backend APIs for patient data, doctor availability, authentication, and appointment management.
+       Improved UI/UX by implementing responsive layouts, clean visual hierarchy, and accessible design, resulting in a user-
+        friendly medical interface.
+
+ User-Agent Chat System (P2A Brand–Consumer Communication Application)
+    Mobile Engineer | Flutter, Dart
+
+       Developed a real-time chat communication platform designed for brands to directly interact with consumers who show
+        interest in their services.
+       Implemented WebSocket’s and Apache Kafka to support instant messaging, event streaming, and high throughput
+        between users and brand agents.
+
+    Safe Lane – Course Project
+    Mobile Engineer | Flutter, Dart
+
+       Developed a cross-platform mobile application designed to identify and report road hazards such as potholes, open
+        manholes, and unsafe areas.
+       Integrated Firebase & Cloud Functions to store hazard reports, manage user data, and enable real-time data
+        synchronization.
+       Used Google Maps API and Directions API to visualize hazard locations, display map markers, and provide navigation
+        assistance to users.
+
