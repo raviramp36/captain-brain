@@ -105,7 +105,13 @@ jq '.[].scopes' ~/.openclaw/devices/paired.json
 
 ---
 
-## What Goes Here
+## My WhatsApp Number (OpenClaw Gateway)
+- **Number:** +917338042505
+- **Used for:** All WhatsApp messages I send/receive as Captain
+
+## Ravi's Numbers
+- **Primary:** +919739741411 (this one - WhatsApp)
+- **Secondary:** +917338042505, +919945699770
 
 Things like:
 

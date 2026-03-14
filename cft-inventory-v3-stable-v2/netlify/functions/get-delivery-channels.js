@@ -10,7 +10,44 @@ exports.handler = async (event, context) => {
         'Pragma': 'no-cache'
       }
     });
-    const csvText = await response.text();
+    let csvText = await response.text();
+    
+    // Fix: Google Sheets CSV with multiline fields needs proper parsing
+    // Use a simple approach: count unescaped quotes
+    const lines = [];
+    let currentLine = '';
+    let openQuotes = false;
+    let i = 0;
+    
+    while (i < csvText.length) {
+      const char = csvText[i];
+      const nextChar = csvText[i + 1];
+      
+      if (char === '"') {
+        if (openQuotes && nextChar === '"') {
+          // Escaped quote - include one quote and skip next
+          currentLine += '"';
+          i += 2;
+          continue;
+        }
+        openQuotes = !openQuotes;
+      }
+      
+      if (char === '\n' && openQuotes) {
+        // Inside quotes - convert to space
+        currentLine += ' ';
+      } else if (char === '\n' && !openQuotes) {
+        // Outside quotes - end of row
+        if (currentLine.trim()) lines.push(currentLine);
+        currentLine = '';
+      } else {
+        currentLine += char;
+      }
+      i++;
+    }
+    if (currentLine.trim()) lines.push(currentLine);
+    
+    const fixedCsv = lines.join('\n');
     
     return {
       statusCode: 200,
@@ -19,7 +56,7 @@ exports.handler = async (event, context) => {
         'Access-Control-Allow-Origin': '*',
         'Cache-Control': 'no-cache, no-store, must-revalidate'
       },
-      body: csvText
+      body: fixedCsv
     };
   } catch (error) {
     return {
